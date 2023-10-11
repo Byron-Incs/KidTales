@@ -1,6 +1,6 @@
 /* Update below HEX and RGB color code to your primary color for light mode */
 [data-bs-theme=light] {
-  --bs-primary: #DA8C47 !important;
+  --bs-primary: #19f032 !important;
   --bs-primary-rgb: 25, 240, 50 !important; 
   --bs-link-color:#19f032 !important;
   --bs-link-hover-color:#0c911c !important;
