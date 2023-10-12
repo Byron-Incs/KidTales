@@ -263,6 +263,9 @@
 
 //Header sticky css
 @include media-breakpoint-up(xl){
+  // header{
+  //   animation: fadeUpDown .5s;
+  // }
   header.header-sticky-on {
     position: fixed;
     z-index: 1040;

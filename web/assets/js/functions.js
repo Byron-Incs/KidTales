@@ -2,7 +2,7 @@
 * Booking - Multipurpose Online Booking Theme
 *
 * @author Webestica (https://www.webestica.com/)
-* @version 1.2.0
+* @version 1.2.1
 **/
 
 
