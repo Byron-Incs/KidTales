@@ -33,6 +33,10 @@
 
     </head>
 
+
+
+
+
     <body>
 
         <!-- Header START -->
@@ -44,17 +48,17 @@
                     <!-- Logo START -->
                     <a class="navbar-brand" href="indexusuario.html">
                         <img class="light-mode-item navbar-brand-item" src="../../assets/images/index/logoc.jpg" alt="logo">
-                        
+
                     </a>
                     <!-- Logo END -->
                     <button class="navbar-toggler ms-sm-auto mx-3 me-md-0 p-0 p-sm-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCategoryCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-animation">
+                        <span class="navbar-toggler-animation">
                             <span></span>
                             <span></span>
                             <span></span>
-                    </span>
+                        </span>
                     </button>
-        
+
                     <div class="navbar-collapse collapse" id="navbarCategoryCollapse">
                         <ul class="navbar-nav navbar-nav-scroll nav-pills-primary-soft text-center ms-auto p-2 p-xl-0">
                             <li class="nav-item"> <a class="nav-link" href="indexusuario.html">Inicio</a></li>
@@ -125,53 +129,99 @@
                     <!-- Image END -->
                 </div>
             </section>
-
-
-            <br>
-              <br>
-                <br>
-                <br>  <br><!--   <br> -->
             <section class="pt-0 pt-lg-5">
-                <!--   About START -->
+                <!-- About START -->
                 <section class="pb-0 pb-xl-5">
                     <div class="container">
-                        <div class="row g-4 justify-content-between align-items-center">
+                        <div class="row">
+                            <!-- Chat Section -->
+                            <div class="col-md-8 col-lg-6 col-xl-4 mb-4">
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between align-items-center p-3" style="border-top: 4px solid #ffa900;">
+                                        <h5 class="mb-0">Chat messages</h5>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <span class="badge bg-warning me-3">20</span>
+                                            <i class="fas fa-minus me-3 text-muted fa-xs"></i>
+                                            <i class="fas fa-comments me-3 text-muted fa-xs"></i>
+                                            <i class="fas fa-times text-muted fa-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
+                                        <div class="d-flex justify-content-between">
+                                            <p class="small mb-1">Timona Siera</p>
+                                            <p class="small mb-1 text-muted">23 Jan 2:00 pm</p>
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-start">
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                                                 alt="avatar 1" style="width: 45px; height: 100%;">
+                                            <div>
+                                                <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;">For what reason
+                                                    would it
+                                                    be advisable for me to think about business content?</p>
+                                            </div>
+                                        </div>
 
-                            <!-- Left side START -->
-                            <div class="col-lg-5 position-relative">
-                                <!-- Svg Decoration -->
-                                <!-- Svg decoration -->
+                                        <div class="d-flex justify-content-between">
+                                            <p class="small mb-1 text-muted">23 Jan 2:05 pm</p>
+                                            <p class="small mb-1">Johny Bullock</p>
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-end mb-4 pt-1">
+                                            <div>
+                                                <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-warning">Thank you for your believe in
+                                                    our
+                                                    supports</p>
+                                            </div>
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
+                                                 alt="avatar 1" style="width: 45px; height: 100%;">
+                                        </div>
 
-                                
-
-
+                                        <div class="d-flex justify-content-between">
+                                            <p class="small mb-1">Timona Siera</p>
+                                            <p class="small mb-1 text-muted">23 Jan 5:37 pm</p>
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-start">
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                                                 alt="avatar 1" style="width: 45px; height: 100%;">
+                                            <div>
+                                                <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;">Lorem ipsum dolor
+                                                    sit amet
+                                                    consectetur adipisicing elit similique quae consequatur</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
+                                        <div class="input-group mb-0">
+                                            <input type="text" class="form-control" placeholder="Type message"
+                                                   aria-label="Recipient's username" aria-describedby="button-addon2" />
+                                            <button class="btn btn-warning" type="button" id="button-addon2" style="padding-top: .55rem;">
+                                                Button
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- Left side END -->
-                            <!-- Right side START -->
-                            <div class="col-lg-6">
+
+                            <!-- Cuentános Section -->
+                            <div class="col-md-4 col-lg-6 mb-4">
                                 <h2 class="mb-3 mb-lg-5" style="text-align: center">Cuentános</h2>
                                 <p class="mb-3 mb-lg-5" style="text-align: center">"¿Cuál es tu problema? ¡Háznoslo saber y juntos encontraremos la solución!".</p>
 
                                 <!-- Features START -->
                                 <div class="row g-4">
-         
-                                    <!-- Item -->
+                                    <!-- Tus características actuales -->
                                     <div class="col-sm-6">
                                         <div class="icon-lg bg-orange bg-opacity-10 text-orange rounded-circle"><i class="bi bi-shield-fill-check"></i></div>
                                         <h5 class="mt-2">Alta Seguridad</h5>
                                         <p class="mb-0">Solucionamos todas tus dudas de forma segura y eficaz.</p>
                                     </div>
-                                    <!-- Item -->
                                     <div class="col-sm-6">
                                         <div class="icon-lg bg-info bg-opacity-10 text-info rounded-circle" ><i class="bi bi-lightning-fill"></i></div>
                                         <h5 class="mt-2">Velocidad</h5>
-                                        <p class="mb-0">Respuesta a tu problema de forma rapida y eficiente.</p>
-                                    </div>		
+                                        <p class="mb-0">Respuesta a tu problema de forma rápida y eficiente.</p>
+                                    </div>
                                 </div>
                                 <!-- Features END -->
-
                             </div>
-                            <!-- Right side END -->
                         </div>
                     </div>
                 </section>
