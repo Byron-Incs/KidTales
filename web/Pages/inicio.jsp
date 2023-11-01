@@ -1,3 +1,10 @@
+<%-- 
+    Document   : inicio
+    Created on : 1 nov. 2023, 13:45:59
+    Author     : Evelyn
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -76,7 +83,7 @@ Main Content START -->
 											<input type="checkbox" class="form-check-input" id="rememberCheck">
 											<label class="form-check-label" for="rememberCheck">Recordar</label>
 										</div>
-										<a href="forgot-password.html">Olvidaste tu contraseña?</a>
+										<a href="forgot-password.jsp">Olvidaste tu contraseña?</a>
 									</div>
 									<!-- Button -->
 									<div><button type="submit" class="btn btn-primary w-100 mb-0">Ingresar</button></div>

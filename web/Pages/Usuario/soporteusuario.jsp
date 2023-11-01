@@ -1,3 +1,10 @@
+<%-- 
+    Document   : soporteusuario
+    Created on : 1 nov. 2023, 13:51:48
+    Author     : Evelyn
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>

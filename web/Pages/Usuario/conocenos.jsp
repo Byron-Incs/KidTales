@@ -1,3 +1,10 @@
+<%-- 
+    Document   : conocenos
+    Created on : 1 nov. 2023, 13:53:25
+    Author     : Evelyn
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>

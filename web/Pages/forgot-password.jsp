@@ -1,6 +1,13 @@
+<%-- 
+    Document   : forgot-password
+    Created on : 1 nov. 2023, 13:49:52
+    Author     : Evelyn
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
         <title>KidTales - Incio de Sesión</title>
 
         <meta charset="utf-8">
@@ -21,7 +28,6 @@
 
     </head>
 
-
 <body>
 
 <!-- **************** MAIN CONTENT START **************** -->
@@ -38,7 +44,7 @@ Main Content START -->
 						<!-- Vector Image -->
 						<div class="col-lg-6 d-md-flex align-items-center order-2 order-lg-1">
 							<div class="p-3 p-lg-5">
-								<img src="../assets/images/registro/img1.svg" alt="">
+								<img src="../assets/images/contraseña/img1.svg" alt="">
 							</div>
 							<!-- Divider -->
 							<div class="vr opacity-1 d-none d-lg-block"></div>
@@ -46,50 +52,34 @@ Main Content START -->
 		
 						<!-- Information -->
 						<div class="col-lg-6 order-1">
-							<div class="p-4 p-sm-6">
+							<div class="p-4 p-sm-7">
 								<!-- Logo -->
 								<a href="../index.html">
-									<img class="h-50px mb-4" src="../assets/images/index/logoc.jpg" alt="logo">
+									<img class="mb-4 h-50px" src="../assets/images/index/logoc.jpg" alt="logo">
 								</a>
 								<!-- Title -->
-								<h1 class="mb-2 h3">Crear Cuenta</h1>
-								<p class="mb-0">Ya tienes cuenta?<a href="inicio.html"> Ingresa</a></p>
+								<h2 class="mb-2 h3">Olvidaste tu Contraseña?</h2>
+								<p class="mb-sm-0">Ingresa el email asociado a tu cuenta.</p>
 		
 								<!-- Form START -->
-								<form class="mt-4 text-start">
+								<form class="mt-sm-4 text-start">
 									<!-- Email -->
 									<div class="mb-3">
 										<label class="form-label">Email</label>
 										<input type="email" class="form-control">
 									</div>
-                                                                        <!-- Nombre de usuario-->
-                                                                        <div class="mb-3">
-										<label class="form-label">Nombre de Usuario</label>
-                                                                                <input type="text" class="form-control">
-									</div>
-									<!-- Password -->
-									<div class="mb-3 position-relative">
-										<label class="form-label">Contraseña</label>
-										<input class="form-control fakepassword" type="password" id="psw-input">
-										<span class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
-											<i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
-										</span>
-									</div>
-									<!-- Confirm Password -->
-									<div class="mb-3">
-										<label class="form-label">Confirmar Contraseña</label>
-										<input type="password" class="form-control">
-									</div>
-									<!-- Remember me -->
-									<div class="mb-3">
-										<input type="checkbox" class="form-check-input" id="rememberCheck">
-										<label class="form-check-label" for="rememberCheck">Mantener Sesión Activa</label>
-									</div>
+
+                                                                        <div class="mb-3 text-center">
+                                                                          <p>Regresar a <a href="inicio.html">Ingresar</a></p>
+                                                                        </div>
+
 									<!-- Button -->
-									<div><button type="submit" class="btn btn-primary w-100 mb-0">Registrar</button></div>
+									<div class="d-grid"><button type="submit" class="btn btn-primary">Restaurar Contraseña</button></div>
+		
+									
 		
 									<!-- Copyright -->
-									<div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron Inc.</div>
+									<div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron </div>
 								</form>
 								<!-- Form END -->
 							</div>		
@@ -110,10 +100,10 @@ Main Content END -->
 <div class="back-top"></div>
 
 <!-- Bootstrap JS -->
-<script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- ThemeFunctions -->
-<script src="../assets/js/functions.js"></script>
+<script src="assets/js/functions.js"></script>
 
 </body>
 </html>
