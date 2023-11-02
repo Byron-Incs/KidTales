@@ -1,13 +1,13 @@
-create database KidTalesDB;
-use KidTalesDB;
+create database kidtalesdb;
+use kidtalesdb;
 
-create table usuario(
-id_up int not null,
-username nvarchar(100),
-correo nvarchar(100),
-pasword int(50),
-primary key(id_up)
+CREATE TABLE usuario (
+    id_up INT AUTO_INCREMENT PRIMARY KEY,
+    username NVARCHAR(100),
+    correo NVARCHAR(100),
+    pasword NVARCHAR(50)
 );
+
 
 create table soporte(
 id_sp int not null,

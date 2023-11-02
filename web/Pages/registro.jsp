@@ -3,6 +3,7 @@
 <%@ page import="javax.sql.*" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
 <%@page import="org.KidTales.dao.Usuario"%>
+<%@page import="org.KidTales.dao.bdConection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,114 +31,45 @@
 
     <body>
         <%
-            String accion = request.getParameter("accion");
+                String accion = request.getParameter("accion");
 
-            String url = "jdbc:mysql://localhost:3306/KidTalesBD";
-            String usuario = "root";
-            String contrasena = "1234";
+    if (accion != null && accion.equals("Guardar")) {
+        String email = request.getParameter("email");
+        String contra = request.getParameter("pasword");
+        String nom = request.getParameter("nombre");
 
-            String email = request.getParameter("email");
-            String nombre = request.getParameter("nombre");
-            String contra = request.getParameter("pasword");
-            
-            Usuario user = new Usuario();
-            user.setPasword(contra);
-            user.setCorreo(email);
-            user.setUsername(nombre);
+        Connection conexion = null;
+        PreparedStatement statement = null;
 
-            if ("Guardar".equals(accion)) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
 
-                if (email.isEmpty() && nombre.isEmpty() && contra.isEmpty()) {
+            String sql = "INSERT INTO usuario (username, correo, pasword) VALUES (?, ?, ?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setString(1, nom);
+            statement.setString(2, email);
+            statement.setString(3, contra);
 
-        %>
-
-        <script>
-
-            alert("¡Llena todos los campos!");
-
-        </script>
-
-        <%        } else {
-
-            if ("Guardar".equals(accion)) {
-
-                Connection conexion = null;
-                Statement sentencia = null;
-
-                PreparedStatement statement = null;
-                ResultSet resultSet = null;
-
-                try {
-                    Class.forName("com.mysql.jdbc.Driver");
-                    conexion = DriverManager.getConnection(url, usuario, contrasena);
-                    sentencia = conexion.createStatement();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            int filasAfectadas = statement.executeUpdate();
+            out.println("Se insertaron " + filasAfectadas + " filas.");
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+        try {
+                if (statement != null) {
+                    statement.close();
                 }
-
-                System.out.println(email);
-                System.out.println(nombre);
-                System.out.println(contra);
-
-                String consulta = "INSERT INTO usuario (correo, username, pasword) VALUES ('" + email + "', '" + nombre + "', '" + "', '" + contra + "')";
-
-                try {
-                    sentencia.executeUpdate(consulta);
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                if (conexion != null) {
+                    conexion.close();
                 }
-
-                String selectQuery = "SELECT id_usuario FROM Usuario WHERE curp = ?";
-                statement = conexion.prepareStatement(selectQuery);
-                statement.setString(1, curp);
-                resultSet = statement.executeQuery();
-
-                int id = 0; // Inicializar la variable "id" antes de asignarle un valor
-
-                if (resultSet.next()) {
-                    id = resultSet.getInt("id_usuario");
-                }
-
-                String consulta1 = "INSERT INTO roles_usuario (id_usuario, id_rol) VALUES ('" + id + "', '" + "2" + "')";
-
-                try {
-                    sentencia.executeUpdate(consulta1);
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-                try {
-                    if (sentencia != null) {
-                        sentencia.close();
-                    }
-                    if (conexion != null) {
-                        conexion.close();
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-                HttpSession sesion = request.getSession();
-                session.setAttribute("user", user);
-
-        %>
-
-        <script>
-            window.location.href = '/Usuario/soporteusuario.jsp';
-        </script>
-
-
-
-        <%            }
-                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-
-
-        %>
+        }
+    }
+    
+%>
 
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
@@ -201,7 +133,7 @@
                                                     <label class="form-check-label" for="rememberCheck">Mantener Sesión Activa</label>
                                                 </div>
                                                 <!-- Button -->
-                                                <div><button type="submit" class="btn btn-primary w-100 mb-0">Registrar</button></div>
+                                                <div><button type="submit" class="btn btn-primary w-100 mb-0" name = "accion" id="accion" value ="Guardar">Registrar</button></div>
 
                                                 <!-- Copyright -->
                                                 <div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron Inc.</div>
