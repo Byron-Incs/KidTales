@@ -121,80 +121,112 @@ foreign key (id_sp) references soporte(id_sp) on delete cascade on update
 cascade);
 
 create table u_sub(
+id_up int,
+id_su int,
 foreign key (id_up) references usuario (id_up) on delete cascade on update
 cascade,
 foreign key (id_su) references sub_usuario (id_su) on delete cascade on update cascade);
 
 create table u_lg(
+id_up int,
+id_lg int,
 foreign key (id_up) references usuario (id_up) on delete cascade on update
 cascade,
 foreign key (id_lg) references idioma (id_lg) on delete cascade on update cascade);
 
 create table u_mp(
+id_up int,
+id_mp int,
 foreign key (id_up) references usuario (id_up) on delete cascade on update
 cascade,
 foreign key (id_mp) references metodos_pago (id_mp) on delete cascade on update cascade);
 
 create table sub_rt(
+id_su int,
+id_rt int,
 foreign key (id_su) references sub_usuario (id_su) on delete cascade on update
 cascade,
 foreign key (id_rt) references robot (id_rt) on delete cascade on update cascade);
 
 create table rt_c(
+id_rt int,
+id_cuento int,
 foreign key (id_rt) references robot (id_rt) on delete cascade on update
 cascade,
 foreign key (id_cuento) references cuentos (id_cuento) on delete cascade on update cascade);
 
 create table ia_c(
+id_ia int,
+id_cuento int,
 foreign key (id_ia) references ia (id_ia) on delete cascade on update
 cascade,
 foreign key (id_cuento) references cuentos (id_cuento) on delete cascade on update cascade);
 
 create table sub_pre(
+id_su int,
+id_pre int,
 foreign key (id_su) references sub_usuario (id_su) on delete cascade on update
 cascade,
 foreign key (id_pre) references preestablecidos (id_pre) on delete cascade on update cascade);
 
 create table rt_rp(
+id_rt int,
+id_ropa int,
 foreign key (id_rt) references robot (id_rt) on delete cascade on update
 cascade,
-foreign key (id_ropa) references id_ropa (id_ropa) on delete cascade on update cascade);
+foreign key (id_ropa) references ropa (id_ropa) on delete cascade on update cascade);
 
 create table rt_clr(
+id_rt int,
+id_c int,
 foreign key (id_rt) references robot (id_rt) on delete cascade on update
 cascade,
 foreign key (id_c) references color (id_c) on delete cascade on update cascade);
 
 create table fav_img(
+id_fav int,
+id_imagen int,
 foreign key (id_fav) references favoritos (id_fav) on delete cascade on update
 cascade,
 foreign key (id_imagen) references imagenes (id_imagen) on delete cascade on update cascade);
 
 create table cto_img(
+id_cuento int,
+id_imagen int,
 foreign key (id_cuento) references cuentos (id_cuento) on delete cascade on update
 cascade,
 foreign key (id_imagen) references imagenes (id_imagen) on delete cascade on update cascade);
 
 create table sc_img(
+id_su int,
+id_imagen int,
 foreign key (id_su) references sub_usuario (id_su) on delete cascade on update
 cascade,
 foreign key (id_imagen) references imagenes (id_imagen) on delete cascade on update cascade);
 
 create table fav_lg(
+id_fav int,
+id_lg int,
 foreign key (id_fav) references favoritos (id_fav) on delete cascade on update
 cascade,
-foreign key (id_lg) references idioma (id_imagen) on delete cascade on update cascade);
+foreign key (id_lg) references idioma (id_lg) on delete cascade on update cascade);
 
 create table cto_lg(
-foreign key (id_cuento) references cuentos (id_lg) on delete cascade on update
+id_cuento int,
+id_lg int,
+foreign key (id_cuento) references cuentos (id_cuento) on delete cascade on update
 cascade,
 foreign key (id_lg) references idioma (id_lg) on delete cascade on update cascade);
 
 create table pre_lg(
+id_pre int,
+id_lg int,
 foreign key (id_pre) references preestablecidos (id_pre) on delete cascade on update
 cascade,
 foreign key (id_lg) references idioma (id_lg) on delete cascade on update cascade);
 
 create table td_lg(
+id_test int,
+id_lg int,
 foreign key (id_test) references test_data (id_test) on delete cascade on update
 cascade, foreign key (id_lg) references idioma (id_lg) on delete cascade on update cascade);
