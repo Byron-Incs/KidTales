@@ -2,7 +2,7 @@ create database KidTalesDB;
 use KidTalesDB;
 
 create table usuario(
-id_up int not null,
+id_up int auto_increment not null,
 username nvarchar(100),
 correo nvarchar(100),
 pasword int(50),
@@ -10,7 +10,7 @@ primary key(id_up)
 );
 
 create table soporte(
-id_sp int not null,
+id_sp int auto_increment not null,
 nombre nvarchar(100),
 correo_sp nvarchar(100),
 psw_sp int(50),
@@ -18,25 +18,25 @@ primary key(id_sp)
 );
 
 create table metodos_pago(
-id_mp int not null,
+id_mp int auto_increment not null,
 primary key(id_mp)
 );
 
 create table sub_usuario(
-id_su int not null,
+id_su int auto_increment not null,
 nickname nvarchar(100),
 primary key(id_su)
 );
 
 create table favoritos(
-id_fav int not null,
+id_fav int auto_increment not null,
 titulo_f nvarchar(100),
 contenido_f text,
 primary key(id_fav)
 );
 
 create table cuentos(
-id_cuento int not null,
+id_cuento int auto_increment not null,
 titulo_c nvarchar(100),
 genero_c nvarchar(50),
 contenido_c text,
@@ -45,14 +45,14 @@ primary key(id_cuento)
 );
 
 create table preestablecidos(
-id_pre int not null,
+id_pre int auto_increment not null,
 titulo_p nvarchar(100),
 contenido_p text,
 primary key(id_pre)
 );
 
 create table test_data(
-id_test int not null,
+id_test int auto_increment not null,
 titulo_t nvarchar(100),
 genero_t nvarchar(50),
 contenido_t text,
@@ -61,36 +61,36 @@ primary key(id_test)
 );
 
 create table imagenes (
-id_imagen int not null,
+id_imagen int auto_increment not null,
 RutaArchivo varchar(255),
 primary key(id_imagen)
 );
 
 create table robot(
-id_rt int not null,
+id_rt int auto_increment not null,
 archivo_voz varchar(255),
 primary key(id_rt)
 );
 
 create table ropa (
-id_ropa int not null,
+id_ropa int auto_increment not null,
 nombre_r varchar(255),
 primary key(id_ropa)
 );
 
 create table color(
-id_c int not null,
+id_c int auto_increment not null,
 hexadecimal char(7),
 primary key(id_c)
 );
 
 create table ia(
-id_ia int not null,
+id_ia int auto_increment not null,
 primary key(id_ia)
 );
 
 create table idioma(
-id_lg int not null,
+id_lg int auto_increment not null,
 nombre varchar(50),
 codigo varchar(10),
 primary key(id_lg)
