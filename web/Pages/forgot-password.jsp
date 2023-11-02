@@ -70,7 +70,7 @@ Main Content START -->
 									</div>
 
                                                                         <div class="mb-3 text-center">
-                                                                          <p>Regresar a <a href="inicio.html">Ingresar</a></p>
+                                                                          <p>Regresar a <a href="inicio.jsp">Ingresar</a></p>
                                                                         </div>
 
 									<!-- Button -->

@@ -60,7 +60,7 @@ Main Content START -->
 								</a>
 								<!-- Title -->
 								<h1 class="mb-2 h3">Bienvenido</h1>
-								<p class="mb-0">Nuevo aquí?<a href="registro.html"> Crea una cuenta</a></p>
+								<p class="mb-0">Nuevo aquí?<a href="registro.jsp"> Crea una cuenta</a></p>
 		
 								<!-- Form START -->
 								<form class="mt-4 text-start">
