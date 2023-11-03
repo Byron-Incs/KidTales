@@ -57,6 +57,15 @@
         </script>
         <%
         } else {
+            String confirmPassword = request.getParameter("confirmPassword");
+
+            if (!contra.equals(confirmPassword)) {
+        %>
+        <script>
+            alert("La contraseña y la confirmación de contraseña no coinciden.");
+        </script>
+        <%
+        } else {
             Connection conexion = null;
             PreparedStatement statement = null;
             ResultSet resultSet = null;
@@ -90,23 +99,25 @@
             window.location.href = "../Pages/Usuario/indexusuario.html";
         </script>
         <%
+                                }
                             }
-                        }
-                    } catch (ClassNotFoundException | SQLException e) {
-                        e.printStackTrace();
-                    } finally {
-                        try {
-                            if (resultSet != null) {
-                                resultSet.close();
-                            }
-                            if (statement != null) {
-                                statement.close();
-                            }
-                            if (conexion != null) {
-                                conexion.close();
-                            }
-                        } catch (SQLException e) {
+
+                        } catch (ClassNotFoundException | SQLException e) {
                             e.printStackTrace();
+                        } finally {
+                            try {
+                                if (resultSet != null) {
+                                    resultSet.close();
+                                }
+                                if (statement != null) {
+                                    statement.close();
+                                }
+                                if (conexion != null) {
+                                    conexion.close();
+                                }
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
@@ -166,7 +177,7 @@
                                                 <!-- Confirm Password -->
                                                 <div class="mb-3">
                                                     <label class="form-label">Confirmar Contraseña</label>
-                                                    <input type="password" class="form-control">
+                                                    <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
                                                 </div>
                                                 <!-- Remember me -->
                                                 <div class="mb-3">

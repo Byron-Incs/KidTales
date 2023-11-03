@@ -61,18 +61,36 @@
                 Class.forName("com.mysql.jdbc.Driver");
                 conexion = DriverManager.getConnection(url, usuario, contrasena);
 
-                String selectQuery = "SELECT pasword FROM usuario WHERE correo = ?";
-                statement = conexion.prepareStatement(selectQuery);
+                String emailQuery = "SELECT COUNT(*) FROM usuario WHERE correo = ?";
+                statement = conexion.prepareStatement(emailQuery);
                 statement.setString(1, email);
                 resultSet = statement.executeQuery();
 
-                String psw = null;
+                int emailCount = 0;
 
                 if (resultSet.next()) {
-                    psw = resultSet.getString("pasword");
+                    emailCount = resultSet.getInt(1);
                 }
 
-                if (psw != null && psw.equals(contra)) {
+                if (emailCount == 0) {
+        %>
+        <script>
+            alert("El correo no está registrado");
+        </script>
+        <%
+        } else {
+            String selectQuery = "SELECT pasword FROM usuario WHERE correo = ?";
+            statement = conexion.prepareStatement(selectQuery);
+            statement.setString(1, email);
+            resultSet = statement.executeQuery();
+
+            String psw = null;
+
+            if (resultSet.next()) {
+                psw = resultSet.getString("pasword");
+            }
+
+            if (psw != null && psw.equals(contra)) {
         %>
         <script>
             window.location.href = "../Pages/Usuario/indexusuario.html";
@@ -81,15 +99,15 @@
         } else {
         %>
         <script>
-            alert("La contraseña debe tener al menos 7 caracteres.");
+            alert("La contraseña es incorrecta");
         </script>
         <%
+                            }
                         }
 
                     } catch (ClassNotFoundException | SQLException e) {
                         e.printStackTrace();
                     } finally {
-                        // Cierre de recursos en un bloque finally
                         try {
                             if (resultSet != null) {
                                 resultSet.close();
