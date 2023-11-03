@@ -34,95 +34,67 @@
 
 
     <body>
-        <%
-            String accion = request.getParameter("accion");
-            String alerta = null;
+    <%
+String accion = request.getParameter("accion");
+String check = request.getParameter("check");
 
-            if ("Guardar".equals(accion) && accion != null) {
-                String email = request.getParameter("email");
-                String contrasena = request.getParameter("pasword");
+String url = "jdbc:mysql://localhost:3306/kidtalesdb";
+String usuario = "root";
+String contrasena = "1234";
 
-                if (email != null && !email.isEmpty() && contrasena != null && !contrasena.isEmpty()) {
-                    String url = "jdbc:mysql://localhost:3306/KidTalesDB";
-                    String usuario = "root";
-                    String contrasenaDB = "1234";
+if ("Guardar".equals(accion)) {
+    String email = request.getParameter("email");
+    String contra = request.getParameter("pasword");
 
-                    Usuario user = new Usuario();
-                    user.setCorreo(email);
-
-                    Connection conexion = null;
-                    PreparedStatement statementUsuario = null;
-                    PreparedStatement statementSoporte = null;
-                    ResultSet resultSetUsuario = null;
-                    ResultSet resultSetSoporte = null;
-
-                    try {
-                        Class.forName("com.mysql.jdbc.Driver");
-                        conexion = DriverManager.getConnection(url, usuario, contrasenaDB);
-
-                        String selectQueryUsuario = "SELECT correo, pasword FROM usuario WHERE correo = ?";
-                        statementUsuario = conexion.prepareStatement(selectQueryUsuario);
-                        statementUsuario.setString(1, email);
-                        resultSetUsuario = statementUsuario.executeQuery();
-
-                        String selectQuerySoporte = "SELECT correo_sp, psw_sp FROM soporte WHERE correo_sp = ?";
-                        statementSoporte = conexion.prepareStatement(selectQuerySoporte);
-                        statementSoporte.setString(1, email);
-                        resultSetSoporte = statementSoporte.executeQuery();
-
-                        if (resultSetUsuario.next()) {
-                            String contrasenaUsuario = resultSetUsuario.getString("pasword");
-                            if (contrasenaUsuario.equals(contrasena)) {
-                                HttpSession sesion = request.getSession();
-                                sesion.setAttribute("user", user);
-                                response.sendRedirect("../Pages/Usuario/indexusuario.html");
-                            } else {
-                                alerta = "La contraseña no es correcta.";
-                            }
-                        } else if (resultSetSoporte.next()) {
-                            String contrasenaSoporte = resultSetSoporte.getString("psw_sp");
-                            if (contrasenaSoporte.equals(contrasena)) {
-                                HttpSession sesion = request.getSession();
-                                sesion.setAttribute("user", user);
-                                response.sendRedirect("../Pages/Soporte/soporte.jsp");
-                            } else {
-                                alerta = "La contraseña no es correcta.";
-                            }
-                        } else {
-                            alerta = "El correo electrónico no está registrado.";
-                        }
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    } finally {
-                        try {
-                            if (statementUsuario != null) {
-                                statementUsuario.close();
-                            }
-                            if (statementSoporte != null) {
-                                statementSoporte.close();
-                            }
-                            if (conexion != null) {
-                                conexion.close();
-                            }
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                } else {
-                    alerta = "¡Llena todos los campos!";
-                }
-            }
-
-            if (alerta != null) {
+    if (email.equals("") || contra.equals("")) {
         %>
         <script>
-            alert("<%= alerta%>");
+            alert("¡Llena todos los campos!");
         </script>
         <%
+    } else {
+        Connection conexion = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conexion = DriverManager.getConnection(url, usuario, contrasena);
+
+            String selectQuery = "SELECT pasword FROM usuario WHERE correo = ?";
+            statement = conexion.prepareStatement(selectQuery);
+            statement.setString(1, email);
+            resultSet = statement.executeQuery();
+
+            String psw = null;
+
+            if (resultSet.next()) {
+                psw = resultSet.getString("pasword");
             }
-        %>
+
+            if (psw != null && psw.equals(contra)) {
+                System.out.println("validado");
+            } else {
+                System.out.println("invalida");
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            // Maneja las excepciones de una manera adecuada para tu aplicación
+        } finally {
+            // Cierre de recursos en un bloque finally
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+%>
+
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
 
@@ -178,7 +150,7 @@
                                                     <a href="forgot-password.jsp">Olvidaste tu contraseña?</a>
                                                 </div>
                                                 <!-- Button -->
-                                                <div><button type="submit" class="btn btn-primary w-100 mb-0">Ingresar</button></div>
+                                                <div><button type="submit" class="btn btn-primary w-100 mb-0" name = "accion" id="accion" value ="Guardar">Ingresar</button></div>
 
 
                                                 <!-- Copyright -->
