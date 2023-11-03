@@ -38,7 +38,7 @@
             String accion = request.getParameter("accion");
             String check = request.getParameter("check");
 
-            String url = "jdbc:mysql://localhost:3306/kidtalesdb";
+            String url = "jdbc:mysql://localhost:3306/KidTalesDB";
             String usuario = "root";
             String contrasena = "1234";
 
