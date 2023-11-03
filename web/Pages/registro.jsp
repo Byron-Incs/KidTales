@@ -65,7 +65,6 @@
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
 
-                // Verificar si el correo ya existe en la base de datos
                 String verificaCorreoSQL = "SELECT correo FROM usuario WHERE correo=?";
                 statement = conexion.prepareStatement(verificaCorreoSQL);
                 statement.setString(1, email);
@@ -78,7 +77,6 @@
         </script>
         <%
         } else {
-            // El correo no existe, proceder con la inserción
             String insertSQL = "INSERT INTO usuario (username, correo, pasword) VALUES (?, ?, ?)";
             statement = conexion.prepareStatement(insertSQL);
             statement.setString(1, nom);
