@@ -75,10 +75,6 @@
 
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
-                <div class="container">
-                    <div class="row mb-5">
-                        <div class="col-xl-10 mx-auto text-center">
-
                             <!-- Chat Section -->
                             <div class="col-md-8 col-lg-6 col-xl-4 mb-4">
                                 <div class="card">
@@ -144,9 +140,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>                   
-                        </div>
-                    </div>
         </main>
         <!-- **************** MAIN CONTENT END **************** -->
 

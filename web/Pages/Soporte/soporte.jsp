@@ -36,8 +36,6 @@
     </head>
 
     <body>
-
-        <!-- Header START -->
         <!-- Header START -->
         <header class="navbar-light header-sticky">
             <!-- Logo Nav START -->
@@ -55,7 +53,6 @@
         </header>
         <!-- Header END -->
                 <!-- ChatStard -->
-
                     <div class="container py-5">
                         <div class="row">
                             <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
