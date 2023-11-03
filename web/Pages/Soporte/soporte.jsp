@@ -54,8 +54,6 @@
                 </div>
         </header>
         <!-- Header END -->
-        <section class="pt-4 pt-md-5">
-            <div class="container">
                 <!-- ChatStard -->
 
                     <div class="container py-5">
@@ -238,8 +236,6 @@
 
                     </div>
                 <!-- ChatEnd -->
-            </div>
-        </section>
 
 
 
