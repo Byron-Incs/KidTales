@@ -38,39 +38,58 @@
                 String contra = request.getParameter("pasword");
                 String nom = request.getParameter("nombre");
 
-                Connection conexion = null;
-                PreparedStatement statement = null;
+                // Validar campos vacíos
+                if (email.isEmpty() || contra.isEmpty() || nom.isEmpty()) {
+        %>
+        <script>
+            alert("¡Llena todos los campos!");
+        </script>
+        <%
+        } else if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) { // Validar estructura del correo
+        %>
+        <script>
+            alert("El correo electrónico no tiene la estructura necesaria.");
+        </script>
+        <%
+        } else if (contra.length() < 7) { // Validar longitud de la contraseña
+        %>
+        <script>
+            alert("La contraseña debe tener al menos 7 caracteres.");
+        </script>
+        <%
+                } else {
+                    Connection conexion = null;
+                    PreparedStatement statement = null;
 
-                try {
-                    Class.forName("com.mysql.cj.jdbc.Driver");
-                    conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
-
-                    String sql = "INSERT INTO usuario (username, correo, pasword) VALUES (?, ?, ?)";
-                    statement = conexion.prepareStatement(sql);
-                    statement.setString(1, nom);
-                    statement.setString(2, email);
-                    statement.setString(3, contra);
-
-                    int filasAfectadas = statement.executeUpdate();
-                    out.println("Se insertaron " + filasAfectadas + " filas.");
-                } catch (ClassNotFoundException | SQLException e) {
-                    e.printStackTrace();
-                } finally {
                     try {
-                        if (statement != null) {
-                            statement.close();
-                        }
-                        if (conexion != null) {
-                            conexion.close();
-                        }
-                    } catch (SQLException e) {
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
+
+                        String sql = "INSERT INTO usuario (username, correo, pasword) VALUES (?, ?, ?)";
+                        statement = conexion.prepareStatement(sql);
+                        statement.setString(1, nom);
+                        statement.setString(2, email);
+                        statement.setString(3, contra);
+
+                        int filasAfectadas = statement.executeUpdate();
+                        out.println("Se insertaron " + filasAfectadas + " filas.");
+                    } catch (ClassNotFoundException | SQLException e) {
                         e.printStackTrace();
+                    } finally {
+                        try {
+                            if (statement != null) {
+                                statement.close();
+                            }
+                            if (conexion != null) {
+                                conexion.close();
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
-
         %>
-
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
 
