@@ -36,84 +36,60 @@
     <body>
         <%
             String accion = request.getParameter("accion");
-            String email = request.getParameter("email");
-            String contrasena = request.getParameter("contrasena");
+            String alerta = null;
 
-            String url = "jdbc:mysql://localhost:3306/KidTalesDB";
-            String usuario = "root";
-            String contrasenaDB = "1234";
+            if ("Guardar".equals(accion) && accion != null) {
+                String email = request.getParameter("email");
+                String contrasena = request.getParameter("pasword");
 
-            Usuario user = new Usuario();
-            user.setCorreo(email);
+                if (email != null && !email.isEmpty() && contrasena != null && !contrasena.isEmpty()) {
+                    String url = "jdbc:mysql://localhost:3306/KidTalesDB";
+                    String usuario = "root";
+                    String contrasenaDB = "1234";
 
-            if ("Guardar".equals(accion)) {
-                if (email.isEmpty() || contrasena.isEmpty()) {
-        %>
-        <script>
-            alert("¡Llena todos los campos!");
-        </script>
-        <%
-        } else {
-            Connection conexion = null;
-            PreparedStatement statementUsuario = null;
-            PreparedStatement statementSoporte = null;
-            ResultSet resultSetUsuario = null;
-            ResultSet resultSetSoporte = null;
+                    Usuario user = new Usuario();
+                    user.setCorreo(email);
 
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                conexion = DriverManager.getConnection(url, usuario, contrasenaDB);
+                    Connection conexion = null;
+                    PreparedStatement statementUsuario = null;
+                    PreparedStatement statementSoporte = null;
+                    ResultSet resultSetUsuario = null;
+                    ResultSet resultSetSoporte = null;
 
-                String selectQueryUsuario = "SELECT email, contrasena FROM Usuario WHERE email = ?";
-                statementUsuario = conexion.prepareStatement(selectQueryUsuario);
-                statementUsuario.setString(1, email);
-                resultSetUsuario = statementUsuario.executeQuery();
+                    try {
+                        Class.forName("com.mysql.jdbc.Driver");
+                        conexion = DriverManager.getConnection(url, usuario, contrasenaDB);
 
-                String selectQuerySoporte = "SELECT email, contrasena FROM Soporte WHERE email = ?";
-                statementSoporte = conexion.prepareStatement(selectQuerySoporte);
-                statementSoporte.setString(1, email);
-                resultSetSoporte = statementSoporte.executeQuery();
+                        String selectQueryUsuario = "SELECT correo, pasword FROM usuario WHERE correo = ?";
+                        statementUsuario = conexion.prepareStatement(selectQueryUsuario);
+                        statementUsuario.setString(1, email);
+                        resultSetUsuario = statementUsuario.executeQuery();
 
-                if (resultSetUsuario.next()) {
-                    String contrasenaUsuario = resultSetUsuario.getString("contrasena");
-                    if (contrasenaUsuario.equals(contrasena)) {
-                        HttpSession sesion = request.getSession();
-                        sesion.setAttribute("user", user);
-        %>
-        <script>
-            window.location.href = '../Usuario/indexusuario.html';
-        </script>
-        <%
-        } else {
-        %>
-        <script>
-            alert("La contraseña no es correcta.");
-        </script>
-        <%
-            }
-        } else if (resultSetSoporte.next()) {
-            String contrasenaSoporte = resultSetSoporte.getString("contrasena");
-            if (contrasenaSoporte.equals(contrasena)) {
-                HttpSession sesion = request.getSession();
-                sesion.setAttribute("user", user);
-        %>
-        <script>
-            window.location.href = '/Soporte/soporte.jsp';
-        </script>
-        <%
-        } else {
-        %>
-        <script>
-            alert("La contraseña no es correcta.");
-        </script>
-        <%
-            }
-        } else {
-        %>
-        <script>
-            alert("El correo electrónico no está registrado.");
-        </script>
-        <%
+                        String selectQuerySoporte = "SELECT correo_sp, psw_sp FROM soporte WHERE correo_sp = ?";
+                        statementSoporte = conexion.prepareStatement(selectQuerySoporte);
+                        statementSoporte.setString(1, email);
+                        resultSetSoporte = statementSoporte.executeQuery();
+
+                        if (resultSetUsuario.next()) {
+                            String contrasenaUsuario = resultSetUsuario.getString("pasword");
+                            if (contrasenaUsuario.equals(contrasena)) {
+                                HttpSession sesion = request.getSession();
+                                sesion.setAttribute("user", user);
+                                response.sendRedirect("../Pages/Usuario/indexusuario.html");
+                            } else {
+                                alerta = "La contraseña no es correcta.";
+                            }
+                        } else if (resultSetSoporte.next()) {
+                            String contrasenaSoporte = resultSetSoporte.getString("psw_sp");
+                            if (contrasenaSoporte.equals(contrasena)) {
+                                HttpSession sesion = request.getSession();
+                                sesion.setAttribute("user", user);
+                                response.sendRedirect("../Pages/Soporte/soporte.jsp");
+                            } else {
+                                alerta = "La contraseña no es correcta.";
+                            }
+                        } else {
+                            alerta = "El correo electrónico no está registrado.";
                         }
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
@@ -134,7 +110,17 @@
                             e.printStackTrace();
                         }
                     }
+                } else {
+                    alerta = "¡Llena todos los campos!";
                 }
+            }
+
+            if (alerta != null) {
+        %>
+        <script>
+            alert("<%= alerta%>");
+        </script>
+        <%
             }
         %>
         <!-- **************** MAIN CONTENT START **************** -->
@@ -173,12 +159,12 @@
                                                 <!-- Email -->
                                                 <div class="mb-3">
                                                     <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control">
+                                                    <input type="email" class="form-control" name="email" id="email">
                                                 </div>
                                                 <!-- Password -->
                                                 <div class="mb-3 position-relative">
                                                     <label class="form-label">Contraseña</label>
-                                                    <input class="form-control fakepassword" type="password" id="psw-input">
+                                                    <input class="form-control fakepassword" type="password" name="pasword" id="pasword">
                                                     <span class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
                                                         <i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
                                                     </span>
