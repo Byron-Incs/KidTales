@@ -34,66 +34,79 @@
 
 
     <body>
-    <%
-String accion = request.getParameter("accion");
-String check = request.getParameter("check");
+        <%
+            String accion = request.getParameter("accion");
+            String check = request.getParameter("check");
 
-String url = "jdbc:mysql://localhost:3306/kidtalesdb";
-String usuario = "root";
-String contrasena = "1234";
+            String url = "jdbc:mysql://localhost:3306/kidtalesdb";
+            String usuario = "root";
+            String contrasena = "1234";
 
-if ("Guardar".equals(accion)) {
-    String email = request.getParameter("email");
-    String contra = request.getParameter("pasword");
+            if ("Guardar".equals(accion)) {
+                String email = request.getParameter("email");
+                String contra = request.getParameter("pasword");
 
-    if (email.equals("") || contra.equals("")) {
+                if (email.equals("") || contra.equals("")) {
         %>
         <script>
             alert("¡Llena todos los campos!");
         </script>
         <%
-    } else {
-        Connection conexion = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
+        } else {
+            Connection conexion = null;
+            PreparedStatement statement = null;
+            ResultSet resultSet = null;
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection(url, usuario, contrasena);
-
-            String selectQuery = "SELECT pasword FROM usuario WHERE correo = ?";
-            statement = conexion.prepareStatement(selectQuery);
-            statement.setString(1, email);
-            resultSet = statement.executeQuery();
-
-            String psw = null;
-
-            if (resultSet.next()) {
-                psw = resultSet.getString("pasword");
-            }
-
-            if (psw != null && psw.equals(contra)) {
-                System.out.println("validado");
-            } else {
-                System.out.println("invalida");
-            }
-
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            // Maneja las excepciones de una manera adecuada para tu aplicación
-        } finally {
-            // Cierre de recursos en un bloque finally
             try {
-                if (resultSet != null) resultSet.close();
-                if (statement != null) statement.close();
-                if (conexion != null) conexion.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+                Class.forName("com.mysql.jdbc.Driver");
+                conexion = DriverManager.getConnection(url, usuario, contrasena);
+
+                String selectQuery = "SELECT pasword FROM usuario WHERE correo = ?";
+                statement = conexion.prepareStatement(selectQuery);
+                statement.setString(1, email);
+                resultSet = statement.executeQuery();
+
+                String psw = null;
+
+                if (resultSet.next()) {
+                    psw = resultSet.getString("pasword");
+                }
+
+                if (psw != null && psw.equals(contra)) {
+        %>
+        <script>
+            window.location.href = "../Pages/Usuario/indexusuario.html";
+        </script>
+        <%
+        } else {
+        %>
+        <script>
+            alert("La contraseña debe tener al menos 7 caracteres.");
+        </script>
+        <%
+                        }
+
+                    } catch (ClassNotFoundException | SQLException e) {
+                        e.printStackTrace();
+                    } finally {
+                        // Cierre de recursos en un bloque finally
+                        try {
+                            if (resultSet != null) {
+                                resultSet.close();
+                            }
+                            if (statement != null) {
+                                statement.close();
+                            }
+                            if (conexion != null) {
+                                conexion.close();
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
             }
-        }
-    }
-}
-%>
+        %>
 
         <!-- **************** MAIN CONTENT START **************** -->
         <main>

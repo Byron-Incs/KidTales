@@ -38,20 +38,19 @@
                 String contra = request.getParameter("pasword");
                 String nom = request.getParameter("nombre");
 
-
                 if (email.isEmpty() || contra.isEmpty() || nom.isEmpty()) {
         %>
         <script>
             alert("¡Llena todos los campos!");
         </script>
         <%
-        } else if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) { 
+        } else if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
         %>
         <script>
             alert("El correo electrónico no tiene la estructura necesaria.");
         </script>
         <%
-        } else if (contra.length() < 7) { 
+        } else if (contra.length() < 7) {
         %>
         <script>
             alert("La contraseña debe tener al menos 7 caracteres.");
@@ -60,29 +59,48 @@
         } else {
             Connection conexion = null;
             PreparedStatement statement = null;
+            ResultSet resultSet = null;
 
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
 
-                String sql = "INSERT INTO usuario (username, correo, pasword) VALUES (?, ?, ?)";
-                statement = conexion.prepareStatement(sql);
-                statement.setString(1, nom);
-                statement.setString(2, email);
-                statement.setString(3, contra);
+                // Verificar si el correo ya existe en la base de datos
+                String verificaCorreoSQL = "SELECT correo FROM usuario WHERE correo=?";
+                statement = conexion.prepareStatement(verificaCorreoSQL);
+                statement.setString(1, email);
+                resultSet = statement.executeQuery();
 
-                int filasAfectadas = statement.executeUpdate();
-                if (filasAfectadas > 0) {
+                if (resultSet.next()) {
+        %>
+        <script>
+            alert("El correo electrónico ya está registrado.");
+        </script>
+        <%
+        } else {
+            // El correo no existe, proceder con la inserción
+            String insertSQL = "INSERT INTO usuario (username, correo, pasword) VALUES (?, ?, ?)";
+            statement = conexion.prepareStatement(insertSQL);
+            statement.setString(1, nom);
+            statement.setString(2, email);
+            statement.setString(3, contra);
+
+            int filasAfectadas = statement.executeUpdate();
+            if (filasAfectadas > 0) {
         %>
         <script>
             window.location.href = "../Pages/Usuario/indexusuario.html";
         </script>
         <%
+                            }
                         }
                     } catch (ClassNotFoundException | SQLException e) {
                         e.printStackTrace();
                     } finally {
                         try {
+                            if (resultSet != null) {
+                                resultSet.close();
+                            }
                             if (statement != null) {
                                 statement.close();
                             }
