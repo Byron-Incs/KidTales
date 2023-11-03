@@ -31,45 +31,45 @@
 
     <body>
         <%
-                String accion = request.getParameter("accion");
+            String accion = request.getParameter("accion");
 
-    if (accion != null && accion.equals("Guardar")) {
-        String email = request.getParameter("email");
-        String contra = request.getParameter("pasword");
-        String nom = request.getParameter("nombre");
+            if (accion != null && accion.equals("Guardar")) {
+                String email = request.getParameter("email");
+                String contra = request.getParameter("pasword");
+                String nom = request.getParameter("nombre");
 
-        Connection conexion = null;
-        PreparedStatement statement = null;
+                Connection conexion = null;
+                PreparedStatement statement = null;
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
+                try {
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
 
-            String sql = "INSERT INTO usuario (username, correo, pasword) VALUES (?, ?, ?)";
-            statement = conexion.prepareStatement(sql);
-            statement.setString(1, nom);
-            statement.setString(2, email);
-            statement.setString(3, contra);
+                    String sql = "INSERT INTO usuario (username, correo, pasword) VALUES (?, ?, ?)";
+                    statement = conexion.prepareStatement(sql);
+                    statement.setString(1, nom);
+                    statement.setString(2, email);
+                    statement.setString(3, contra);
 
-            int filasAfectadas = statement.executeUpdate();
-            out.println("Se insertaron " + filasAfectadas + " filas.");
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        } finally {
-        try {
-                if (statement != null) {
-                    statement.close();
+                    int filasAfectadas = statement.executeUpdate();
+                    out.println("Se insertaron " + filasAfectadas + " filas.");
+                } catch (ClassNotFoundException | SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        if (statement != null) {
+                            statement.close();
+                        }
+                        if (conexion != null) {
+                            conexion.close();
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
-                if (conexion != null) {
-                    conexion.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
-        }
-    }
-    
-%>
+
+        %>
 
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
