@@ -46,7 +46,8 @@
             Usuario user = new Usuario();
             user.setCorreo(email);
 
-            if (email.isEmpty() || contrasena.isEmpty()) {
+            if ("Guardar".equals(accion)) {
+                if (email.isEmpty() || contrasena.isEmpty()) {
         %>
         <script>
             alert("¡Llena todos los campos!");
@@ -136,7 +137,6 @@
                 }
             }
         %>
-
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
 
