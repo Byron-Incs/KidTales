@@ -81,7 +81,7 @@
                         sesion.setAttribute("user", user);
         %>
         <script>
-            window.location.href = '/Usuario/indexusuario.html';
+            window.location.href = '../Usuario/indexusuario.html';
         </script>
         <%
         } else {

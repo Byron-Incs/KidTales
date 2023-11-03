@@ -56,11 +56,8 @@
         <!-- Header END -->
         <section class="pt-4 pt-md-5">
             <div class="container">
-                <!-- Title -->
-                <h1 class="mb-4 display-5">Soporte Tecnico <span class="text-primary">Byron.inc</span></h1>
-                <!-- Info -->
                 <!-- ChatStard -->
-                <section>
+
                     <div class="container py-5">
                         <div class="row">
                             <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
@@ -240,7 +237,6 @@
                         </div>
 
                     </div>
-                </section>
                 <!-- ChatEnd -->
             </div>
         </section>

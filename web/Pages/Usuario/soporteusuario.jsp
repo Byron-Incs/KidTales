@@ -75,65 +75,10 @@
 
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
-            <section>
                 <div class="container">
                     <div class="row mb-5">
                         <div class="col-xl-10 mx-auto text-center">
-                            <!-- Title -->
-                            <h1>SOPORTE TÉCNICO</h1>
-                            <p class="lead">Estamos listos para hacer que tus problemas desaparezcan</p>
-                            <!-- Meta -->
-                            <div class="hstack gap-3 flex-wrap justify-content-center">
-                                <!-- Item -->
-                                <h6 class="bg-mode shadow rounded-2 fw-normal d-inline-block py-2 px-4">
-                                    <img src="../../assets/images/soporte/06.svg" class="h-20px me-2" alt="">
-                                    1K+ clientes globales
-                                </h6>
 
-                                <!-- Item -->
-                                <h6 class="bg-mode shadow rounded-2 fw-normal d-inline-block py-2 px-4">
-                                    <img src="../../assets/images/soporte/07.svg" class="h-20px me-2" alt="">
-                                    1K+ Clientes felices
-                                </h6>
-
-                                <!-- Item -->
-                                <h6 class="bg-mode shadow rounded-2 fw-normal d-inline-block py-2 px-4">
-                                    <img src="../../assets/images/soporte/08.svg" class="h-20px me-2" alt="">
-                                    1K+ Subscripciones
-                                </h6>
-                            </div>
-                        </div>
-                    </div> <!-- Row END -->
-
-                    <!-- Image START -->
-                    <div class="row g-4 align-items-center">
-                        <!-- Image -->
-                        <div class="col-md-6">
-                            <img src="../../assets/images/soporte/02.png" class="rounded-3" alt="">
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="row g-4">
-                                <!-- Image -->
-                                <div class="col-md-8">
-                                    <img src="../../assets/images/soporte/03.png" class="rounded-3" alt="">
-                                </div>
-
-                                <!-- Image -->
-                                <div class="col-12">
-                                    <img src="../../assets/images/soporte/04.png" class="rounded-3" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Image END -->
-                </div>
-            </section>
-            <section class="pt-0 pt-lg-5">
-                <!-- About START -->
-                <section class="pb-0 pb-xl-5">
-                    <div class="container">
-                        <div class="row">
                             <!-- Chat Section -->
                             <div class="col-md-8 col-lg-6 col-xl-4 mb-4">
                                 <div class="card">
@@ -199,33 +144,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- Cuentános Section -->
-                            <div class="col-md-4 col-lg-6 mb-4">
-                                <h2 class="mb-3 mb-lg-5" style="text-align: center">Cuentános</h2>
-                                <p class="mb-3 mb-lg-5" style="text-align: center">"¿Cuál es tu problema? ¡Háznoslo saber y juntos encontraremos la solución!".</p>
-
-                                <!-- Features START -->
-                                <div class="row g-4">
-                                    <!-- Tus características actuales -->
-                                    <div class="col-sm-6">
-                                        <div class="icon-lg bg-orange bg-opacity-10 text-orange rounded-circle"><i class="bi bi-shield-fill-check"></i></div>
-                                        <h5 class="mt-2">Alta Seguridad</h5>
-                                        <p class="mb-0">Solucionamos todas tus dudas de forma segura y eficaz.</p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="icon-lg bg-info bg-opacity-10 text-info rounded-circle" ><i class="bi bi-lightning-fill"></i></div>
-                                        <h5 class="mt-2">Velocidad</h5>
-                                        <p class="mb-0">Respuesta a tu problema de forma rápida y eficiente.</p>
-                                    </div>
-                                </div>
-                                <!-- Features END -->
-                            </div>
+                            </div>                   
                         </div>
                     </div>
-                </section>
-            </section>
         </main>
         <!-- **************** MAIN CONTENT END **************** -->
 

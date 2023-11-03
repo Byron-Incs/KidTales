@@ -75,7 +75,7 @@
                 if (filasAfectadas > 0) {
         %>
         <script>
-            window.location.href = "/Usuario/indexusuario.jsp";
+            window.location.href = "../Pages/Usuario/indexusuario.html";
         </script>
         <%
                         }
