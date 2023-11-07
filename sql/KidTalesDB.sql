@@ -5,7 +5,7 @@ create table usuario(
 id_up int auto_increment not null,
 username nvarchar(100),
 correo nvarchar(100),
-pasword int(50),
+pasword nvarchar(50),
 primary key(id_up)
 );
 
@@ -13,7 +13,7 @@ create table soporte(
 id_sp int auto_increment not null,
 nombre nvarchar(100),
 correo_sp nvarchar(100),
-psw_sp int(50),
+psw_sp nvarchar(50),
 primary key(id_sp)
 );
 
