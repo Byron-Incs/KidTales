@@ -46,10 +46,16 @@
                         <img class="light-mode-item navbar-brand-item" src="../../assets/images/index/logoc.jpg" alt="logo">
                     </a>
                     <!-- Logo END -->
-                    <a class="navbar-brand" href="soporte.jsp">
-                        <img class="light-mode-item navbar-brand-item" src="../../assets/images/soporte/logobyron.jpg" alt="logo">
-                    </a>
+                    
+                    <div class="navbar-collapse collapse" id="navbarCategoryCollapse">
+                        <ul class="navbar-nav navbar-nav-scroll nav-pills-primary-soft text-center ms-auto p-2 p-xl-0">
+                           
+                            <li class="nav-item"><a class="nav-link" href="">Cerrar Sesión</a></li>
+                        </ul>
+                        
+                    </div>
                 </div>
+            </nav>    
         </header>
         <!-- Header END -->
                 <!-- ChatStard -->

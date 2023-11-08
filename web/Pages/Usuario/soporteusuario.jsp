@@ -64,6 +64,7 @@
                             <li class="nav-item"> <a class="nav-link" href="indexusuario.html">Inicio</a></li>
                             <li class="nav-item"> <a class="nav-link" href="conocenos.html">Conócenos</a></li>
                             <li class="nav-item"><a class="nav-link" href="soporteusuario.html">Soporte Técnico</a></li>
+                            <li class="nav-item"><a class="nav-link" href="">Cerrar Sesión</a></li>
                         </ul>
                     </div>
                 </div>
@@ -76,7 +77,7 @@
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
                             <!-- Chat Section -->
-                            <div class="col-md-8 col-lg-6 col-xl-4 mb-4">
+                            <div class="p-2 m-auto col-md-10">
                                 <div class="card">
                                     <div class="card-header d-flex justify-content-between align-items-center p-3" style="border-top: 4px solid #ffa900;">
                                         <h5 class="mb-0">Chat messages</h5>
@@ -140,6 +141,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
         </main>
         <!-- **************** MAIN CONTENT END **************** -->
 
