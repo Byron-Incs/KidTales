@@ -65,19 +65,6 @@
                             <li class="nav-item"> <a class="nav-link" href="conocenos.html">Conócenos</a></li>
                             <li class="nav-item"><a class="nav-link" href="soporteusuario.html">Soporte Técnico</a></li>
                             <li class="nav-item"><a id="logoutLink" class="nav-link" href="#">Cerrar Sesión</a></li>
-
-                            <script>
-                                document.getElementById("logoutLink").addEventListener("click", function () {
-                                    var xhr = new XMLHttpRequest();
-                                    xhr.onreadystatechange = function () {
-                                        if (xhr.readyState === 4 && xhr.status === 200) {
-                                            window.location.href = "../../index.html";
-                                        }
-                                    };
-                                    xhr.open("GET", "logout.jsp", true);
-                                    xhr.send();
-                                });
-                            </script>
                         </ul>
                     </div>
                 </div>
@@ -179,6 +166,12 @@
                                     <li class="nav-item"><a style="color: white;" href="indexusuario.html">Inicio</a></li>
                                     <li class="nav-item"><a style="color: white;" href="conocenos.html">Conócenos</a></li>
                                     <li class="nav-item"><a style="color: white;" href="soporteusuario.html">Soporte Técnico</a></li>
+                                    <li class="nav-item"><a id="logoutLink" class="nav-link" href="#" onclick="logout()">Cerrar Sesión</a></li>
+                                    <script>
+                                        function logout() {
+                                            window.location.href = "LogoutServlet";
+                                        }
+                                    </script>
                                 </ul>
                             </div>
                             <div class="col-6 col-md-5">
