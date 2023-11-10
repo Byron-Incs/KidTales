@@ -6,6 +6,7 @@ CREATE TABLE usuario (
     username NVARCHAR(100),
     correo NVARCHAR(100),
     pasword NVARCHAR(50),
+    
     soporte int
 );
 
