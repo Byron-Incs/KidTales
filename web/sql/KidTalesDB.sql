@@ -5,7 +5,8 @@ CREATE TABLE usuario (
     id_up INT AUTO_INCREMENT PRIMARY KEY,
     username NVARCHAR(100),
     correo NVARCHAR(100),
-    pasword NVARCHAR(50)
+    pasword NVARCHAR(50),
+    soporte int
 );
 
 

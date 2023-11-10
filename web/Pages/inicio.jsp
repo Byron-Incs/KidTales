@@ -90,12 +90,31 @@
                 psw = resultSet.getString("pasword");
             }
 
-            if (psw != null && psw.equals(contra)) {
+            String selectQuery2 = "SELECT soporte FROM usuario WHERE correo = ?";
+            statement = conexion.prepareStatement(selectQuery2);
+            statement.setString(1, email);
+            resultSet = statement.executeQuery();
+
+            int soporte = 0;
+
+            if (resultSet.next()) {
+                soporte = resultSet.getInt("soporte");
+            }
+
+            if (psw != null && psw.equals(contra) && soporte == 1) {
         %>
+        <script>
+            window.location.href = "../Pages/Soporte/soporte.jsp";
+        </script>
+        <%
+        }else if(psw != null && psw.equals(contra)){
+
+         %>
         <script>
             window.location.href = "../Pages/Usuario/indexusuario.html";
         </script>
         <%
+
         } else {
         %>
         <script>
