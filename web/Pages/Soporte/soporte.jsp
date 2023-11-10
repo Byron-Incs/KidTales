@@ -50,10 +50,13 @@
                     <div class="navbar-collapse collapse" id="navbarCategoryCollapse">
                         <ul class="navbar-nav navbar-nav-scroll nav-pills-primary-soft text-center ms-auto p-2 p-xl-0">
 
-                            <li class="nav-item"><a id="logoutLink" class="nav-link" href="#" onclick="logout()">Cerrar Sesión</a></li>
+                            <li class="nav-item">
+                                <a id="logoutLink" class="nav-link" href="#" onclick="logout()">Cerrar Sesión</a>
+                            </li>
+
                             <script>
                                 function logout() {
-                                    window.location.href = "LogoutServlet";
+                                    window.location.href = "/KidTales/LogoutServlet";
                                 }
                             </script>
 

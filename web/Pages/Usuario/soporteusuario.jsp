@@ -166,10 +166,13 @@
                                     <li class="nav-item"><a style="color: white;" href="indexusuario.html">Inicio</a></li>
                                     <li class="nav-item"><a style="color: white;" href="conocenos.html">Conócenos</a></li>
                                     <li class="nav-item"><a style="color: white;" href="soporteusuario.html">Soporte Técnico</a></li>
-                                    <li class="nav-item"><a id="logoutLink" class="nav-link" href="#" onclick="logout()">Cerrar Sesión</a></li>
+                                    <li class="nav-item">
+                                        <a id="logoutLink" class="nav-link" href="#" onclick="logout()">Cerrar Sesión</a>
+                                    </li>
+
                                     <script>
                                         function logout() {
-                                            window.location.href = "LogoutServlet";
+                                            window.location.href = "/KidTales/LogoutServlet";
                                         }
                                     </script>
                                 </ul>
