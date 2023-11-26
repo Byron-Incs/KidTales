@@ -10,6 +10,7 @@
     <head>
         <title>KidTales - Incio de Sesión</title>
 
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="author" content="Webestica.com">
@@ -178,12 +179,10 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Confirmar Contraseña</label>
                                                     <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
+                                                    <br>
                                                 </div>
                                                 <!-- Remember me -->
-                                                <div class="mb-3">
-                                                    <input type="checkbox" class="form-check-input" id="rememberCheck">
-                                                    <label class="form-check-label" for="rememberCheck">Mantener Sesión Activa</label>
-                                                </div>
+
                                                 <!-- Button -->
                                                 <div><button type="submit" class="btn btn-primary w-100 mb-0" name = "accion" id="accion" value ="Guardar">Registrar</button></div>
 

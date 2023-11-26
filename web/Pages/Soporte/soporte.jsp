@@ -32,6 +32,15 @@
         <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
         <link rel="stylesheet" href="stylechat.css">
         <link rel="stylesheet"  href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+        
+        <style>
+           
+            .logo-grande {
+                width: 70px; 
+                height: auto; 
+            }
+           
+        </style>
 
     </head>
 
@@ -42,29 +51,50 @@
             <nav class="navbar navbar-expand-xl">
                 <div class="container">
                     <!-- Logo START -->
-                    <a class="navbar-brand" href="#">
-                        <img class="light-mode-item navbar-brand-item" src="../../assets/images/index/logoc.jpg" alt="logo">
+                    <a class="navbar-brand" href="../index.html">
+                        <img class="logo-grande " src="../assets/images/index/logog.png" alt="logo">
+
                     </a>
                     <!-- Logo END -->
+                    <button class="navbar-toggler ms-sm-auto mx-3 me-md-0 p-0 p-sm-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCategoryCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-animation">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </button>
 
                     <div class="navbar-collapse collapse" id="navbarCategoryCollapse">
                         <ul class="navbar-nav navbar-nav-scroll nav-pills-primary-soft text-center ms-auto p-2 p-xl-0">
-
-                            <li class="nav-item">
-                                <a id="logoutLink" class="nav-link" href="#" onclick="logout()">Cerrar Sesión</a>
+                            <li class="avatar">
+                                <img class="avatar-img" src="../assets/images/index/globitos2.png" alt="avatar">
                             </li>
-
-                            <script>
-                                function logout() {
-                                    window.location.href = "/KidTales/LogoutServlet";
-                                }
-                            </script>
-
+                            <li class="nav-item"> 
+                                <a class="nav-link" href="../Pages/inicio.jsp">Inicia Sesión</a>
+                            </li>
+                            <li class="avatar">
+                                <img class="avatar-img" src="../assets/images/index/globitos2.png" alt="avatar">
+                            </li>
+                            <li class="nav-item"> 
+                                <a class="nav-link" href="../Pages/registro.jsp">Registrate</a>
+                            </li>
+                            <li class="avatar">
+                                <img class="avatar-img" src="../assets/images/index/globitos2.png" alt="avatar">
+                            </li>
+                            <li class="nav-item"> 
+                                <a class="nav-link" href="../Pages/soporte.html">Soporte Técnico</a>
+                            </li>
+                            <li class="avatar">
+                                <img class="avatar-img" src="../assets/images/index/globitos2.png" alt="avatar">
+                            </li>
+                            <li class="nav-item"> 
+                                <a class="nav-link" href="../Pages/../index.html">Inicio</a>
+                            </li>
+                            
                         </ul>
-
                     </div>
                 </div>
-            </nav>    
+            </nav>
         </header>
         <!-- Header END -->
         <!-- ChatStard -->

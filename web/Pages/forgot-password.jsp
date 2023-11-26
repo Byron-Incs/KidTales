@@ -1,7 +1,7 @@
 <%-- 
     Document   : forgot-password
     Created on : 1 nov. 2023, 13:49:52
-    Author     : Evelyn
+    Author     : Hoid
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -74,7 +74,11 @@ Main Content START -->
                                                                         </div>
 
 									<!-- Button -->
-									<div class="d-grid"><button type="submit" class="btn btn-primary">Restaurar Contraseña</button></div>
+                                                                        <div class="d-grid" align="center">
+                                                                            <a href="two-factor-auth.jsp">
+                                                                                <button type="button" class="btn btn-primary">Restaurar Contraseña</button>
+                                                                            </a>
+                                                                        </div>
 		
 									
 		

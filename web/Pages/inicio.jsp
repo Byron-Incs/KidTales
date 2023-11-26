@@ -107,15 +107,13 @@
             window.location.href = "../Pages/Soporte/soporte.jsp";
         </script>
         <%
-        }else if(psw != null && psw.equals(contra)){
+        } else if (psw != null && psw.equals(contra)) {
 
-         %>
+        %>
         <script>
             window.location.href = "../Pages/Usuario/indexusuario.html";
         </script>
-        <%
-
-        } else {
+        <%        } else {
         %>
         <script>
             alert("La contraseña es incorrecta");
@@ -193,10 +191,7 @@
                                                 </div>
                                                 <!-- Remember me -->
                                                 <div class="mb-3 d-sm-flex justify-content-between">
-                                                    <div>
-                                                        <input type="checkbox" class="form-check-input" id="rememberCheck">
-                                                        <label class="form-check-label" for="rememberCheck">Recordar</label>
-                                                    </div>
+
                                                     <a href="forgot-password.jsp">Olvidaste tu contraseña?</a>
                                                 </div>
                                                 <!-- Button -->
