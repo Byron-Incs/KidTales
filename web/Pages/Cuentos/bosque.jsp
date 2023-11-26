@@ -1,16 +1,23 @@
+<%-- 
+    Document   : bosque
+    Created on : 26 nov. 2023, 16:57:02
+    Author     : hoid
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>KidTales</title>
+        <title>KidTales Bosque</title>
 
         <!-- Meta Tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="Byron" content="Webestica.com">
-        <meta name="description" content="Conócenos KidTales">
+        <meta name="description" content="Bosque Cuento">
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="../assets/images/index/logoc.jpg">
+        <link rel="shortcut icon" href="../../assets/images/index/logoc.jpg">
 
         <!-- Google Font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,19 +25,24 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap">
 
         <!-- Plugins CSS -->
-        <link rel="stylesheet" type="text/css" href="../assets/vendor/font-awesome/css/all.min.css">
-        <link rel="stylesheet" type="text/css" href="../assets/vendor/bootstrap-icons/bootstrap-icons.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/vendor/font-awesome/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css">
 
         <!-- Theme CSS -->
-        <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
 
         <style>
-           
+
             .logo-grande {
-                width: 70px; 
-                height: auto; 
+                width: 70px;
+                height: auto;
             }
-           
+
+            .cuento-img {
+                width: 500px;
+                height: auto;
+            }
+
         </style>
 
     </head>
@@ -44,8 +56,8 @@
             <nav class="navbar navbar-expand-xl">
                 <div class="container">
                     <!-- Logo START -->
-                    <a class="navbar-brand" href="../index.html">
-                        <img class="logo-grande " src="../assets/images/index/logog.png" alt="logo">
+                    <a class="navbar-brand" href="../../index.html">
+                        <img class="logo-grande " src="../../assets/images/index/logog.png" alt="logo">
 
                     </a>
                     <!-- Logo END -->
@@ -60,30 +72,36 @@
                     <div class="navbar-collapse collapse" id="navbarCategoryCollapse">
                         <ul class="navbar-nav navbar-nav-scroll nav-pills-primary-soft text-center ms-auto p-2 p-xl-0">
                             <li class="avatar">
-                                <img class="avatar-img" src="../assets/images/index/globitos2.png" alt="avatar">
+                                <img class="avatar-img" src="../../assets/images/index/globitos2.png" alt="avatar">
                             </li>
                             <li class="nav-item"> 
-                                <a class="nav-link" href="../Pages/inicio.jsp">Inicia Sesión</a>
+                                <a class="nav-link" href="../../Pages/inicio.jsp">Inicia Sesión</a>
                             </li>
                             <li class="avatar">
-                                <img class="avatar-img" src="../assets/images/index/globitos2.png" alt="avatar">
+                                <img class="avatar-img" src="../../assets/images/index/globitos2.png" alt="avatar">
                             </li>
                             <li class="nav-item"> 
-                                <a class="nav-link" href="../Pages/registro.jsp">Registrate</a>
+                                <a class="nav-link" href="../../Pages/registro.jsp">Registrate</a>
                             </li>
                             <li class="avatar">
-                                <img class="avatar-img" src="../assets/images/index/globitos2.png" alt="avatar">
+                                <img class="avatar-img" src="../../assets/images/index/globitos2.png" alt="avatar">
                             </li>
                             <li class="nav-item"> 
-                                <a class="nav-link" href="../Pages/soporte.html">Soporte Técnico</a>
+                                <a class="nav-link" href="../../Pages/soporte.html">Soporte Técnico</a>
                             </li>
                             <li class="avatar">
-                                <img class="avatar-img" src="../assets/images/index/globitos2.png" alt="avatar">
+                                <img class="avatar-img" src="../../assets/images/index/globitos2.png" alt="avatar">
                             </li>
                             <li class="nav-item"> 
-                                <a class="nav-link" href="../index.html">Inicio</a>
+                                <a class="nav-link" href="../../Pages/conocenos.html">Cónocenos</a>
                             </li>
-                            
+                            <li class="avatar">
+                                <img class="avatar-img" src="../../assets/images/index/globitos2.png" alt="avatar">
+                            </li>
+                            <li class="nav-item"> 
+                                <a class="nav-link" href="../../index.html">Inicio</a>
+                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -101,41 +119,48 @@
             <section>
 
                 <div class="container">
-                    <div class="container">
-                        <!-- Content START -->
-                        <div class="row g-lg-5 align-items-center justify-content-center">
-                            <div class="col-md-6">
-                                <h3 class="mb-4" style="text-align: center; color: #D8854D;">¿Qué hacemos?</h3>
-                                <p class="fw-bold" style="text-align: justify;">En KidTales ofrecémos una solución a los padres, para lograr darles diversión sin limite a sus hijos, a través de nuestros audio-cuentos
-                                    personalizados. Además, contamos con una gama amplia con respecto al género de los audio-cuentos, los cuales los pequeños podran seleccionar 
-                                    de acuerdo a sus preferencias. También contamos con nuestro sistema de realidad aumentada, lo que ayudara a los pequeños a desarrollar aun más
-                                    su imaginación, creatividad, y aun más importante a divertirse sin limite.
-                                </p>
 
-                            </div>
-                            <div class="col-md-6">
-                                <img src="../assets/images/conocenos/img1.svg" class="img-fluid" alt="">
-                            </div>
-                        </div>
-                        <br><br><br>
-                        <!-- Content END -->
-                    </div>
                     <!-- Image START -->
                     <div class="container">
                         <!-- Content START -->
                         <div class="row g-lg-5 align-items-center justify-content-center">
                             <div class="col-md-6">
-                                <img src="../assets/images/conocenos/img2.svg" class="img-fluid" alt="">
+                                <h3 class="mb-4" style="text-align: center; ">El bosque de los susurros</h3>
+                                <img src="../../assets/images/Cuentos/bosque.svg" class="cuento-img" alt="">
                             </div>
+
                             <div class="col-md-6">
-                                <h3 class="mb-4" style="text-align: center; color: #D8854D;">¿Cómo lo hacemos?</h3>
-                                <p class="fw-bold" style="text-align: justify;">La magía de KidTales
-                                    es debidos a nuestras Inteligencias Artificiales, las cuales fueron programadas y entrenadas
-                                    con una infinidad de cuentos infatiles, para que de esta forma fueran capaces de crear cuentos realistas,
-                                    de calidad y lo más increible de todo únicos, esto debido a que la inteligencia artificial, será la encaraga de 
-                                    escribir los audios libros, y de darle la ilustración de las portada, por lo que el audio-libro que te lea sera único 
-                                    , solo lo podrás disfrutar tu y lás personas que tu quieras.
-                                </p>
+                                <div>
+                                    <p class="fw-bold" style="text-align: justify;">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab iam est, qui dolorem 
+                                    </p>
+                                    <br>
+                                </div>
+                                <div>
+                                    <div class="d-flex flex-row">
+                                        <div class="card m-3" style="width: 18rem; border: 3px solid #038D4A;">
+                                                <div class="card-body">
+                                                    <a href="">
+                                                    <h5 class="alert-orange" style="text-align: center;">Opción 1</h5>
+                                                    </a>
+                                                    <p class="fw-bold " style="text-align: justify;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                </div>
+                                            
+                                        </div>
+                                        <div class="card m-3" style="width: 18rem; border: 3px solid #038D4A;">
+                                                <div class="card-body">
+                                                    <a href="">
+                                                        <h5 class="alert-orange" style="text-align: center;">Opción 2</h5>
+                                                    </a>
+                                                    <p class="fw-bold" style="text-align: justify;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <br>
+                                    <p class="fw-bold" style="text-align: justify;">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab iam est, qui dolorem 
+                                    </p>
+                                </div>
 
                             </div>
                         </div>
@@ -164,10 +189,11 @@
                             <div class="col-6 col-md-4">
                                 <h5 class="text-white mb-2 mb-md-4">Páginas</h5>
                                 <ul class="nav flex-column text-primary-hover">
-                                    <li class="nav-item"> <a style="color: white;" href="../Pages/inicio.jsp">Inicia Sesión</a></li>
-                                    <li class="nav-item"> <a style="color: white;" href="../Pages/registro.jsp">Resgistrate</a></li>
-                                    <li class="nav-item"> <a style="color: white;" href="../Pages/soporte.html">Soporte Técnico</a></li>
-                                    <li class="nav-item"> <a style="color: white;" href="../index.html">Inicio</a></li>
+                                    <li class="nav-item"> <a style="color: white;" href="../../Pages/inicio.jsp">Inicia Sesión</a></li>
+                                    <li class="nav-item"> <a style="color: white;" href="../../Pages/registro.jsp">Resgistrate</a></li>
+                                    <li class="nav-item"> <a style="color: white;" href="../../Pages/soporte.html">Soporte Técnico</a></li>
+                                    <li class="nav-item"> <a style="color: white;" href="../../Pages/conocenos.html">Cónocenos</a></li>
+                                    <li class="nav-item"> <a style="color: white;" href="../../index.html">Inicio</a></li>
                                 </ul>
                             </div>
                             <div class="col-6 col-md-5">
@@ -194,7 +220,7 @@
                     <div class="container">
                         <div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-lg-start">
                             <a href="http://byroninc.gerdoc.com/" target="_blank">
-                                <img class="h-40px" src="../assets/images/index/logoo.jpg" alt="logo">
+                                <img class="h-40px" src="../../assets/images/index/logoo.jpg" alt="logo">
                             </a>
                             <div style="color: white;"> Copyrights ©2023 Byron Inc</div>
                         </div>
@@ -209,10 +235,10 @@
         <div class="back-top"></div>
 
         <!-- Bootstrap JS -->
-        <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
         <!-- ThemeFunctions -->
-        <script src="../assets/js/functions.js"></script>
+        <script src="../../assets/js/functions.js"></script>
 
     </body>
 </html>
