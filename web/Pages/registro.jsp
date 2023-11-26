@@ -153,7 +153,7 @@
                                             </a>
                                             <!-- Title -->
                                             <h1 class="mb-2 h3">Crear Cuenta</h1>
-                                            <p class="mb-0">Ya tienes cuenta?<a href="inicio.jsp"> Ingresa</a></p>
+                                            <p class="mb-0">¿Ya tienes cuenta?<a href="inicio.jsp"> Ingresa</a></p>
 
                                             <!-- Form START -->
                                             <form class="mt-4 text-start">

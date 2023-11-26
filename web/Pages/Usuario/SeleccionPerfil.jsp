@@ -14,7 +14,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="author" content="Webestica.com">
+        <meta name="Byron" content="Webestica.com">
         <meta name="description" content="KidTales">
 
         <link rel="shortcut icon" href="../../assets/images/index/logoc.jpg">
@@ -75,7 +75,7 @@
                                     </div>
                                     <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
                                         <div class="p-3 p-lg-5">
-                                            <a href="seleccion-subusuario.jsp">
+                                            <a href="Favoritos.jsp">
                                                 <img src="../../assets/images/perfiles/subusuario1.svg" alt="">
                                                 <p align="center" style="color: black ; font-size: 21px" class="active"><strong>Sub-Usuario</strong></p>
                                             </a>
@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
                                         <div class="p-3 p-lg-5">
-                                            <a href="seleccion-subusuario.jsp">
+                                            <a href="Favoritos.jsp">
                                                 <img src="../../assets/images/perfiles/subusuario2.svg" alt="">
                                                 <p align="center" style="color: black ; font-size: 21px" class="active"><strong>Sub-Usuario</strong></p>
                                             </a>

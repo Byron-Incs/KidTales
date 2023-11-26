@@ -172,7 +172,7 @@
                                             </a>
                                             <!-- Title -->
                                             <h1 class="mb-2 h3">Bienvenido</h1>
-                                            <p class="mb-0">Nuevo aquí?<a href="registro.jsp"> Crea una cuenta</a></p>
+                                            <p class="mb-0">¿Nuevo aquí?<a href="registro.jsp"> Crea una cuenta</a></p>
 
                                             <!-- Form START -->
                                             <form class="mt-4 text-start">
@@ -192,7 +192,7 @@
                                                 <!-- Remember me -->
                                                 <div class="mb-3 d-sm-flex justify-content-between">
 
-                                                    <a href="forgot-password.jsp">Olvidaste tu contraseña?</a>
+                                                    <a href="forgot-password.jsp">¿Olvidaste tu contraseña?</a>
                                                 </div>
                                                 <!-- Button -->
                                                 <div><button type="submit" class="btn btn-primary w-100 mb-0" name = "accion" id="accion" value ="Guardar">Ingresar</button></div>
