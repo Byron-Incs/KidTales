@@ -6,15 +6,15 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
-        <title>Ajustes-Tiempo Pantalla</title>
+        <title>Ajustes-Idioma</title>
 
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="Byron" content="Webestica.com">
-        <meta name="description" content="Ajustes">
+        <meta name="description" content="Ajustes-Idioma">
 
         <link rel="shortcut icon" href="../../../assets/images/index/logoc.jpg">
 
@@ -38,7 +38,7 @@
             <!-- =======================
             Main Content START -->
             <section class="vh-xxl-100">
-                <div class="container h-100 d-flex px-0 px-sm-4">
+                <div class="container h-100 d-flex px-0 px-sm-0">
                     <div class="row justify-content-center align-items-center m-auto">
                         <div class="col-12">
                             <div class="bg-mode shadow rounded-3 overflow-hidden">
@@ -46,7 +46,7 @@
                                     <!-- Vector Image -->
                                     <div class="col-lg-6 d-md-flex align-items-center order-2 order-lg-1">
                                         <div class="p-3 p-lg-5">
-                                            <img src="../../../assets/images/registro/img1.svg" alt="">
+                                            <img src="../../../assets/images/ajustes/idioma2.svg" alt="">
                                         </div>
                                         <!-- Divider -->
                                         <div class="vr opacity-1 d-none d-lg-block"></div>
@@ -56,44 +56,40 @@
                                     <div class="col-lg-6 order-1">
                                         <div class="p-4 p-sm-6">
                                             <!-- Logo -->
-                                            <a href="../../../index.html">
+                                            <a href="">
                                                 <img class="h-50px mb-4" src="../../../assets/images/index/logoc.jpg" alt="logo">
                                             </a>
                                             <!-- Title -->
-                                            <h1 class="mb-2 h3">Crear Cuenta</h1>
-                                            <p class="mb-0">Ya tienes cuenta?<a href="inicio.jsp"> Ingresa</a></p>
-
+                                            <h1 class="mb-2 h3">Idioma</h1>
+                                            <p class="mb-0">Selecciona un idioma</p>
+                                            
                                             <!-- Form START -->
                                             <form class="mt-4 text-start">
                                                 <!-- Email -->
                                                 <div class="mb-3">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control" name="email" id="email">
+                                                    <input type="checkbox" class="form-check-input" id="rememberCheck">
+                                                    <label class="form-check-label" for="rememberCheck">Español</label>
                                                 </div>
-                                                <!-- Nombre de usuario-->
                                                 <div class="mb-3">
-                                                    <label class="form-label">Nombre de Usuario</label>
-                                                    <input type="text" class="form-control" name="nombre" id="nombre">
+                                                    <input type="checkbox" class="form-check-input" id="rememberCheck2">
+                                                    <label class="form-check-label" for="rememberCheck">Ingles</label>
                                                 </div>
-                                                <!-- Password -->
-                                                <div class="mb-3 position-relative">
-                                                    <label class="form-label">Contraseña</label>
-                                                    <input class="form-control fakepassword" type="password" name="pasword" id="pasword">
-                                                    <span class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
-                                                        <i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
-                                                    </span>
-                                                </div>
-                                                <!-- Confirm Password -->
-                                                <div class="mb-3">
-                                                    <label class="form-label">Confirmar Contraseña</label>
-                                                    <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
+                                                <div>
                                                     <br>
                                                 </div>
+                                               
                                                 <!-- Remember me -->
 
                                                 <!-- Button -->
-                                                <div><button type="submit" class="btn btn-primary w-100 mb-0" name = "accion" id="accion" value ="Guardar">Registrar</button></div>
+                                               <div class="d-flex justify-content-center text-center">
+                                                    <div class="mb-2 me-3 ">
+                                                        <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="accion" value="Guardar">Establecer</button>
+                                                    </div>
 
+                                                    <div class="mb-6">
+                                                        <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="regresar" value="Regresar">Regresar</button>
+                                                    </div>
+                                                </div>
                                                 <!-- Copyright -->
                                                 <div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron Inc.</div>
                                             </form>

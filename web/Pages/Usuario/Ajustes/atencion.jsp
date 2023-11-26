@@ -27,11 +27,36 @@
 
         <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
 
+        <style>
+
+            .logo-grande {
+                width: 1000px;
+                height: auto;
+            }
+            .logo-chico {
+                width: 150px;
+                height: auto;
+            }
+            .logo-medio {
+                width: 700px;
+                height: auto;
+            }
+            .logo-medio2 {
+                width: 100px;
+                height: auto;
+            }
+            body{
+                margin: auto;
+            }
+
+
+        </style>
+
     </head>
 
 
     <body>
-      
+
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
 
@@ -44,58 +69,44 @@
                             <div class="bg-mode shadow rounded-3 overflow-hidden">
                                 <div class="row g-0">
                                     <!-- Vector Image -->
-                                    <div class="col-lg-6 d-md-flex align-items-center order-2 order-lg-1">
-                                        <div class="p-3 p-lg-5">
-                                            <img src="../../../assets/images/registro/img1.svg" alt="">
-                                        </div>
-                                        <!-- Divider -->
-                                        <div class="vr opacity-1 d-none d-lg-block"></div>
-                                    </div>
-
-                                    <!-- Information -->
                                     <div class="col-lg-6 order-1">
                                         <div class="p-4 p-sm-6">
                                             <!-- Logo -->
-                                            <a href="../../../index.html">
+                                            <a href="">
                                                 <img class="h-50px mb-4" src="../../../assets/images/index/logoc.jpg" alt="logo">
                                             </a>
                                             <!-- Title -->
-                                            <h1 class="mb-2 h3">Crear Cuenta</h1>
-                                            <p class="mb-0">Ya tienes cuenta?<a href="inicio.jsp"> Ingresa</a></p>
+                                            <h1 class="mb-2 h3">Atención al cliente</h1>
+                                        </div>
+                                        <div class="p-3 p-lg-5">
+                                            <img src="../../../assets/images/perfiles/robot.svg" class="logo-medio" alt="">
+                                        </div>
+                                        <!-- Divider -->
+                                    </div>
 
-                                            <!-- Form START -->
-                                            <form class="mt-4 text-start">
-                                                <!-- Email -->
-                                                <div class="mb-3">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control" name="email" id="email">
-                                                </div>
-                                                <!-- Nombre de usuario-->
-                                                <div class="mb-3">
-                                                    <label class="form-label">Nombre de Usuario</label>
-                                                    <input type="text" class="form-control" name="nombre" id="nombre">
-                                                </div>
-                                                <!-- Password -->
-                                                <div class="mb-3 position-relative">
-                                                    <label class="form-label">Contraseña</label>
-                                                    <input class="form-control fakepassword" type="password" name="pasword" id="pasword">
-                                                    <span class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
-                                                        <i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
-                                                    </span>
-                                                </div>
-                                                <!-- Confirm Password -->
-                                                <div class="mb-3">
-                                                    <label class="form-label">Confirmar Contraseña</label>
-                                                    <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
-                                                    <br>
-                                                </div>
-                                                <!-- Remember me -->
+                                    <!-- Information -->
+                                    <div class="col-lg-6 order-1 mt-auto">
+                                        <div class="p-3 p-lg-5 d-flex flex-column align-items-end">
+                                            <img src="../../../assets/images/perfiles/mensaje.svg" class="logo-medio2 mb-auto" alt="">
+                                        </div>
 
-                                                <!-- Button -->
-                                                <div><button type="submit" class="btn btn-primary w-100 mb-0" name = "accion" id="accion" value ="Guardar">Registrar</button></div>
-
+                                        <div class="p-4 p-sm-6 mt-auto">
+                                            <!-- Logo -->
+                                            <form>
+                                                <div class="row mt-auto">
+                                                    <div class="col-8">
+                                                        <div class="mb-3">
+                                                            <input type="text" class="form-control h-100" name="nombre" id="nombre">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <!-- Button -->
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary w-100 mb-0" name="accion" id="accion" value="Guardar">Enviar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <!-- Copyright -->
-                                                <div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron Inc.</div>
                                             </form>
                                             <!-- Form END -->
                                         </div>		

@@ -61,7 +61,7 @@
                                             </a>
                                             <!-- Title -->
                                             <h1 class="mb-2 h3">Tiempo en Pantalla</h1>
-                                            <p class="mb-0">¿Cuántas horas queire que su hijo pueda utilizar la app?</p>
+                                            <p class="mb-0">¿Cuántas horas quiere que su hijo pueda utilizar la app?</p>
                                             
                                             <!-- Form START -->
                                             <form class="mt-4 text-start">

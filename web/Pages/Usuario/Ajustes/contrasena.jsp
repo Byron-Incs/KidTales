@@ -8,13 +8,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Ajustes-Tiempo Pantalla</title>
+        <title>Ajustes-Contraseña</title>
 
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="Byron" content="Webestica.com">
-        <meta name="description" content="Ajustes">
+        <meta name="description" content="Ajustes-Contraseña">
 
         <link rel="shortcut icon" href="../../../assets/images/index/logoc.jpg">
 
@@ -46,7 +46,7 @@
                                     <!-- Vector Image -->
                                     <div class="col-lg-6 d-md-flex align-items-center order-2 order-lg-1">
                                         <div class="p-3 p-lg-5">
-                                            <img src="../../../assets/images/registro/img1.svg" alt="">
+                                            <img src="../../../assets/images/ajustes/contraseña2.svg" alt="">
                                         </div>
                                         <!-- Divider -->
                                         <div class="vr opacity-1 d-none d-lg-block"></div>
@@ -60,9 +60,8 @@
                                                 <img class="h-50px mb-4" src="../../../assets/images/index/logoc.jpg" alt="logo">
                                             </a>
                                             <!-- Title -->
-                                            <h1 class="mb-2 h3">Crear Cuenta</h1>
-                                            <p class="mb-0">Ya tienes cuenta?<a href="inicio.jsp"> Ingresa</a></p>
-
+                                            <h1 class="mb-2 h3">Cambiar contraseña</h1>
+                                            
                                             <!-- Form START -->
                                             <form class="mt-4 text-start">
                                                 <!-- Email -->
@@ -70,30 +69,24 @@
                                                     <label class="form-label">Email</label>
                                                     <input type="email" class="form-control" name="email" id="email">
                                                 </div>
-                                                <!-- Nombre de usuario-->
-                                                <div class="mb-3">
-                                                    <label class="form-label">Nombre de Usuario</label>
-                                                    <input type="text" class="form-control" name="nombre" id="nombre">
-                                                </div>
                                                 <!-- Password -->
                                                 <div class="mb-3 position-relative">
-                                                    <label class="form-label">Contraseña</label>
+                                                    <label class="form-label">Nueva contraseña</label>
                                                     <input class="form-control fakepassword" type="password" name="pasword" id="pasword">
                                                     <span class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
                                                         <i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
                                                     </span>
                                                 </div>
-                                                <!-- Confirm Password -->
-                                                <div class="mb-3">
-                                                    <label class="form-label">Confirmar Contraseña</label>
-                                                    <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
-                                                    <br>
+                                                <div><br></div>
+                                                <div class="d-flex justify-content-center text-center">
+                                                    <div class="mb-2 me-3 ">
+                                                        <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="accion" value="Guardar">Cambiar</button>
+                                                    </div>
+
+                                                    <div class="mb-6">
+                                                        <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="regresar" value="Regresar">Regresar</button>
+                                                    </div>
                                                 </div>
-                                                <!-- Remember me -->
-
-                                                <!-- Button -->
-                                                <div><button type="submit" class="btn btn-primary w-100 mb-0" name = "accion" id="accion" value ="Guardar">Registrar</button></div>
-
                                                 <!-- Copyright -->
                                                 <div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron Inc.</div>
                                             </form>
