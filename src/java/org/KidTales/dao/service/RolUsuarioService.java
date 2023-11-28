@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.KidTales.dao.Rol;
 import org.KidTales.dao.RolUsuario;
 import org.KidTales.dao.Usuario;
+
 public class RolUsuarioService extends Conexion<RolUsuario> {
 
     public List<RolUsuario> getRolUsuarioList() {
@@ -76,7 +77,6 @@ public class RolUsuarioService extends Conexion<RolUsuario> {
     }
 
     public boolean updateRolUsuario(RolUsuario rolUsuario) {
-        // Implementa la lógica de actualización si es necesario
         return false;
     }
 
@@ -135,33 +135,33 @@ public class RolUsuarioService extends Conexion<RolUsuario> {
         }
         return rolUsuario;
     }
-    
+
     public int getUserIdFromSessionOrParameter(HttpServletRequest request, String parameterName) {
-    HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(false);
 
-    if (session != null) {
-        Object userIdAttribute = session.getAttribute("userID");
+        if (session != null) {
+            Object userIdAttribute = session.getAttribute("userID");
 
-        if (userIdAttribute != null) {
-            if (userIdAttribute instanceof Integer) {
-                return (int) userIdAttribute;
-            } else {
-                System.err.println("El atributo de sesión 'userID' no es un entero válido.");
+            if (userIdAttribute != null) {
+                if (userIdAttribute instanceof Integer) {
+                    return (int) userIdAttribute;
+                } else {
+                    System.err.println("El atributo de sesión 'userID' no es un entero válido.");
+                }
             }
         }
-    }
 
-    String userIdParam = request.getParameter(parameterName);
+        String userIdParam = request.getParameter(parameterName);
 
-    if (userIdParam != null && !userIdParam.isEmpty()) {
-        try {
-            return Integer.parseInt(userIdParam);
-        } catch (NumberFormatException e) {
-            // Manejo de error si el parámetro no es un entero válido
-            e.printStackTrace();
+        if (userIdParam != null && !userIdParam.isEmpty()) {
+            try {
+                return Integer.parseInt(userIdParam);
+            } catch (NumberFormatException e) {
+                // Manejo de error si el parámetro no es un entero válido
+                e.printStackTrace();
+            }
         }
-    }
 
-    return -1;
-}
+        return -1;
+    }
 }
