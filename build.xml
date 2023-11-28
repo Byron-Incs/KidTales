@@ -68,4 +68,16 @@
     nbproject/build-impl.xml file. 
 
     -->
+
+        <path id="classpath">
+         <fileset dir="${basedir}/lib"/>
+        </path>
+
+    <target name="-pre-compile">
+        <copy todir="${build.classes.dir}">
+            <fileset dir="lib">
+                <include name="gson-2.10.1.jar" /> 
+            </fileset>
+        </copy>
+    </target>
 </project>
