@@ -2,6 +2,7 @@ package org.KidTales.helper;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.KidTales.dao.Usuario;
 import org.KidTales.dao.service.UsuarioService;
 
@@ -18,17 +19,22 @@ public class UsuarioHelper extends Helpers<Usuario> implements Serializable {
                 && isNotNullAndNotEmpity(t.getContrasena());
     }
 
-    @Override
-    public boolean addT() {
+    public boolean addT(HttpServletRequest request) {
         usuarioService = new UsuarioService();
         t = new Usuario();
-        t.setNombre(getParameter("nombre"));
-        t.setCorreo(getParameter("correo"));
-        t.setContrasena(getParameter("contrasena"));
+
+        String nombre = request.getParameter("nombre");
+        String correo = request.getParameter("correo");
+        String contrasena = request.getParameter("contrasena");
+
+        t.setNombre(nombre);
+        t.setCorreo(correo);
+        t.setContrasena(contrasena);
 
         if (isValidaCamposOk()) {
             return usuarioService.addUsuario(t);
         }
+
         return false;
     }
 
@@ -70,5 +76,10 @@ public class UsuarioHelper extends Helpers<Usuario> implements Serializable {
 
         usuarioService = new UsuarioService();
         return usuarioService.getUsuarioByEmail(correo);
+    }
+
+    @Override
+    public boolean addT() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

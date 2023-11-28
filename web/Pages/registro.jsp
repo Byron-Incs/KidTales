@@ -2,8 +2,8 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.sql.*" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
-<%@page import="org.KidTales.dao.Usuario"%>
-<%@page import="org.KidTales.dao.bdConection"%>
+<%@ page import="org.KidTales.helper.UsuarioHelper" %>
+<%@ page import="org.KidTales.dao.Usuario" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,94 +33,22 @@
     <body>
         <%
             String accion = request.getParameter("accion");
+            UsuarioHelper usuarioHelper = new UsuarioHelper();
+            boolean guardado = false;
 
-            if (accion != null && accion.equals("Guardar")) {
-                String email = request.getParameter("email");
-                String contra = request.getParameter("pasword");
-                String nom = request.getParameter("nombre");
+            if ("Guardar".equals(accion)) {
+                usuarioHelper.addRequest(request);
 
-                if (email.isEmpty() || contra.isEmpty() || nom.isEmpty()) {
+                guardado = usuarioHelper.addT();
+
+                if (guardado) {
+                    response.sendRedirect("Usuario/ajustes.jsp");
+                } else {
         %>
         <script>
-            alert("¡Llena todos los campos!");
+            alert("Error al guardar. Por favor, verifica los datos e inténtalo nuevamente.");
         </script>
         <%
-        } else if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-        %>
-        <script>
-            alert("El correo electrónico no tiene la estructura necesaria.");
-        </script>
-        <%
-        } else if (contra.length() < 7) {
-        %>
-        <script>
-            alert("La contraseña debe tener al menos 7 caracteres.");
-        </script>
-        <%
-        } else {
-            String confirmPassword = request.getParameter("confirmPassword");
-
-            if (!contra.equals(confirmPassword)) {
-        %>
-        <script>
-            alert("La contraseña y la confirmación de contraseña no coinciden.");
-        </script>
-        <%
-        } else {
-            Connection conexion = null;
-            PreparedStatement statement = null;
-            ResultSet resultSet = null;
-
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
-
-                String verificaCorreoSQL = "SELECT correo FROM usuario WHERE correo=?";
-                statement = conexion.prepareStatement(verificaCorreoSQL);
-                statement.setString(1, email);
-                resultSet = statement.executeQuery();
-
-                if (resultSet.next()) {
-        %>
-        <script>
-            alert("El correo electrónico ya está registrado.");
-        </script>
-        <%
-        } else {
-            String insertSQL = "INSERT INTO usuario (username, correo, pasword) VALUES (?, ?, ?)";
-            statement = conexion.prepareStatement(insertSQL);
-            statement.setString(1, nom);
-            statement.setString(2, email);
-            statement.setString(3, contra);
-
-            int filasAfectadas = statement.executeUpdate();
-            if (filasAfectadas > 0) {
-        %>
-        <script>
-            window.location.href = "../Pages/Usuario/indexusuario.html";
-        </script>
-        <%
-                                }
-                            }
-
-                        } catch (ClassNotFoundException | SQLException e) {
-                            e.printStackTrace();
-                        } finally {
-                            try {
-                                if (resultSet != null) {
-                                    resultSet.close();
-                                }
-                                if (statement != null) {
-                                    statement.close();
-                                }
-                                if (conexion != null) {
-                                    conexion.close();
-                                }
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
                 }
             }
         %>
