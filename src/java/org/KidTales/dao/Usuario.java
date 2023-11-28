@@ -1,32 +1,24 @@
 package org.KidTales.dao;
 public class Usuario {
-    private int id_up;
-    private String username;
-    private String pasword;
+    private int userID;
+    private String nombre;
     private String correo;
+    private String contrasena;
 
-    public int getId_up() {
-        return id_up;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setId_up(int id_up) {
-        this.id_up = id_up;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPasword() {
-        return pasword;
-    }
-
-    public void setPasword(String pasword) {
-        this.pasword = pasword;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getCorreo() {
@@ -36,4 +28,13 @@ public class Usuario {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
 }
