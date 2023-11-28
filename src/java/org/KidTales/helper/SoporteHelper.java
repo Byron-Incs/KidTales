@@ -1,63 +1,44 @@
 package org.KidTales.helper;
-
 import java.io.Serializable;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.KidTales.dao.RolUsuario;
-import org.KidTales.dao.Usuario;
-import org.KidTales.dao.Rol;
-import org.KidTales.dao.service.RolUsuarioService;
+import org.KidTales.dao.Soporte;
+import org.KidTales.dao.service.SoporteService;
 
-public class RolUsuarioHelper extends Helpers<RolUsuario> implements Serializable {
+public class SoporteHelper extends Helpers<Soporte> implements Serializable {
 
-    private RolUsuarioService rolService;
+    private SoporteService soporteService;
 
-    public RolUsuarioHelper() {
+    public SoporteHelper() {
     }
 
-    public boolean isValidaCamposOk() {
-        return true;
+    @Override
+    public List<Soporte> getListT() {
+        soporteService = new SoporteService();
+        return soporteService.getSoporteTecnicoList();
     }
 
     @Override
     public boolean addT() {
-        rolService = new RolUsuarioService();
-        t = new RolUsuario();
-
-        int userID = getUserIdFromSessionOrParameter(request, "userID");
-        t.setUserID(userID);
-        t.setRolID(2);
-
-        return rolService.addRolUsuario(t);
-    }
-
-    @Override
-    public List<RolUsuario> getListT() {
-        rolService = new RolUsuarioService();
-        return rolService.getRolUsuarioList();
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public boolean updateT() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public boolean deleteT() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public RolUsuario getTByKey() {
-        int userID = Integer.parseInt(getParameter("userID"));
-
-        if (userID > 0) {
-            rolService = new RolUsuarioService();
-            return rolService.getRolUsuarioByUserID(userID);
-        }
-
-        return null;
+    public Soporte getTByKey() {
+        int userID = getUserIdFromSessionOrParameter(request, "userID");
+        soporteService = new SoporteService();
+        return soporteService.getSoporteTecnicoByUserID(userID);
     }
     
     public int getUserIdFromSessionOrParameter(HttpServletRequest request, String parameterName) {
