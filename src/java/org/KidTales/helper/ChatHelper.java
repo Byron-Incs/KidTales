@@ -1,5 +1,6 @@
 package org.KidTales.helper;
 
+import java.util.List;
 import java.io.Serializable;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -47,7 +48,7 @@ public class ChatHelper extends Helpers<Chat> implements Serializable{
         return chatService.getChatByChatID(chatID);
     }
     
-    public int getUserIDFromSessionOrParameter(HttpServletRequest request, String parameterName) {
+    public int getUserIdFromSessionOrParameter(HttpServletRequest request, String parameterName) {
         HttpSession session = request.getSession(false);
 
         if (session != null) {
@@ -67,6 +68,20 @@ public class ChatHelper extends Helpers<Chat> implements Serializable{
         if (userIdParam != null && !userIdParam.isEmpty()) {
             try {
                 return Integer.parseInt(userIdParam);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return -1;
+    }
+    
+    public int getParameterAsInt(String parameterName) {
+        String parameterValue = getParameter(parameterName);
+
+        if (parameterValue != null && !parameterValue.isEmpty()) {
+            try {
+                return Integer.parseInt(parameterValue);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
