@@ -62,7 +62,7 @@
 
                                             <!-- Form START -->
                                             <!-- Formulario de registro -->
-                                            <form class="mt-4 text-start" action="KidTales\src\java\KidTales/RegistroServlet" method="post">
+                                            <form class="mt-4 text-start" action="../../../KidTales/RegistroServlet" method="post">
                                                 <!-- Email -->
                                                 <div class="mb-3">
                                                     <label class="form-label">Email</label>
