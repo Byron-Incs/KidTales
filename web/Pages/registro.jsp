@@ -2,8 +2,6 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.sql.*" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
-<%@ page import="org.KidTales.helper.UsuarioHelper" %>
-<%@ page import="org.KidTales.dao.Usuario" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,27 +29,6 @@
 
 
     <body>
-        <%
-            String accion = request.getParameter("accion");
-            UsuarioHelper usuarioHelper = new UsuarioHelper();
-            boolean guardado = false;
-
-            if ("Guardar".equals(accion)) {
-                usuarioHelper.addRequest(request);
-
-                guardado = usuarioHelper.addT();
-
-                if (guardado) {
-                    response.sendRedirect("Usuario/ajustes.jsp");
-                } else {
-        %>
-        <script>
-            alert("Error al guardar. Por favor, verifica los datos e inténtalo nuevamente.");
-        </script>
-        <%
-                }
-            }
-        %>
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
 
@@ -84,39 +61,36 @@
                                             <p class="mb-0">¿Ya tienes cuenta?<a href="inicio.jsp"> Ingresa</a></p>
 
                                             <!-- Form START -->
-                                            <form class="mt-4 text-start">
+                                            <!-- Formulario de registro -->
+                                            <form class="mt-4 text-start" action="KidTales\src\java\KidTales/RegistroServlet" method="post">
                                                 <!-- Email -->
                                                 <div class="mb-3">
                                                     <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control" name="email" id="email">
+                                                    <input type="email" class="form-control" name="correo" id="correo">
                                                 </div>
                                                 <!-- Nombre de usuario-->
                                                 <div class="mb-3">
                                                     <label class="form-label">Nombre de Usuario</label>
                                                     <input type="text" class="form-control" name="nombre" id="nombre">
                                                 </div>
-                                                <!-- Password -->
+                                                <!-- Contraseña -->
                                                 <div class="mb-3 position-relative">
                                                     <label class="form-label">Contraseña</label>
-                                                    <input class="form-control fakepassword" type="password" name="pasword" id="pasword">
+                                                    <input class="form-control fakepassword" type="password" name="contrasena" id="contrasena">
                                                     <span class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
                                                         <i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
                                                     </span>
                                                 </div>
-                                                <!-- Confirm Password -->
+                                                <!-- Confirmar Contraseña -->
                                                 <div class="mb-3">
                                                     <label class="form-label">Confirmar Contraseña</label>
-                                                    <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
+                                                    <input type="password" class="form-control" name="confirmarContrasena" id="confirmarContrasena">
                                                     <br>
                                                 </div>
-                                                <!-- Remember me -->
-
-                                                <!-- Button -->
-                                                <div><button type="submit" class="btn btn-primary w-100 mb-0" name = "accion" id="accion" value ="Guardar">Registrar</button></div>
-
-                                                <!-- Copyright -->
-                                                <div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron Inc.</div>
+                                                <!-- Botón de Registro -->
+                                                <div><button type="submit" class="btn btn-primary w-100 mb-0" name="accion" id="accion" value="Guardar">Registrar</button></div>
                                             </form>
+
                                             <!-- Form END -->
                                         </div>		
                                     </div>
