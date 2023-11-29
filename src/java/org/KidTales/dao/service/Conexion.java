@@ -1,15 +1,8 @@
 package org.KidTales.dao.service;
-
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-/**
- *
- * @author gerdoc
- * @param <T>
- */
 public abstract class Conexion<T> implements Serializable 
 {
 
