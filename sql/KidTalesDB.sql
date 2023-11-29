@@ -1,6 +1,8 @@
 CREATE DATABASE KidTalesDB;
 USE KidTalesDB;
 
+-- Hola bro
+
 CREATE TABLE Usuario (
   UserID INT AUTO_INCREMENT PRIMARY KEY,
   Nombre VARCHAR(255),
