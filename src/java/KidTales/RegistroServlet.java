@@ -43,10 +43,6 @@ public class RegistroServlet extends HttpServlet {
             // Inserción en la tabla Chat
             insertarChat(userID);
 
-            // Inserción en la tabla SoporteTecnico
-            int soporteTecnicoID = obtenerIDSoporteTecnicoAleatorio();
-            insertarSoporteTecnico(soporteTecnicoID);
-
             // Redirigir a la página de registro exitoso u otra página
             response.sendRedirect("registroExitoso.jsp");
         } catch (SQLException e) {
@@ -124,17 +120,6 @@ public class RegistroServlet extends HttpServlet {
                 statement.setInt(1, userID);
                 int soporteTecnicoID = obtenerIDSoporteTecnicoAleatorio();
                 statement.setInt(2, soporteTecnicoID);
-                statement.executeUpdate();
-            }
-        }
-    }
-
-    // Método para la inserción en la tabla SoporteTecnico
-    private void insertarSoporteTecnico(int soporteTecnicoID) throws SQLException {
-        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
-            String query = "INSERT INTO SoporteTecnico (UserID) VALUES (?)";
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setInt(1, soporteTecnicoID);
                 statement.executeUpdate();
             }
         }
