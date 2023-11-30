@@ -1,14 +1,14 @@
 CREATE DATABASE KidTalesDB;
 USE KidTalesDB;
 
--- Hola bro
-
 CREATE TABLE Usuario (
   UserID INT AUTO_INCREMENT PRIMARY KEY,
   Nombre VARCHAR(255),
   Correo VARCHAR(255),
   Contrasena VARCHAR(255)
 );
+
+INSERT INTO Usuario(Nombre, Correo, Contrasena) VALUES("Raul","raul.jimenez@kidtales.com", "765raul1234"), ("Sara","sara.sara@kidtales.com", "765sara1234");
 
 CREATE TABLE Rol (
   RolID INT PRIMARY KEY,
@@ -25,6 +25,8 @@ CREATE TABLE UsuarioRol (
   FOREIGN KEY (RolID) REFERENCES Rol(RolID)
 );
 
+INSERT INTO UsuarioRol(UserID, RolID) VALUES(1,1), (2,1);
+
 CREATE TABLE Padre (
   UserID INT PRIMARY KEY,
   CodigoControlParental INT(4),
@@ -35,6 +37,8 @@ CREATE TABLE SoporteTecnico (
   UserID INT PRIMARY KEY,
   FOREIGN KEY (UserID) REFERENCES Usuario(UserID)
 );
+
+INSERT INTO SoporteTecnico(UserID) VALUES(1), (2);
 
 CREATE TABLE Nino (
   NinoID INT AUTO_INCREMENT PRIMARY KEY,
