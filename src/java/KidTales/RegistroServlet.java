@@ -54,7 +54,6 @@ public class RegistroServlet extends HttpServlet {
             response.sendRedirect(urlCodificada);
         } catch (SQLException e) {
             e.printStackTrace();
-            // Manejar errores según tus necesidades
             response.sendRedirect("error.jsp");
         }
     }
@@ -172,7 +171,6 @@ public class RegistroServlet extends HttpServlet {
                 System.out.println("Tablas creadas con éxito.");
             }
         } catch (SQLException e) {
-            // Captura excepciones de SQL y muestra información de error
             e.printStackTrace();
         }
     }
