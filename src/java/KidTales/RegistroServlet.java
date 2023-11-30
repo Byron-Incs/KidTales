@@ -1,7 +1,6 @@
 package KidTales;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,9 +22,9 @@ public class RegistroServlet extends HttpServlet {
     private static final String JDBC_PASSWORD = "1234";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
             System.out.println("Se logró la conexión");
         }
     }
@@ -60,7 +59,7 @@ public class RegistroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
     }
 
     @Override
