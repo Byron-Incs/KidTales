@@ -1,6 +1,7 @@
 package KidTales;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,44 +15,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "RegistroServlet", urlPatterns = {"/RegistroServlet"})
-public class RegistroServlet extends HttpServlet {
-
+@WebServlet(name = "NewServlet", urlPatterns = {"/NewServlet"})
+public class NewServlet extends HttpServlet {
+    
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/KidTalesDB";
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASSWORD = "1234";
     
-    // Método principal para ejecutar la aplicación
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Intenta establecer una conexión con la base de datos
-        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
-            // Crea tablas si no existen
-            String createUsuarioTable = "CREATE TABLE IF NOT EXISTS Usuario (UserID INT AUTO_INCREMENT PRIMARY KEY, Nombre VARCHAR(255), Correo VARCHAR(255), Contrasena VARCHAR(255))";
-            String createUsuarioRolTable = "CREATE TABLE IF NOT EXISTS UsuarioRol (UserID INT, RolID INT, PRIMARY KEY (UserID, RolID), FOREIGN KEY (UserID) REFERENCES Usuario(UserID), FOREIGN KEY (RolID) REFERENCES Rol(RolID))";
-            String createPadreTable = "CREATE TABLE IF NOT EXISTS Padre (UserID INT PRIMARY KEY, CodigoControlParental INT(4), FOREIGN KEY (UserID) REFERENCES Usuario(UserID))";
-            String createConfiguracionPadreTable = "CREATE TABLE IF NOT EXISTS ConfiguracionPadre (UserID INT PRIMARY KEY, TiempoPantalla INT, MetodoPago VARCHAR(255), Idioma VARCHAR(255), FOREIGN KEY (UserID) REFERENCES Padre(UserID))";
-            String createChatTable = "CREATE TABLE IF NOT EXISTS Chat (ChatID INT AUTO_INCREMENT PRIMARY KEY, PadreID INT, SoporteTecnicoID INT, FOREIGN KEY (PadreID) REFERENCES Padre(UserID), FOREIGN KEY (SoporteTecnicoID) REFERENCES SoporteTecnico(UserID))";
-            String createSoporteTecnicoTable = "CREATE TABLE IF NOT EXISTS SoporteTecnico (UserID INT PRIMARY KEY, FOREIGN KEY (UserID) REFERENCES Usuario(UserID))";
-            // Intenta ejecutar las declaraciones CREATE TABLE
-            try (Statement statement = connection.createStatement()) {
-                statement.executeUpdate(createUsuarioTable);
-                statement.executeUpdate(createUsuarioRolTable);
-                statement.executeUpdate(createPadreTable);
-                statement.executeUpdate(createConfiguracionPadreTable);
-                statement.executeUpdate(createChatTable);
-                statement.executeUpdate(createSoporteTecnicoTable);
-                // Imprimir un mensaje si la creación de tablas fue exitosa
-                System.out.println("Tablas creadas con éxito.");
-            }
-        } catch (SQLException e) {
-            // Captura excepciones de SQL y muestra información de error
-            e.printStackTrace();
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            System.out.println("Se logró la conexión");
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Obtener parámetros del formulario
         String nombre = request.getParameter("nombre");
@@ -77,6 +57,17 @@ public class RegistroServlet extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
+    
     // Método para la inserción en la tabla Usuario
     private int insertarUsuario(String nombre, String correo, String contrasena) throws SQLException {
         try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
@@ -97,7 +88,7 @@ public class RegistroServlet extends HttpServlet {
         }
         throw new SQLException("No se pudo insertar el usuario");
     }
-
+    
     // Método para la inserción en la tabla UsuarioRol
     private void insertarUsuarioRol(int userID, int rolID) throws SQLException {
         try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
@@ -166,10 +157,5 @@ public class RegistroServlet extends HttpServlet {
             }
         }
         throw new SQLException("No se pudo obtener un ID de SoporteTecnico aleatorio");
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
     }
 }
