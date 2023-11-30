@@ -22,7 +22,8 @@ public class RegistroServlet extends HttpServlet {
     private static final String JDBC_PASSWORD = "1234";
     
     // Método principal para ejecutar la aplicación
-    public static void main(String[] args) {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         // Intenta establecer una conexión con la base de datos
         try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
             // Crea tablas si no existen
