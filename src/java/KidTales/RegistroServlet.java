@@ -44,16 +44,11 @@ public class RegistroServlet extends HttpServlet {
             // Inserción en la tabla Chat
             insertarChat(userID);
 
-            // Redireccionar a una carpeta con espacios en el nombre
-            String carpetaConEspacios = "/../../Web Pages/Usuario/Ajustes/SeleccionPerfil.jsp";
+            // Redireccionar a una carpeta con espacios en el nombre, dos carpetas atrás
+            String rutaRelativa = "../../Web Pages/Usuario/Ajustes/SeleccionPerfil.jsp";
 
-            // Codificar la URL para manejar espacios
-            String urlCodificada = URLEncoder.encode(carpetaConEspacios, "UTF-8");
-            
-            System.out.println(urlCodificada);
-
-            // Redirigir a la carpeta codificada
-            response.sendRedirect(urlCodificada);
+            // Redirigir a la carpeta
+            response.sendRedirect(rutaRelativa);
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("error.jsp");
