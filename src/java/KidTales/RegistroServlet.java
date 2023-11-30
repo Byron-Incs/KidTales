@@ -45,10 +45,12 @@ public class RegistroServlet extends HttpServlet {
             insertarChat(userID);
 
             // Redireccionar a una carpeta con espacios en el nombre
-            String carpetaConEspacios = "../../Web Pages/Usuario/Ajustes/SeleccionPerfil.jsp";
+            String carpetaConEspacios = "/../../Web Pages/Usuario/Ajustes/SeleccionPerfil.jsp";
 
             // Codificar la URL para manejar espacios
             String urlCodificada = URLEncoder.encode(carpetaConEspacios, "UTF-8");
+            
+            System.out.println(urlCodificada);
 
             // Redirigir a la carpeta codificada
             response.sendRedirect(urlCodificada);
