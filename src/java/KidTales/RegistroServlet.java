@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/RegistroServlet")
+@WebServlet(name = "RegistroServlet", urlPatterns = {"/RegistroServlet"})
 public class RegistroServlet extends HttpServlet {
 
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/KidTalesDB";
@@ -168,5 +168,8 @@ public class RegistroServlet extends HttpServlet {
         throw new SQLException("No se pudo obtener un ID de SoporteTecnico aleatorio");
     }
 
-    
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
 }
