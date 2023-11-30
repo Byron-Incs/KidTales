@@ -1,6 +1,7 @@
 package KidTales;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -43,8 +44,14 @@ public class RegistroServlet extends HttpServlet {
             // Inserción en la tabla Chat
             insertarChat(userID);
 
-            // Redirigir a la página de registro exitoso u otra página
-            response.sendRedirect("/../../Web Pages/Usuario/Ajustes/SeleccionPerfil.jsp");
+            // Redireccionar a una carpeta con espacios en el nombre
+            String carpetaConEspacios = "../../Web Pages/Usuario/Ajustes/SeleccionPerfil.jsp";
+
+            // Codificar la URL para manejar espacios
+            String urlCodificada = URLEncoder.encode(carpetaConEspacios, "UTF-8");
+
+            // Redirigir a la carpeta codificada
+            response.sendRedirect(urlCodificada);
         } catch (SQLException e) {
             e.printStackTrace();
             // Manejar errores según tus necesidades
