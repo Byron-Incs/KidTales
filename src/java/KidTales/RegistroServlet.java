@@ -44,11 +44,7 @@ public class RegistroServlet extends HttpServlet {
             // Inserción en la tabla Chat
             insertarChat(userID);
 
-            // Redireccionar a una carpeta con espacios en el nombre, dos carpetas atrás
-            String rutaRelativa = "Pages/Usuario/SeleccionPerfil.jsp";
-
-            // Redirigir a la carpeta
-            response.sendRedirect(rutaRelativa);
+            response.sendRedirect("Pages/Usuario/SeleccionPerfil.jsp");
         } catch (SQLException e) {
             e.printStackTrace();
             out.println("<script>alert('No se pudo realizar el registro');</script>");
