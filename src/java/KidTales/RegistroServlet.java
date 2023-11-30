@@ -45,7 +45,7 @@ public class RegistroServlet extends HttpServlet {
             insertarChat(userID);
 
             // Redireccionar a una carpeta con espacios en el nombre, dos carpetas atrás
-            String rutaRelativa = "../../Web Pages/Pages/Usuario/SeleccionPerfil.jsp";
+            String rutaRelativa = "Pages/Usuario/SeleccionPerfil.jsp";
 
             // Redirigir a la carpeta
             response.sendRedirect(rutaRelativa);
