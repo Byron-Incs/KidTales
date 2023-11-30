@@ -1,6 +1,7 @@
 package KidTales;
 
 import java.io.IOException;
+import static java.lang.System.out;
 import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -51,7 +52,7 @@ public class RegistroServlet extends HttpServlet {
             response.sendRedirect(rutaRelativa);
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("error.jsp");
+            out.println("<script>alert('No se pudo realizar el registro');</script>");
         }
     }
 
