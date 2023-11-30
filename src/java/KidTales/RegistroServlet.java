@@ -2,7 +2,6 @@ package KidTales;
 
 import java.io.IOException;
 import static java.lang.System.out;
-import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -20,7 +19,7 @@ public class RegistroServlet extends HttpServlet {
 
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/KidTalesDB";
     private static final String JDBC_USER = "root";
-    private static final String JDBC_PASSWORD = "1234";
+    private static final String JDBC_PASSWORD = "n0m3l0";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -46,7 +45,7 @@ public class RegistroServlet extends HttpServlet {
             insertarChat(userID);
 
             // Redireccionar a una carpeta con espacios en el nombre, dos carpetas atrás
-            String rutaRelativa = "../../Web Pages/Usuario/Ajustes/SeleccionPerfil.jsp";
+            String rutaRelativa = "../../Web Pages/Pages/Usuario/SeleccionPerfil.jsp";
 
             // Redirigir a la carpeta
             response.sendRedirect(rutaRelativa);
