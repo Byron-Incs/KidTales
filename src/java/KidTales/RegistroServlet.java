@@ -34,7 +34,7 @@ public class RegistroServlet extends HttpServlet {
             int userID = insertarUsuario(nombre, correo, contrasena);
 
             // Inserción en la tabla UsuarioRol
-            insertarUsuarioRol(userID, 2); // RolID = 2
+            insertarUsuarioRol(userID, 2);
 
             // Inserción en la tabla Padre
             insertarPadre(userID, 0000); // CodigoControlParental = 0000
