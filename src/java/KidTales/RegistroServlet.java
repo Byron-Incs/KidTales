@@ -45,7 +45,7 @@ public class RegistroServlet extends HttpServlet {
             insertarChat(userID);
 
             System.out.println("Antes de la redirección");
-            response.sendRedirect("/KidTales/web/Pages/Usuario/SeleccionPerfil.jsp");
+            response.sendRedirect("/SeleccionPerfil.jsp");
             System.out.println("Después de la redirección");
         } catch (SQLException e) {
             e.printStackTrace();
