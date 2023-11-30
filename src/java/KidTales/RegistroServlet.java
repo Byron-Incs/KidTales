@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "NewServlet", urlPatterns = {"/NewServlet"})
-public class NewServlet extends HttpServlet {
+@WebServlet(name = "RegistroServlet", urlPatterns = {"/RegistroServlet"})
+public class RegistroServlet extends HttpServlet {
     
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/KidTalesDB";
     private static final String JDBC_USER = "root";
