@@ -44,7 +44,7 @@ public class RegistroServlet extends HttpServlet {
             insertarChat(userID);
 
             // Redirigir a la página de registro exitoso u otra página
-            response.sendRedirect("registroExitoso.jsp");
+            response.sendRedirect("/../../Web Pages/Usuario/Ajustes/SeleccionPerfil.jsp");
         } catch (SQLException e) {
             e.printStackTrace();
             // Manejar errores según tus necesidades
