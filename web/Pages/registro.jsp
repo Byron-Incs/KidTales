@@ -177,7 +177,7 @@
             
         %>
         <script>
-          window.location.href = "../Pages/Usuario/SeleccionPerfil.html";
+         // window.location.href = "../Pages/Usuario/SeleccionPerfil.html";
         </script>
         <%
                                 
