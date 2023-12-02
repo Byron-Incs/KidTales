@@ -102,11 +102,17 @@
 
                         //pon la ruta a las rutas en estos if
                         if(rol == 1){
-                            System.out.println("es de soporte");
+                            %>
+                            <script>
+                                alert("¡es soporte!");
+                            </script>
+                            <%
                         }else if(rol == 2){
-                            System.out.println("es papá");
-
-
+                            %>
+                            <script>
+                                alert("¡es papá!");
+                            </script>
+                            <%
                         }
                 }else {
                         %>
