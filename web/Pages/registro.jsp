@@ -1,13 +1,16 @@
+<%@page import="java.util.Random"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.sql.*" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
+<%@page import="org.KidTales.dao.Usuario"%>
+<%@page import="org.KidTales.dao.bdConection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>KidTales - Incio de Sesión</title>
-
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,6 +32,172 @@
 
 
     <body>
+        <%
+            String accion = request.getParameter("accion");
+
+            if (accion != null && accion.equals("Guardar")) {
+                String email = request.getParameter("email");
+                String contra = request.getParameter("pasword");
+                String nom = request.getParameter("nombre");
+
+                if (email.isEmpty() || contra.isEmpty() || nom.isEmpty()) {
+        %>
+        <script>
+            alert("¡Llena todos los campos!");
+        </script>
+        <%
+        } else if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+        %>
+        <script>
+            alert("El correo electrónico no tiene la estructura necesaria.");
+        </script>
+        <%
+        } else if (contra.length() < 7) {
+        %>
+        <script>
+            alert("La contraseña debe tener al menos 7 caracteres.");
+        </script>
+        <%
+        } else {
+            String confirmPassword = request.getParameter("confirmPassword");
+
+            if (!contra.equals(confirmPassword)) {
+        %>
+        <script>
+            alert("La contraseña y la confirmación de contraseña no coinciden.");
+        </script>
+        <%
+        } else {
+            Connection conexion = null;
+            PreparedStatement statement = null;
+            ResultSet resultSet = null;
+
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
+
+                String verificaCorreoSQL = "SELECT Correo FROM Usuario WHERE Correo=?";
+                statement = conexion.prepareStatement(verificaCorreoSQL);
+                statement.setString(1, email);
+                resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+        %>
+        <script>
+            alert("El correo electrónico ya está registrado.");
+        </script>
+        <%
+        } else {
+            String insertSQL = "INSERT INTO usuario (Nombre, Correo, Contrasena) VALUES (?, ?, ?)";
+            statement = conexion.prepareStatement(insertSQL);
+            statement.setString(1, nom);
+            statement.setString(2, email);
+            statement.setString(3, contra);
+            statement.executeUpdate();
+
+
+            String sql2 = "SELECT UserID FROM Usuario WHERE Correo=?";
+            int userId =0;
+            try (PreparedStatement statement2 = conexion.prepareStatement(sql2)) {
+                statement2.setString(1, email);
+                try (ResultSet resultSet2 = statement2.executeQuery()) {
+                    if (resultSet2.next()) {
+                         userId = resultSet2.getInt("UserID");
+                    } else {
+                     
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(); 
+            }
+
+
+            String insertSQL2 = "INSERT INTO UsuarioRol (UserID, RolID) VALUES (?, ?)";
+            statement = conexion.prepareStatement(insertSQL2);
+            statement.setInt(1, userId);
+            statement.setInt(2, 2);
+            statement.executeUpdate();
+
+            String insertSQL4 = "INSERT INTO Padre (UserID, CodigoControlParental) VALUES (?, ?)";
+            statement = conexion.prepareStatement(insertSQL4);
+            statement.setInt(1, userId);
+            statement.setInt(2, 0);
+            statement.executeUpdate();
+
+            String insertSQL3 = "INSERT INTO ConfiguracionPadre (UserID, TiempoPantalla, Idioma) VALUES (?, ? ,?)";
+            statement = conexion.prepareStatement(insertSQL3);
+            statement.setInt(1, userId);
+            statement.setInt(2, 0);
+            statement.setString(3, "español");
+            statement.executeUpdate();
+
+
+            String sql = "SELECT * FROM SoporteTecnico";
+            statement = conexion.prepareStatement(sql);
+             resultSet = statement.executeQuery();
+
+             ArrayList<Integer> soport =new ArrayList<>(); 
+            Random random = new Random();
+            
+
+            while (resultSet.next()) {
+                int num = resultSet.getInt("UserID");
+                soport.add(num);
+            }
+
+            int numRandom = random.nextInt(soport.size());
+
+            int idSop = soport.get(numRandom);
+
+       
+            
+            
+            String insertSQL1 = "INSERT INTO chat (PadreID, SoporteTecnicoID) VALUES (?, ?)";
+            statement = conexion.prepareStatement(insertSQL1);
+            statement.setInt(1, userId);
+            statement.setInt(2, idSop);
+            statement.executeUpdate();
+
+            Usuario sesionU = new Usuario();
+
+            sesionU.setCorreo(email);
+            sesionU.setId_up(userId);
+
+            HttpSession sesion = request.getSession();
+            session.setAttribute("user", sesionU);
+
+            
+            
+        %>
+        <script>
+            //aqui arreglalo
+           // window.location.href = "../Pages/Usuario/indexusuario.html";
+        </script>
+        <%
+                                
+                            }
+
+                        } catch (ClassNotFoundException | SQLException e) {
+                            e.printStackTrace();
+                        } finally {
+                            try {
+                                if (resultSet != null) {
+                                    resultSet.close();
+                                }
+                                if (statement != null) {
+                                    statement.close();
+                                }
+                                if (conexion != null) {
+                                    conexion.close();
+                                }
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+        %>
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
 
@@ -58,39 +227,44 @@
                                             </a>
                                             <!-- Title -->
                                             <h1 class="mb-2 h3">Crear Cuenta</h1>
-                                            <p class="mb-0">¿Ya tienes cuenta?<a href="inicio.jsp"> Ingresa</a></p>
+                                            <p class="mb-0">Ya tienes cuenta?<a href="inicio.jsp"> Ingresa</a></p>
 
                                             <!-- Form START -->
-                                            <!-- Formulario de registro -->
-                                            <form class="mt-4 text-start" action="../../../KidTales/RegistroServlet" method="post">
+                                            <form class="mt-4 text-start">
                                                 <!-- Email -->
                                                 <div class="mb-3">
                                                     <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control" name="correo" id="correo">
+                                                    <input type="email" class="form-control" name="email" id="email">
                                                 </div>
                                                 <!-- Nombre de usuario-->
                                                 <div class="mb-3">
                                                     <label class="form-label">Nombre de Usuario</label>
                                                     <input type="text" class="form-control" name="nombre" id="nombre">
                                                 </div>
-                                                <!-- Contraseña -->
+                                                <!-- Password -->
                                                 <div class="mb-3 position-relative">
                                                     <label class="form-label">Contraseña</label>
-                                                    <input class="form-control fakepassword" type="password" name="contrasena" id="contrasena">
+                                                    <input class="form-control fakepassword" type="password" name="pasword" id="pasword">
                                                     <span class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
                                                         <i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
                                                     </span>
                                                 </div>
-                                                <!-- Confirmar Contraseña -->
+                                                <!-- Confirm Password -->
                                                 <div class="mb-3">
                                                     <label class="form-label">Confirmar Contraseña</label>
-                                                    <input type="password" class="form-control" name="confirmarContrasena" id="confirmarContrasena">
-                                                    <br>
+                                                    <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
                                                 </div>
-                                                <!-- Botón de Registro -->
-                                                <div><button type="submit" class="btn btn-primary w-100 mb-0" name="accion" id="accion" value="Guardar">Registrar</button></div>
-                                            </form>
+                                                <!-- Remember me -->
+                                                <div class="mb-3">
+                                                    <input type="checkbox" class="form-check-input" id="rememberCheck">
+                                                    <label class="form-check-label" for="rememberCheck">Mantener Sesión Activa</label>
+                                                </div>
+                                                <!-- Button -->
+                                                <div><button type="submit" class="btn btn-primary w-100 mb-0" name = "accion" id="accion" value ="Guardar">Registrar</button></div>
 
+                                                <!-- Copyright -->
+                                                <div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron Inc.</div>
+                                            </form>
                                             <!-- Form END -->
                                         </div>		
                                     </div>
