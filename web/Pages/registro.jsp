@@ -106,8 +106,8 @@
                 try (ResultSet resultSet2 = statement2.executeQuery()) {
                     if (resultSet2.next()) {
                          userId = resultSet2.getInt("UserID");
-                    } else {
-                     
+                    } else{
+                        
                     }
                 }
             } catch (SQLException e) {

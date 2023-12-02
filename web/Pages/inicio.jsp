@@ -53,92 +53,90 @@
         </script>
         <%
         } else {
-            Connection conexion = null;
-            PreparedStatement statement = null;
-            ResultSet resultSet = null;
 
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                conexion = DriverManager.getConnection(url, usuario, contrasena);
+                Connection conexion = null;
+                PreparedStatement statement = null;
+                ResultSet resultSet = null;
+                
+                try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
 
-                String emailQuery = "SELECT COUNT(*) FROM usuario WHERE correo = ?";
-                statement = conexion.prepareStatement(emailQuery);
+                String selectQuery = "SELECT Contrasena FROM Usuario WHERE Correo = ?";
+                statement = conexion.prepareStatement(selectQuery);
                 statement.setString(1, email);
                 resultSet = statement.executeQuery();
 
-                int emailCount = 0;
-
+                String psw = null;
                 if (resultSet.next()) {
-                    emailCount = resultSet.getInt(1);
+                    psw = resultSet.getString("Contrasena");
                 }
 
-                if (emailCount == 0) {
-        %>
-        <script>
-            alert("El correo no está registrado");
-        </script>
-        <%
-        } else {
-            String selectQuery = "SELECT pasword FROM usuario WHERE correo = ?";
-            statement = conexion.prepareStatement(selectQuery);
-            statement.setString(1, email);
-            resultSet = statement.executeQuery();
 
-            String psw = null;
+               if(contra.equals(psw)){
 
-            if (resultSet.next()) {
-                psw = resultSet.getString("pasword");
-            }
-
-            String selectQuery2 = "SELECT soporte FROM usuario WHERE correo = ?";
-            statement = conexion.prepareStatement(selectQuery2);
-            statement.setString(1, email);
-            resultSet = statement.executeQuery();
-
-            int soporte = 0;
-
-            if (resultSet.next()) {
-                soporte = resultSet.getInt("soporte");
-            }
-
-            if (psw != null && psw.equals(contra) && soporte == 1) {
-        %>
-        <script>
-            window.location.href = "../Pages/Soporte/soporte.jsp";
-        </script>
-        <%
-        } else if (psw != null && psw.equals(contra)) {
-
-        %>
-        <script>
-            window.location.href = "../Pages/Usuario/indexusuario.html";
-        </script>
-        <%        } else {
-        %>
-        <script>
-            alert("La contraseña es incorrecta");
-        </script>
-        <%
-                            }
-                        }
-
-                    } catch (ClassNotFoundException | SQLException e) {
-                        e.printStackTrace();
-                    } finally {
-                        try {
-                            if (resultSet != null) {
-                                resultSet.close();
-                            }
-                            if (statement != null) {
-                                statement.close();
-                            }
-                            if (conexion != null) {
-                                conexion.close();
+                        String sql2 = "SELECT UserID FROM Usuario WHERE Correo=?";
+                        int userId =0;
+                        try (PreparedStatement statement2 = conexion.prepareStatement(sql2)) {
+                            statement2.setString(1, email);
+                            try (ResultSet resultSet2 = statement2.executeQuery()) {
+                                if (resultSet2.next()) {
+                                     userId = resultSet2.getInt("UserID");
+                                } else{
+                                }
                             }
                         } catch (SQLException e) {
-                            e.printStackTrace();
+                            e.printStackTrace(); 
                         }
-                    }
+
+
+                        String selectQuery1 = "SELECT RolID FROM UsuarioRol WHERE UserID = ?";
+                        statement = conexion.prepareStatement(selectQuery1);
+                        statement.setInt(1, userId);
+                        resultSet = statement.executeQuery();
+
+                        int rol = 0;
+                        if (resultSet.next()) {
+                            rol = resultSet.getInt("RolID");
+                        }
+
+                        //pon la ruta a las rutas en estos if
+                        if(rol == 1){
+                            System.out.println("es de soporte");
+                        }else if(rol == 2){
+                            System.out.println("es papá");
+
+
+                        }
+                }else {
+                        %>
+                        <script>
+                            alert("¡contra o correo incorrecto!");
+                        </script>
+                        <%
+
+                }
+                } catch (ClassNotFoundException | SQLException e) {
+                            e.printStackTrace();
+                        } finally {
+
+                            
+                            try {
+                                if (resultSet != null) {
+                                    resultSet.close();
+                                }
+                                if (statement != null) {
+                                    statement.close();
+                                }
+                                if (conexion != null) {
+                                    conexion.close();
+                                }
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    
+                
                 }
             }
         %>
