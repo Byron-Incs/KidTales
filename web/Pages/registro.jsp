@@ -72,7 +72,7 @@
             PreparedStatement statement = null;
             ResultSet resultSet = null;
 
-            try {
+            //try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
 
@@ -183,9 +183,9 @@
                                 
                             }
                             
-                        } catch (ClassNotFoundException | SQLException e) {
-                            e.printStackTrace();
-                        } finally {
+                        //} catch (ClassNotFoundException | SQLException e) {
+                          //  e.printStackTrace();
+                        //} finally {
 
                             //cierra todos los recursos
                             try {
