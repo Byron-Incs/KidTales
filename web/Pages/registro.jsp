@@ -88,6 +88,9 @@
         </script>
         <%
         } else {
+
+
+            //crea el usuario del papá
             String insertSQL = "INSERT INTO usuario (Nombre, Correo, Contrasena) VALUES (?, ?, ?)";
             statement = conexion.prepareStatement(insertSQL);
             statement.setString(1, nom);
@@ -95,7 +98,7 @@
             statement.setString(3, contra);
             statement.executeUpdate();
 
-
+            //busca el id generado automaticamente del usuario
             String sql2 = "SELECT UserID FROM Usuario WHERE Correo=?";
             int userId =0;
             try (PreparedStatement statement2 = conexion.prepareStatement(sql2)) {
@@ -111,6 +114,7 @@
                 e.printStackTrace(); 
             }
 
+            
 
             String insertSQL2 = "INSERT INTO UsuarioRol (UserID, RolID) VALUES (?, ?)";
             statement = conexion.prepareStatement(insertSQL2);
@@ -131,7 +135,8 @@
             statement.setString(3, "español");
             statement.executeUpdate();
 
-
+            
+            //elige un wey de soporte al azar
             String sql = "SELECT * FROM SoporteTecnico";
             statement = conexion.prepareStatement(sql);
              resultSet = statement.executeQuery();
@@ -151,13 +156,15 @@
 
        
             
-            
+            //crea el registro en la tabla chat despues de haber obtenido un wey de soporte al azar
             String insertSQL1 = "INSERT INTO chat (PadreID, SoporteTecnicoID) VALUES (?, ?)";
             statement = conexion.prepareStatement(insertSQL1);
             statement.setInt(1, userId);
             statement.setInt(2, idSop);
             statement.executeUpdate();
+            
 
+            //crea la sesion
             Usuario sesionU = new Usuario();
 
             sesionU.setCorreo(email);
@@ -176,10 +183,12 @@
         <%
                                 
                             }
-
+                            
                         } catch (ClassNotFoundException | SQLException e) {
                             e.printStackTrace();
                         } finally {
+
+                            //cierra todos los recursos
                             try {
                                 if (resultSet != null) {
                                     resultSet.close();
