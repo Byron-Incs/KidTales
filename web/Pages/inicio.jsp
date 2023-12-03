@@ -105,12 +105,14 @@
                             %>
                             <script>
                                 alert("¡es soporte!");
+                                window.location.href = "../Pages/Soporte/soporte.jsp";
                             </script>
                             <%
                         }else if(rol == 2){
                             %>
                             <script>
                                 alert("¡es papá!");
+                                window.location.href = "../Pages/Usuario/SeleccionPerfil.jsp";
                             </script>
                             <%
                         }
