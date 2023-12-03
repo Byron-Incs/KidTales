@@ -19,7 +19,7 @@ public class bdConection {
         if (conexion == null) {
             try {
                 // Establece la conexión a la base de datos MySQL.
-                conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesBD", "root", "1234");
+                conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
             } catch (SQLException e) {
                 // Maneja las excepciones de SQL imprimiendo el rastreo de la pila.
                 e.printStackTrace();
