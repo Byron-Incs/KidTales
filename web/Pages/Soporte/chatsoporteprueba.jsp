@@ -10,8 +10,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+                
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <input id="username_input" placeholder="Your username">
+        <div id="output"></div>
+        <input id="message_input" type="text">
+        <script src="../../assets/js/websocket.js"></script>
+        <button onclick="send()">Send message</button> 
+         <button type="submit"  name="accion" id="accion" value="guardar">Finalizar</button>
     </body>
 </html>

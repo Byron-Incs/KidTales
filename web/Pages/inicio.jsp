@@ -31,8 +31,6 @@
         <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 
     </head>
-
-
     <body>
         <%
             String accion = request.getParameter("accion");
@@ -119,10 +117,9 @@
                 }else {
                         %>
                         <script>
-                            alert("¡contra o correo incorrecto!");
+                            alert("¡contraseña o correo incorrecto!");
                         </script>
                         <%
-
                 }
                 } catch (ClassNotFoundException | SQLException e) {
                             e.printStackTrace();
@@ -143,8 +140,6 @@
                                 e.printStackTrace();
                             }
                         }
-                    
-                
                 }
             }
         %>

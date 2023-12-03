@@ -1,7 +1,6 @@
 
-
 var serverIP = "192.168.100.20"; 
-var wsURI = "ws://" + serverIP + ":8080/WebSocketsBM/chat";
+var wsURI = "ws://" + serverIP + ":8080/KidTales/chat";
 
 var websocket = new WebSocket(wsURI);
 console.log("WebSocket readyState: " + websocket.readyState);
