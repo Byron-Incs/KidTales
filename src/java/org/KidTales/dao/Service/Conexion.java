@@ -18,7 +18,7 @@ public class Conexion <T> implements Serializable
 
 {
     public static String user = "root";
-    public static String password = "123";
+    public static String password = "1234";
     public static String db = "KidTaleDB";
     public static String port = "3306";
 
