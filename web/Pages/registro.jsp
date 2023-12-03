@@ -91,7 +91,7 @@
 
 
             //crea el usuario del papá
-            String insertSQL = "INSERT INTO usuario (Nombre, Correo, Contrasena) VALUES (?, ?, ?)";
+            String insertSQL = "INSERT INTO Usuario (Nombre, Correo, Contrasena) VALUES (?, ?, ?)";
             statement = conexion.prepareStatement(insertSQL);
             statement.setString(1, nom);
             statement.setString(2, email);
