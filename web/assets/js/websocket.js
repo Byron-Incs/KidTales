@@ -28,6 +28,7 @@ websocket.onerror = function(event) {
 function onMessage(event) {
     console.log(event);
     display(event.data);
+    insertIntoDatabase(event.data);
 }
 
 function display(dataString) {
@@ -36,7 +37,8 @@ function display(dataString) {
     document.getElementById("output").innerHTML += contentMessage + "</br>";
 }
 
-function send() {
+function send() 
+{
     if (websocket.readyState === WebSocket.OPEN) {
         var message = document.getElementById("message_input").value;
         var username = document.getElementById("username_input").value;
@@ -48,5 +50,5 @@ function send() {
         websocket.send(JSON.stringify(json));
     } else {
         console.error("WebSocket connection is not open.");
-    }
+    }    
 }

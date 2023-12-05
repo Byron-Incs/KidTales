@@ -88,8 +88,6 @@
         </script>
         <%
         } else {
-
-
             //crea el usuario del papá
             String insertSQL = "INSERT INTO Usuario (Nombre, Correo, Contrasena) VALUES (?, ?, ?)";
             statement = conexion.prepareStatement(insertSQL);
@@ -113,9 +111,6 @@
             } catch (SQLException e) {
                 e.printStackTrace(); 
             }
-
-            
-
             String insertSQL2 = "INSERT INTO UsuarioRol (UserID, RolID) VALUES (?, ?)";
             statement = conexion.prepareStatement(insertSQL2);
             statement.setInt(1, userId);
@@ -139,42 +134,37 @@
             //elige un wey de soporte al azar
             String sql = "SELECT * FROM SoporteTecnico";
             statement = conexion.prepareStatement(sql);
-             resultSet = statement.executeQuery();
-
-             ArrayList<Integer> soport =new ArrayList<>(); 
+            resultSet = statement.executeQuery();
+            ArrayList<Integer> soport =new ArrayList<>(); 
             Random random = new Random();
-            
-
             while (resultSet.next()) {
                 int num = resultSet.getInt("UserID");
                 soport.add(num);
             }
-
             int numRandom = random.nextInt(soport.size());
-
             int idSop = soport.get(numRandom);
 
-       
-            
+
             //crea el registro en la tabla chat despues de haber obtenido un wey de soporte al azar
+
             String insertSQL1 = "INSERT INTO Chat (PadreID, SoporteTecnicoID) VALUES (?, ?)";
             statement = conexion.prepareStatement(insertSQL1);
             statement.setInt(1, userId);
             statement.setInt(2, idSop);
             statement.executeUpdate();
-            
-
+           
             //crea la sesion
             Usuario sesionU = new Usuario();
 
             sesionU.setCorreo(email);
             sesionU.setId_up(userId);
+            
 
             HttpSession sesion = request.getSession();
             session.setAttribute("user", sesionU);
 
-            
-            
+            HttpSession sesionSoporte = request.getSession();
+            session.setAttribute("IdSoporte", idSop); 
         %>
         <script>
           window.location.href = "../Pages/Usuario/SeleccionPerfil.jsp";

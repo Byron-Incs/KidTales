@@ -8,7 +8,7 @@ package org.KidTales.dao;
  * @author Jorge
  */
 public class MesaggeModel {
-    private String conten;
+     private String conten;
      private String userName;
      private int MensajeID;
      private int UserID;
