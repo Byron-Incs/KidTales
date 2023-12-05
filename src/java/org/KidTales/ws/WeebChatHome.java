@@ -27,7 +27,8 @@ import org.KidTales.dao.MesaggeModel;
 
 public class WeebChatHome implements Serializable
 {
-   private static Set<Session> sessions = Collections.synchronizedSet(new HashSet<>());
+  private static Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
+
    @OnMessage
    public String onMessage(Session session,MesaggeModel message) {
         //Solo para depurar o sea no solo para depurar pero ayuda a depurar

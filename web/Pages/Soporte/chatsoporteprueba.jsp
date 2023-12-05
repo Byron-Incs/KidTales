@@ -9,15 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-                
+        <title>JSP Page</title>        
     </head>
     <body>
         <input id="username_input" placeholder="Your username">
         <div id="output"></div>
         <input id="message_input" type="text">
         <script src="../../assets/js/websocket.js"></script>
-        <button onclick="send()">Send message</button> 
-         <button type="submit"  name="accion" id="accion" value="guardar">Finalizar</button>
+        <button type="submit"  name="accion" id="accion" value="guardar" onclick="send()">Send message</button> 
+        
     </body>
+    
 </html>
