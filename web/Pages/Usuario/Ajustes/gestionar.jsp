@@ -134,7 +134,7 @@
                                         }
                                     %>
 
-                                    <div class="col-lg-4 order-2 order-lg-1 d-flex align-items-center">
+                                    <div class="col-md-4 d-md-flex align-items-center order-2 order-lg-1">
                                         <div class="p-3 p-lg-5">
                                             <a href="">
                                                 <img src="../../../assets/images/perfiles/agregar.svg"  class="logo-chico" alt="">
