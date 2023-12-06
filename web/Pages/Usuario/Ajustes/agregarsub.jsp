@@ -97,7 +97,7 @@
             
             <script>
                 function redirigirAPagina() {
-                    window.location.href = "../ajustes.jsp";
+                    window.location.href = "../Ajustes/gestionar.jsp";
                 }
             </script>
 
