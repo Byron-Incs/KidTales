@@ -120,26 +120,21 @@
                                             for (int i = 0; i < nicknames.size(); i++) {
                                                 String nickname = nicknames.get(i);
                                         %>
-
                                         <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
                                             <div class="p-3 p-lg-5 ms-auto d-flex justify-content-center">
-                                                <a href="../Ajustes/agregarsub.jsp"></a>">
                                                     <img src="../../../assets/images/perfiles/subusuario2.svg" class="align-content-center" alt="">
                                                     <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= nickname%></strong><i class="bi bi-trash3-fill"></i></p>
-                                                </a>
                                             </div>
                                             <!-- Divider -->
                                             <div class="vr opacity-1 d-none d-lg-block"></div>
                                             </div>
-
                                         <%
                                             }
                                         %>
                                     </div>
-
                                     <div class="col-lg-4 order-2 order-lg-1 d-flex align-items-center">
                                         <div class="p-3 p-lg-5">
-                                            <a href="" class="d-block">
+                                            <a href="../Ajustes/agregarsub.jsp" class="d-block">
                                                 <img src="../../../assets/images/perfiles/agregar.svg" class="logo-chico img-fluid" alt="">
                                             </a>
                                         </div>
