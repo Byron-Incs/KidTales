@@ -32,27 +32,21 @@ function onMessage(event) {
 
 function display(dataString) {
     var data = JSON.parse(dataString);
-    var contentMessage = "<p>Usuario " + data.userName + " envia: " + data.conten + "</p>";
+    var contentMessage = data.conten + "</p>";
     document.getElementById("output").innerHTML += contentMessage + "</br>";
 }
 
 
 function send() {
-    var accionValue = document.getElementById("accion").value;
-    console.log("Valor de acción enviado: " + accionValue);
+  
 
     if (websocket.readyState === WebSocket.OPEN) {
         var message = document.getElementById("message_input").value;
-        var username = document.getElementById("username_input").value;
-
-        // Cifra el mensaje antes de enviarlo
         var encryptedMessage = encryptMessage(message);
 
         var json = {
             "conten": encryptedMessage,
-            "userName": username
         };
-
         console.log("Sending " + encryptedMessage);
         websocket.send(JSON.stringify(json));
     } else {

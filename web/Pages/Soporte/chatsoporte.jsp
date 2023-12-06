@@ -101,7 +101,7 @@
                         <div class="usuario" data-usuario="armonia">
                             <div class="avatar">
                                 <img src="../../assets/images/perfiles/usuario.svg" alt="img">
-                                 <span class="estado-usuario enlinea"></span>
+                                <span class="estado-usuario enlinea"></span>
                             </div>
                             <div class="cuerpo">
                                 <span> Armonia</span>
@@ -111,7 +111,7 @@
                         <div class="usuario" data-usuario="henry">
                             <div class="avatar">
                                 <img src="../../assets/images/perfiles/usuario.svg" alt="img">
-                                 <span class="estado-usuario enlinea"></span>
+                                <span class="estado-usuario enlinea"></span>
                             </div>
                             <div class="cuerpo">
                                 <span> Henry</span>
@@ -127,7 +127,6 @@
                         </div>
                         <div class="cuerpo">
                             <span>Hoid</span>
-                            
                         </div>
 
                     </div>
@@ -155,14 +154,17 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="panel-escritura">
-                        <form class="textarea">
-                            <textarea placeholder="Escribir mensaje"></textarea>
-                            <button type="button" class="enviar">
+
+                               
+                            <div id="output"></div>
+                            <input id="message_input"  placeholder="Escribir mensaje" type="text">
+                            <script src="../../assets/js/websocket.js"></script> 
+                            <button type="button"onclick="send()">
                                 <i class="fas fa-paper-plane logocolor"></i>
                             </button>
-                        </form>
-                    </div>
+                    </div>                 
                 </div>
             </section>
 
@@ -172,45 +174,45 @@
         <!-- Back to top -->
         <div class="back-top"></div>
 
-       <!-- Bootstrap JS -->
+        <!-- Bootstrap JS -->
         <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
         <!-- ThemeFunctions -->
         <script src="../../assets/js/functions.js"></script>
-        
+
     </body>
-    
+
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var usuarios = document.querySelectorAll('.usuario');
-    
-        usuarios.forEach(function (usuario) {
-            usuario.addEventListener('click', function () {
-                // ObtÃ©n el nombre del usuario desde el atributo data-usuario
-                var nombreUsuario = usuario.getAttribute('data-usuario');
-                
-                // Muestra el chat correspondiente al usuario
-                mostrarChat(nombreUsuario);
-            });
-        });
-    
-        function mostrarChat(nombreUsuario) {
-            // Oculta todos los chats
-            var chats = document.querySelectorAll('.panel-chat .mensaje');
-            chats.forEach(function (chat) {
-                chat.style.display = 'none';
-            });
-    
-            // Muestra el chat del usuario seleccionado
-            var chatUsuario = document.querySelector('.panel-chat .mensaje[data-usuario="' + nombreUsuario + '"]');
-            if (chatUsuario) {
-                chatUsuario.style.display = 'block';
-            }
-    
-            // Actualiza el usuario seleccionado en el panel de informaciÃ³n del chat
-            var usuarioSeleccionado = document.querySelector('.usuario-seleccionado span');
-            usuarioSeleccionado.textContent = nombreUsuario;
-        }
-    });
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    var usuarios = document.querySelectorAll('.usuario');
+
+                                    usuarios.forEach(function (usuario) {
+                                        usuario.addEventListener('click', function () {
+                                            // ObtÃ©n el nombre del usuario desde el atributo data-usuario
+                                            var nombreUsuario = usuario.getAttribute('data-usuario');
+
+                                            // Muestra el chat correspondiente al usuario
+                                            mostrarChat(nombreUsuario);
+                                        });
+                                    });
+
+                                    function mostrarChat(nombreUsuario) {
+                                        // Oculta todos los chats
+                                        var chats = document.querySelectorAll('.panel-chat .mensaje');
+                                        chats.forEach(function (chat) {
+                                            chat.style.display = 'none';
+                                        });
+
+                                        // Muestra el chat del usuario seleccionado
+                                        var chatUsuario = document.querySelector('.panel-chat .mensaje[data-usuario="' + nombreUsuario + '"]');
+                                        if (chatUsuario) {
+                                            chatUsuario.style.display = 'block';
+                                        }
+
+                                        // Actualiza el usuario seleccionado en el panel de informaciÃ³n del chat
+                                        var usuarioSeleccionado = document.querySelector('.usuario-seleccionado span');
+                                        usuarioSeleccionado.textContent = nombreUsuario;
+                                    }
+                                });
     </script>
 </html>
