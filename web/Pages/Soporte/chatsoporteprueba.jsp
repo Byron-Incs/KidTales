@@ -16,8 +16,7 @@
         <div id="output"></div>
         <input id="message_input" type="text">
         <script src="../../assets/js/websocket.js"></script>
-        <button type="submit"  name="accion" id="accion" value="guardar" onclick="send()">Send message</button> 
-        
+        <button type="submit"  name="accion" id="accion" value="guardar" onclick="send()">Send message</button>        
     </body>
     
 </html>
