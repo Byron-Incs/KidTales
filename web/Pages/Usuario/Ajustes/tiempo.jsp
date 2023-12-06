@@ -4,6 +4,13 @@
     Author     : hoid
 --%>
 
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,7 +38,121 @@
 
 
     <body>
-      
+
+        <%
+            // Recuperar userId de la sesión
+            HttpSession sesion = request.getSession();
+            String userId = (String) session.getAttribute("userId");
+
+            Connection conexion = null;
+            PreparedStatement statement = null;
+            ResultSet resultSet = null;
+
+            String tiempoPantalla = null;
+
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
+
+                String selectUsernameQuery = "SELECT TiempoPantalla FROM ConfiguracionPadre WHERE UserID = ?";
+                statement = conexion.prepareStatement(selectUsernameQuery);
+                statement.setString(1, userId);
+                resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    tiempoPantalla = resultSet.getString("TiempoPantalla");
+                }
+
+                String tiempoSeleccionado = request.getParameter("tiempoSeleccionado");
+                if (tiempoSeleccionado != null && !tiempoSeleccionado.isEmpty()) {
+                    // Actualizar el valor en la base de datos
+                    String updateQuery = "UPDATE ConfiguracionPadre SET TiempoPantalla = ? WHERE UserID = ?";
+                    statement = conexion.prepareStatement(updateQuery);
+                    statement.setString(1, tiempoSeleccionado);
+                    statement.setString(2, userId);
+                    statement.executeUpdate();
+                }
+
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (resultSet != null) {
+                        resultSet.close();
+                    }
+                    if (statement != null) {
+                        statement.close();
+                    }
+                    if (conexion != null) {
+                        conexion.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        %>
+
+        <script>
+            // Lógica para activar las casillas según el valor recuperado de la base de datos
+            function activarCasillas(tiempoPantalla) {
+                // Desactivar todas las casillas
+                document.getElementById("rememberCheck").disabled = true;
+                document.getElementById("rememberCheck2").disabled = true;
+
+                // Activar casillas según el valor de tiempoPantalla
+                if (tiempoPantalla == 1) {
+                    document.getElementById("rememberCheck").disabled = false;
+                } else if (tiempoPantalla == 2) {
+                    document.getElementById("rememberCheck2").disabled = false;
+                }
+            }
+
+            // Llamada a la función con el valor recuperado de la base de datos
+            activarCasillas(<%= tiempoPantalla%>);
+
+            // Función para guardar en la base de datos
+            function guardarEnBaseDeDatos() {
+                var casilla1 = document.getElementById("rememberCheck").checked;
+                var casilla2 = document.getElementById("rememberCheck2").checked;
+
+                // Si ambas casillas están seleccionadas, mostrar alerta
+                if (casilla1 && casilla2) {
+                    alert("No puedes seleccionar ambas casillas. Elige una opción.");
+                    return; // Detener la ejecución
+                }
+
+                // Si solo se selecciona una casilla, establecer el valor en el campo oculto
+                var tiempoSeleccionado = "";
+                if (casilla1) {
+                    tiempoSeleccionado = "1";
+                } else if (casilla2) {
+                    tiempoSeleccionado = "2";
+                } else {
+                    alert("Selecciona al menos una casilla.");
+                    return; // Detener la ejecución si no se selecciona ninguna casilla
+                }
+
+                // Realizar la actualización en la base de datos mediante AJAX
+                actualizarEnBaseDeDatos(tiempoSeleccionado);
+            }
+
+            // Función para realizar la actualización en la base de datos mediante AJAX
+            function actualizarEnBaseDeDatos(tiempoSeleccionado) {
+                // Realizar la solicitud AJAX
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        // Manejar la respuesta si es necesario
+                        alert("Datos guardados en la base de datos");
+                    }
+                };
+
+                // Configurar y enviar la solicitud AJAX
+                xhttp.open("GET", "guardarTiempo.jsp?tiempoSeleccionado=" + tiempoSeleccionado, true);
+                xhttp.send();
+            }
+        </script>
+
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
 
@@ -62,7 +183,7 @@
                                             <!-- Title -->
                                             <h1 class="mb-2 h3">Tiempo en Pantalla</h1>
                                             <p class="mb-0">¿Cuántas horas quiere que su hijo pueda utilizar la app?</p>
-                                            
+
                                             <!-- Form START -->
                                             <form class="mt-4 text-start">
                                                 <!-- Email -->
@@ -77,13 +198,14 @@
                                                 <div>
                                                     <br>
                                                 </div>
-                                               
-                                                <!-- Remember me -->
+
+                                                <!-- Campo oculto para almacenar el valor seleccionado -->
+                                                <input type="hidden" id="tiempoSeleccionado" name="tiempoSeleccionado" value="">
 
                                                 <!-- Button -->
-                                               <div class="d-flex justify-content-center text-center">
+                                                <div class="d-flex justify-content-center text-center">
                                                     <div class="mb-2 me-3 ">
-                                                        <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="accion" value="Guardar">Establecer</button>
+                                                        <button type="button" class="btn btn-primary w-100 mb-1" name="accion" id="accion" value="Guardar" onclick="guardarEnBaseDeDatos()">Establecer</button>
                                                     </div>
 
                                                     <div class="mb-6">
@@ -104,7 +226,7 @@
             </section>
             <!-- =======================
             Main Content END -->
-            
+
             <script>
                 function redirigirAPagina() {
                     window.location.href = "../ajustes.jsp";
