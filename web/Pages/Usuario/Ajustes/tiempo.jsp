@@ -75,6 +75,12 @@
                         statement.setString(1, tiempoSeleccionado);
                         statement.setString(2, userId);
                         statement.executeUpdate();
+        %>
+        <!-- Agregar script para recargar la página después de la actualización -->
+        <script>
+            window.location.reload();
+        </script>
+        <%
                     } else {
                         out.println("Error: Selecciona exactamente una casilla.");
                     }
