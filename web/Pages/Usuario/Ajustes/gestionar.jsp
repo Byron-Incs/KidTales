@@ -42,7 +42,7 @@
                 height: auto;
             }
             .logo-chico {
-                width: 150px;
+                width: 350px;
                 height: auto;
             }
             body{
@@ -72,9 +72,9 @@
                 conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
 
                 String selectNicknamesQuery = "SELECT Nickname FROM Nino WHERE UserID = ?";
-                try (PreparedStatement nicknamesStatement = conexion.prepareStatement(selectNicknamesQuery)) {
+                try ( PreparedStatement nicknamesStatement = conexion.prepareStatement(selectNicknamesQuery)) {
                     nicknamesStatement.setString(1, userId);
-                    try (ResultSet nicknamesResultSet = nicknamesStatement.executeQuery()) {
+                    try ( ResultSet nicknamesResultSet = nicknamesStatement.executeQuery()) {
                         while (nicknamesResultSet.next()) {
                             nicknames.add(nicknamesResultSet.getString("Nickname"));
                         }
@@ -115,29 +115,32 @@
                             <div class="bg-mode shadow rounded-3 overflow-hidden">
                                 <div class="row g-0">
                                     <!-- Vector Image -->
+                                    <div class="p-3 p-lg-5">
+                                        <%
+                                            for (int i = 0; i < nicknames.size(); i++) {
+                                                String nickname = nicknames.get(i);
+                                        %>
 
-                                    <%
-                                        for (int i = 0; i < nicknames.size(); i++) {
-                                            String nickname = nicknames.get(i);
-                                    %>
-                                    <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
-                                        <div class="p-3 p-lg-5">
-                                            <a href="">
-                                                <img src="../../../assets/images/perfiles/subusuario2.svg" alt="">
-                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= nickname%></strong><i class="bi bi-trash3-fill"></i></p>
-                                            </a>
-                                        </div>
-                                        <!-- Divider -->
-                                        <div class="vr opacity-1 d-none d-lg-block"></div>
+                                        <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
+                                            <div class="p-3 p-lg-5 ms-auto d-flex justify-content-center">
+                                                <a href="agregarsub.jsp"></a>">
+                                                    <img src="../../../assets/images/perfiles/subusuario2.svg" class="align-content-center" alt="">
+                                                    <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= nickname%></strong><i class="bi bi-trash3-fill"></i></p>
+                                                </a>
+                                            </div>
+                                            <!-- Divider -->
+                                            <div class="vr opacity-1 d-none d-lg-block"></div>
+                                            </div>
+
+                                        <%
+                                            }
+                                        %>
                                     </div>
-                                    <%
-                                        }
-                                    %>
 
                                     <div class="col-lg-4 order-2 order-lg-1 d-flex align-items-center">
                                         <div class="p-3 p-lg-5">
-                                            <a href="">
-                                                <img src="../../../assets/images/perfiles/agregar.svg"  class="logo-chico" alt="">
+                                            <a href="" class="d-block">
+                                                <img src="../../../assets/images/perfiles/agregar.svg" class="logo-chico img-fluid" alt="">
                                             </a>
                                         </div>
                                         <!-- Divider -->
@@ -158,6 +161,7 @@
                 function redirigirAPagina() {
                     window.location.href = "../ajustes.jsp";
                 }
+                
             </script>
 
         </main>
