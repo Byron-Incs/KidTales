@@ -98,12 +98,37 @@
                         statementEliminar.setString(1, userId);
                         statementEliminar.setString(2, nicknameEliminar);
                         statementEliminar.executeUpdate();
-                        
+
                         // Redirige a la misma página después de eliminar
                         response.sendRedirect(request.getRequestURI());
-                }catch (ClassNotFoundException | SQLException e) {
+                    } catch (ClassNotFoundException | SQLException e) {
+                        e.printStackTrace();
+                    } finally {
+                        try {
+                            if (resultSet != null) {
+                                resultSet.close();
+                            }
+                            if (statement != null) {
+                                statement.close();
+                            }
+                            if (conexion != null) {
+                                conexion.close();
+                            }
+                            // Cierra las conexiones relacionadas con la eliminación
+                            if (statementEliminar != null) {
+                                statementEliminar.close();
+                            }
+                            if (conexionEliminar != null) {
+                                conexionEliminar.close();
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 try {
                     if (resultSet != null) {
                         resultSet.close();
