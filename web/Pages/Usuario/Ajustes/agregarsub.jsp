@@ -8,13 +8,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Ajustes-Contraseña</title>
+        <title>Agregar Subcuenta</title>
 
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="Byron" content="Webestica.com">
-        <meta name="description" content="Ajustes-Contraseña">
+        <meta name="description" content="Agregar-Subcuenta">
 
         <link rel="shortcut icon" href="../../../assets/images/index/logoc.jpg">
 
@@ -77,7 +77,7 @@
                                                     </div>
 
                                                     <div class="mb-6">
-                                                        <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="regresar" value="Regresar">Regresar</button>
+                                                        <button type="submit" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
                                                     </div>
                                                 </div>
                                                 <!-- Copyright -->
@@ -94,6 +94,12 @@
             </section>
             <!-- =======================
             Main Content END -->
+            
+            <script>
+                function redirigirAPagina() {
+                    window.location.href = "../Ajustes/gestionar.jsp";
+                }
+            </script>
 
         </main>
         <!-- **************** MAIN CONTENT END **************** -->

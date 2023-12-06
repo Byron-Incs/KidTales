@@ -121,6 +121,7 @@
                                                 String nickname = nicknames.get(i);
                                         %>
 
+<<<<<<< HEAD
                                         <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
                                             <div class="p-3 p-lg-5 ms-auto d-flex justify-content-center">
                                                 <a href="agregarsub.jsp"></a>">
@@ -135,15 +136,37 @@
                                         <%
                                             }
                                         %>
-                                    </div>
-
-                                    <div class="col-lg-4 order-2 order-lg-1 d-flex align-items-center">
+=======
+                                    <%
+                                        for (int i = 0; i < nicknames.size(); i++) {
+                                            String nickname = nicknames.get(i);
+                                    %>
+                                    <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
                                         <div class="p-3 p-lg-5">
-                                            <a href="" class="d-block">
-                                                <img src="../../../assets/images/perfiles/agregar.svg" class="logo-chico img-fluid" alt="">
+                                            <a href="../Ajustes/agregarsub.jsp">
+                                                <img src="../../../assets/images/perfiles/subusuario2.svg" alt="">
+                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= nickname%></strong><i class="bi bi-trash3-fill"></i></p>
                                             </a>
                                         </div>
                                         <!-- Divider -->
+                                        <div class="vr opacity-1 d-none d-lg-block"></div>
+>>>>>>> bf40c759e9c42083f93aa76f0e2cc332b55778e7
+                                    </div>
+
+                                    <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
+                                        <div class="p-3 p-lg-5">
+<<<<<<< HEAD
+                                            <a href="" class="d-block">
+                                                <img src="../../../assets/images/perfiles/agregar.svg" class="logo-chico img-fluid" alt="">
+=======
+                                            <a href="../Ajustes/agregarsub.jsp">
+                                                <img src="../../../assets/images/perfiles/subusuario2.svg" alt="">
+                                                </p>
+>>>>>>> bf40c759e9c42083f93aa76f0e2cc332b55778e7
+                                            </a>
+                                        </div>
+                                        <!-- Divider -->
+                                        <div class="vr opacity-1 d-none d-lg-block"></div>
                                     </div>
                                 </div>
                                 <div class="mb-6 d-flex justify-content-center">
