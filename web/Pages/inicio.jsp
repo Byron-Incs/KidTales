@@ -118,6 +118,7 @@
 
                     HttpSession sesion = request.getSession();
                     session.setAttribute("user", sesionU);
+                    session.setAttribute("userId", String.valueOf(userId));
 
                     
 
