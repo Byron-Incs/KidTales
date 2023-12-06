@@ -116,16 +116,15 @@
                         </div>
                     </div>
                     <div class="panel-escritura">
-                        <form class="textarea">
-                            <textarea placeholder="Escribir mensaje"></textarea>
-                            <button type="button" class="enviar">
+                        <div id="output"></div>
+                            <input id="message_input"  placeholder="Escribir mensaje" type="text">
+                            <button type="button"onclick="send()">
                                 <i class="fas fa-paper-plane logocolor"></i>
                             </button>
-                        </form>
+                             <script src="../../../assets/js/websocket.js"></script> 
                     </div>
                 </div>
             </section>
-
         </main>
         <!-- **************** MAIN CONTENT END **************** -->
 
