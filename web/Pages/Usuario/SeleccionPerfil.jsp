@@ -1,10 +1,10 @@
-<%-- 
-    Document   : SeleccionPerfil
-    Created on : 25 nov. 2023, 22:44:
-
-    Author     : Hoid
---%>
-
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -45,7 +45,56 @@
 
 
     <body>
+        <%
+            String userId = request.getParameter("userId");
 
+            Connection conexion = null;
+            PreparedStatement statement = null;
+            ResultSet resultSet = null;
+
+            String username = null;
+            List<String> nicknames = new ArrayList<>();
+
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
+
+                String selectUsernameQuery = "SELECT Nombre FROM Usuario WHERE UserID = ?";
+                statement = conexion.prepareStatement(selectUsernameQuery);
+                statement.setString(1, userId);
+                resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    username = resultSet.getString("Nombre");
+                }
+
+                String selectNicknamesQuery = "SELECT Nickname FROM Nino WHERE UserID = ?";
+                try (PreparedStatement nicknamesStatement = conexion.prepareStatement(selectNicknamesQuery)) {
+                    nicknamesStatement.setString(1, userId);
+                    try (ResultSet nicknamesResultSet = nicknamesStatement.executeQuery()) {
+                        while (nicknamesResultSet.next()) {
+                            nicknames.add(nicknamesResultSet.getString("Nickname"));
+                        }
+                    }
+                }
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (resultSet != null) {
+                        resultSet.close();
+                    }
+                    if (statement != null) {
+                        statement.close();
+                    }
+                    if (conexion != null) {
+                        conexion.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        %>
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
 
@@ -68,40 +117,34 @@
                                         <div class="p-3 p-lg-5">
                                             <a href="ajustes.jsp">
                                                 <img src="../../assets/images/perfiles/usuario.svg" alt="">
-                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong>Usuario</strong></p>
+                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= request.getAttribute("username")%></strong></p>
                                             </a>
                                         </div>
                                         <!-- Divider -->
                                         <div class="vr opacity-1 d-none d-lg-block"></div>
                                     </div>
+                                    <%
+                                        for (int i = 0; i < nicknames.size(); i++) {
+                                            String nickname = nicknames.get(i);
+                                    %>
                                     <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
                                         <div class="p-3 p-lg-5">
                                             <a href="Favoritos.jsp">
                                                 <img src="../../assets/images/perfiles/subusuario1.svg" alt="">
-                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong>Sub-Usuario</strong></p>
+                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= nickname %></strong></p>
                                             </a>
                                         </div>
                                         <!-- Divider -->
                                         <div class="vr opacity-1 d-none d-lg-block"></div>
                                     </div>
-                                    <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
-                                        <div class="p-3 p-lg-5">
-                                            <a href="Favoritos.jsp">
-                                                <img src="../../assets/images/perfiles/subusuario2.svg" alt="">
-                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong>Sub-Usuario</strong></p>
-                                            </a>
-                                        </div>
-                                        <!-- Divider -->
-                                        <div class="vr opacity-1 d-none d-lg-block"></div>
-                                    </div>
-                                    
-
-                                    <!-- Information -->
-
-                                </div>
+                                    <%
+                                        }
+                                    %>
+                                <!-- Information -->
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </section>
             <!-- =======================

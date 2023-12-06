@@ -108,7 +108,7 @@
                         }else if(rol == 2){
                             %>
                             <script>
-                                window.location.href = "../Pages/Usuario/SeleccionPerfil.jsp";
+                                window.location.href = "../Pages/Usuario/SeleccionPerfil.jsp?userId=<%= userId %>";
                             </script>
                             <%
                         }
