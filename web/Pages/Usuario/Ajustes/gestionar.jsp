@@ -4,6 +4,13 @@
     Author     : Hoid
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.SQLException"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -48,7 +55,49 @@
 
 
     <body>
+        <%
+            // Recuperar userId de la sesión
+            HttpSession sesion = request.getSession();
+            String userId = (String) session.getAttribute("userId");
 
+            Connection conexion = null;
+            PreparedStatement statement = null;
+            ResultSet resultSet = null;
+
+            String username = null;
+            List<String> nicknames = new ArrayList<>();
+
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
+
+                String selectNicknamesQuery = "SELECT Nickname FROM Nino WHERE UserID = ?";
+                try (PreparedStatement nicknamesStatement = conexion.prepareStatement(selectNicknamesQuery)) {
+                    nicknamesStatement.setString(1, userId);
+                    try (ResultSet nicknamesResultSet = nicknamesStatement.executeQuery()) {
+                        while (nicknamesResultSet.next()) {
+                            nicknames.add(nicknamesResultSet.getString("Nickname"));
+                        }
+                    }
+                }
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (resultSet != null) {
+                        resultSet.close();
+                    }
+                    if (statement != null) {
+                        statement.close();
+                    }
+                    if (conexion != null) {
+                        conexion.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        %>
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
 
@@ -56,7 +105,7 @@
             Main Content START -->
 
             <section class="vh-xxl-100">
-                 <div class="col-sm-12 text-center mx-auto">
+                <div class="col-sm-12 text-center mx-auto">
                     <!-- Title -->
                     <img  class= "logo-grande" src="../../../assets/images/perfiles/gestion.svg" alt="logo">
                 </div>
@@ -66,27 +115,25 @@
                             <div class="bg-mode shadow rounded-3 overflow-hidden">
                                 <div class="row g-0">
                                     <!-- Vector Image -->
-                                    
-                                    <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
-                                        <div class="p-3 p-lg-5">
-                                            <a href="">
-                                                <img src="../../../assets/images/perfiles/subusuario1.svg" alt="">
-                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong>Sub-Usuario       </strong><i class="bi bi-trash3-fill"></i></p>
-                                            </a>
-                                        </div>
-                                        <!-- Divider -->
-                                        <div class="vr opacity-1 d-none d-lg-block"></div>
-                                    </div>
+
+                                    <%
+                                        for (int i = 0; i < nicknames.size(); i++) {
+                                            String nickname = nicknames.get(i);
+                                    %>
                                     <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
                                         <div class="p-3 p-lg-5">
                                             <a href="">
                                                 <img src="../../../assets/images/perfiles/subusuario2.svg" alt="">
-                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong>Sub-Usuario       </strong><i class="bi bi-trash3-fill"></i></p>
+                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= nickname%></strong><i class="bi bi-trash3-fill"></i></p>
                                             </a>
                                         </div>
                                         <!-- Divider -->
                                         <div class="vr opacity-1 d-none d-lg-block"></div>
                                     </div>
+                                    <%
+                                        }
+                                    %>
+
                                     <div class="col-lg-4 order-2 order-lg-1 d-flex align-items-center">
                                         <div class="p-3 p-lg-5">
                                             <a href="">
@@ -96,8 +143,8 @@
                                         <!-- Divider -->
                                     </div>
                                 </div>
-                                 <div class="mb-6 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar">Regresar</button>
+                                <div class="mb-6 d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
                                 </div>
                             </div>
                         </div>
@@ -106,6 +153,12 @@
             </section>
             <!-- =======================
             Main Content END -->
+
+            <script>
+                function redirigirAPagina() {
+                    window.location.href = "../ajustes.jsp";
+                }
+            </script>
 
         </main>
         <!-- **************** MAIN CONTENT END **************** -->

@@ -92,7 +92,7 @@
                                                 <!-- Nombre de usuario-->
                                                 <div class="d-flex justify-content-center text-center">
                                                     <div class="mb-6">
-                                                        <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="regresar" value="Regresar">Regresar</button>
+                                                        <button type="submit" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
                                                     </div>
                                                 </div>
                                                 <!-- Copyright -->
@@ -109,7 +109,13 @@
             </section>
             <!-- =======================
             Main Content END -->
-
+            
+            <script>
+                function redirigirAPagina() {
+                    window.location.href = "../ajustes.jsp";
+                }
+            </script>
+            
         </main>
         <!-- **************** MAIN CONTENT END **************** -->
 
