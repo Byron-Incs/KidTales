@@ -34,6 +34,10 @@
                 width: 500px;
                 height: auto;
             }
+            .logo-header {
+                width: 50px;
+                height: auto;
+            }
             body{
                 margin: auto;
             }
@@ -44,6 +48,41 @@
 
 
     <body>
+        
+           <!-- Header START -->
+        <header class="navbar-light header-sticky backheader">
+            <!-- Logo Nav START -->
+            <nav class="navbar navbar-expand-xl">
+                <div class="container">
+                    <!-- Logo START -->
+                    <a class="navbar-brand" href="">
+                        <img class="logo-header " src="../../assets/images/index/logog.png" alt="logo">
+
+                    </a>
+                    <!-- Logo END -->
+                    <button class="navbar-toggler ms-sm-auto mx-3 me-md-0 p-0 p-sm-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCategoryCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-animation">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </button>
+
+                    <div class="navbar-collapse collapse" id="navbarCategoryCollapse">
+                        <ul class="navbar-nav navbar-nav-scroll nav-pills-primary-soft text-center ms-auto p-2 p-xl-0">
+                            <li class="avatar">
+                                <img class="avatar-img" src="../../assets/images/index/globitos2.png" alt="avatar">
+                            </li>
+                            <li class="nav-item"> 
+                                <a class="nav-link" href="../../Pages/inicio.jsp">Cerrar Sesión</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Logo Nav END -->
+        </header>
+        <!-- Header END -->
 
 
         <!-- **************** MAIN CONTENT START **************** -->

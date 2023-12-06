@@ -27,120 +27,144 @@
 
         <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
 
-        <style>
+        <link rel="stylesheet" type="text/css" href="chat.css">
 
-            .logo-grande {
-                width: 1000px;
-                height: auto;
-            }
-            .logo-chico {
-                width: 50px;
-                height: auto;
-            }
-            .logo-medio {
-                width: 700px;
-                height: auto;
-            }
-            .logo-medio2 {
-                width: 100px;
-                height: auto;
-            }
-            body{
-                margin: auto;
-            }
-            .btn-custom {
-                padding: 15px 100px;
-                text-align: center;
-                background-color: #DDD;
-                color: black;
-                font-size: 18px;
-                border: none;
-                border-radius: 8px;
-            }
-
-        </style>
 
     </head>
 
 
     <body>
+        <!-- Header START -->
+        <header class="navbar-light header-sticky backheader">
+            <!-- Logo Nav START -->
+            <nav class="navbar navbar-expand-xl">
+                <div class="container">
+                    <!-- Logo START -->
+                    <a class="navbar-brand" href="">
+                        <img class="logo-grande " src="../../assets/images/index/logog.png" alt="logo">
+
+                    </a>
+                    <!-- Logo END -->
+                    <button class="navbar-toggler ms-sm-auto mx-3 me-md-0 p-0 p-sm-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCategoryCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-animation">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </button>
+
+                    <div class="navbar-collapse collapse" id="navbarCategoryCollapse">
+                        <ul class="navbar-nav navbar-nav-scroll nav-pills-primary-soft text-center ms-auto p-2 p-xl-0">
+                            <li class="avatar">
+                                <img class="avatar-img" src="../../assets/images/index/globitos2.png" alt="avatar">
+                            </li>
+                            <li class="nav-item"> 
+                                <a class="nav-link" href="../../Pages/inicio.jsp">Cerrar Sesión</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Logo Nav END -->
+        </header>
+        <!-- Header END -->
 
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
-
-            <!-- =======================
-            Main Content START -->
-            <section class="vh-xxl-100">
-                <div class="container h-100 d-flex px-0 px-sm-4">
-                    <div class="row justify-content-center align-items-center m-auto">
-                        <div class="col-12">
-                            <div class="bg-mode shadow rounded-3 overflow-hidden">
-                                <div class="row g-0">
-                                    <!-- Vector Image -->
-                                    <div class="col-lg-6 order-1">
-                                        <div class="p-4 p-sm-6">
-                                            <!-- Logo -->
-                                            <a href="">
-                                                <img class="h-50px mb-4" src="../../assets/images/index/logoc.jpg" alt="logo">
-                                            </a>
-                                            <!-- Title -->
-                                            <h1 class="mb-2 h3">Soporte</h1>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="p-3 p-lg-5">
-                                                <img src="../../assets/images/perfiles/avatarhombre.svg" class="logo-chico mb-auto" alt="">
-                                            </div>
-                                            <div>
-                                                <button type="submit" class="btn btn-primary w-auto mb-0 btn-custom" name="accion" id="accion1" value="Guardar">Hoid</button>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="p-3 p-lg-5">
-                                                <img src="../../assets/images/perfiles/avatarmujer.svg" class="logo-chico mb-auto" alt="">
-                                            </div>
-                                            <div>
-                                                <button type="submit" class="btn btn-primary w-auto mb-0 btn-custom" name="accion" id="accion2" value="Guardar">Marasi</button>
-                                            </div>
-                                        </div>
-
-                                        <!-- Divider -->
-                                    </div>
-
-                                    <!-- Information -->
-                                    <div class="col-lg-6 order-1 mt-auto">
-                                        <div class="p-3 p-lg-5 d-flex flex-column align-items-end">
-                                            <img src="../../assets/images/perfiles/mensaje.svg" class="logo-medio2 mb-auto" alt="">
-                                        </div>
-
-                                        <div class="p-4 p-sm-6 mt-auto">
-                                            <!-- Logo -->
-                                            <form>
-                                                <div class="row mt-auto">
-                                                    <div class="col-8">
-                                                        <div class="mb-3">
-                                                            <input type="text" class="form-control h-100" name="nombre" id="nombre">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <!-- Button -->
-                                                        <div>
-                                                            <button type="submit" class="btn btn-primary w-100 mb-0" name="accion" id="accion" value="Guardar">Enviar</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Copyright -->
-                                            </form>
-                                            <!-- Form END -->
-                                        </div>		
-                                    </div>
-                                </div>
+            <br>
+            <!-- =======================-->
+            <section class="body-chat">
+                <div class="seccion-titulo">
+                    <h3>
+                        <i class="fas fa-comments"></i>
+                        Chat Soporte
+                    </h3>
+                </div>
+                <div class="seccion-usuarios">
+                    <div class="seccion-buscar">
+                        <div class="input-buscar">
+                            <input type="search" placeholder="Buscar usuario">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                    <div class="seccion-lista-usuarios">
+                        <div class="usuario" data-usuario="hoid">
+                            <div class="avatar">
+                                <img src="../../assets/images/perfiles/usuario.svg" alt="img">
+                                <span class="estado-usuario enlinea"></span>
+                            </div>
+                            <div class="cuerpo">
+                                <span> Hoid</span>
+                                <span>"detalles de mensaje"</span>
+                            </div>
+                        </div>
+                        <div class="usuario" data-usuario="armonia">
+                            <div class="avatar">
+                                <img src="../../assets/images/perfiles/usuario.svg" alt="img">
+                                 <span class="estado-usuario enlinea"></span>
+                            </div>
+                            <div class="cuerpo">
+                                <span> Armonia</span>
+                                <span>"detalles de mensaje"</span>
+                            </div>
+                        </div>
+                        <div class="usuario" data-usuario="henry">
+                            <div class="avatar">
+                                <img src="../../assets/images/perfiles/usuario.svg" alt="img">
+                                 <span class="estado-usuario enlinea"></span>
+                            </div>
+                            <div class="cuerpo">
+                                <span> Henry</span>
+                                <span>"detalles de mensaje"</span>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="seccion-chat">
+                    <div class="usuario-seleccionado">
+                        <div class="avatar">
+                            <img src="../../assets/images/perfiles/usuario.svg" alt="img">
+                        </div>
+                        <div class="cuerpo">
+                            <span>Hoid</span>
+                            
+                        </div>
+
+                    </div>
+                    <div class="panel-chat">
+                        <div class="mensaje">
+                            <div class="avatar">
+                                <img src="../../assets/images/perfiles/usuario.svg" alt="img">
+                            </div>
+                            <div class="cuerpo">
+                                <div class="texto">
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Dolor eligendi voluptatum dolore voluptas iure.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- derecha -->
+                        <div class="mensaje left">
+                            <div class="cuerpo">
+                                <!-- <img src="http://localhost/multimedia/png/user-foto-3.png" alt=""> -->
+                                <div class="texto">
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Dolor eligendi voluptatum dolore voluptas iure.
+                                </div>
+                            </div>
+                            <div class="avatar">
+                                <img src="../../assets/images/perfiles/soporte.svg" alt="img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-escritura">
+                        <form class="textarea">
+                            <textarea placeholder="Escribir mensaje"></textarea>
+                            <button type="button" class="enviar">
+                                <i class="fas fa-paper-plane logocolor"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </section>
-            <!-- =======================
-            Main Content END -->
 
         </main>
         <!-- **************** MAIN CONTENT END **************** -->
@@ -148,11 +172,45 @@
         <!-- Back to top -->
         <div class="back-top"></div>
 
-        <!-- Bootstrap JS -->
+       <!-- Bootstrap JS -->
         <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
         <!-- ThemeFunctions -->
         <script src="../../assets/js/functions.js"></script>
-
+        
     </body>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var usuarios = document.querySelectorAll('.usuario');
+    
+        usuarios.forEach(function (usuario) {
+            usuario.addEventListener('click', function () {
+                // ObtÃ©n el nombre del usuario desde el atributo data-usuario
+                var nombreUsuario = usuario.getAttribute('data-usuario');
+                
+                // Muestra el chat correspondiente al usuario
+                mostrarChat(nombreUsuario);
+            });
+        });
+    
+        function mostrarChat(nombreUsuario) {
+            // Oculta todos los chats
+            var chats = document.querySelectorAll('.panel-chat .mensaje');
+            chats.forEach(function (chat) {
+                chat.style.display = 'none';
+            });
+    
+            // Muestra el chat del usuario seleccionado
+            var chatUsuario = document.querySelector('.panel-chat .mensaje[data-usuario="' + nombreUsuario + '"]');
+            if (chatUsuario) {
+                chatUsuario.style.display = 'block';
+            }
+    
+            // Actualiza el usuario seleccionado en el panel de informaciÃ³n del chat
+            var usuarioSeleccionado = document.querySelector('.usuario-seleccionado span');
+            usuarioSeleccionado.textContent = nombreUsuario;
+        }
+    });
+    </script>
 </html>

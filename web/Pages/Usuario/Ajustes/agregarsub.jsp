@@ -6,15 +6,15 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
     <head>
-        <title>Ajustes-Tiempo Pantalla</title>
+        <title>Agregar Subcuenta</title>
 
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="Byron" content="Webestica.com">
-        <meta name="description" content="Ajustes-Tiempo en Pantalla">
+        <meta name="description" content="Agregar-Subcuenta">
 
         <link rel="shortcut icon" href="../../../assets/images/index/logoc.jpg">
 
@@ -38,7 +38,7 @@
             <!-- =======================
             Main Content START -->
             <section class="vh-xxl-100">
-                <div class="container h-100 d-flex px-0 px-sm-0">
+                <div class="container h-100 d-flex px-0 px-sm-4">
                     <div class="row justify-content-center align-items-center m-auto">
                         <div class="col-12">
                             <div class="bg-mode shadow rounded-3 overflow-hidden">
@@ -46,7 +46,7 @@
                                     <!-- Vector Image -->
                                     <div class="col-lg-6 d-md-flex align-items-center order-2 order-lg-1">
                                         <div class="p-3 p-lg-5">
-                                            <img src="../../../assets/images/ajustes/tiempo2.svg" alt="">
+                                            <img src="../../../assets/images/ajustes/contraseña2.svg" alt="">
                                         </div>
                                         <!-- Divider -->
                                         <div class="vr opacity-1 d-none d-lg-block"></div>
@@ -56,34 +56,24 @@
                                     <div class="col-lg-6 order-1">
                                         <div class="p-4 p-sm-6">
                                             <!-- Logo -->
-                                            <a href="">
+                                            <a href="../../../index.html">
                                                 <img class="h-50px mb-4" src="../../../assets/images/index/logoc.jpg" alt="logo">
                                             </a>
                                             <!-- Title -->
-                                            <h1 class="mb-2 h3">Tiempo en Pantalla</h1>
-                                            <p class="mb-0">¿Cuántas horas quiere que su hijo pueda utilizar la app?</p>
+                                            <h1 class="mb-2 h3">Agregar Niño</h1>
                                             
                                             <!-- Form START -->
                                             <form class="mt-4 text-start">
                                                 <!-- Email -->
                                                 <div class="mb-3">
-                                                    <input type="checkbox" class="form-check-input" id="rememberCheck">
-                                                    <label class="form-check-label" for="rememberCheck">1 Hora</label>
+                                                    <label class="form-label">Nombre</label>
+                                                    <input type="text" class="form-control" name="nombre" id="nombre">
                                                 </div>
-                                                <div class="mb-3">
-                                                    <input type="checkbox" class="form-check-input" id="rememberCheck2">
-                                                    <label class="form-check-label" for="rememberCheck">2 Horas</label>
-                                                </div>
-                                                <div>
-                                                    <br>
-                                                </div>
-                                               
-                                                <!-- Remember me -->
-
-                                                <!-- Button -->
-                                               <div class="d-flex justify-content-center text-center">
+                                                <!-- Password -->
+                                                <div><br></div>
+                                                <div class="d-flex justify-content-center text-center">
                                                     <div class="mb-2 me-3 ">
-                                                        <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="accion" value="Guardar">Establecer</button>
+                                                        <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="accion" value="Guardar">Agregar</button>
                                                     </div>
 
                                                     <div class="mb-6">
@@ -107,7 +97,7 @@
             
             <script>
                 function redirigirAPagina() {
-                    window.location.href = "../ajustes.jsp";
+                    window.location.href = "../Ajustes/gestionar.jsp";
                 }
             </script>
 

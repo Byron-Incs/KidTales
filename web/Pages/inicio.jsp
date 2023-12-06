@@ -52,11 +52,11 @@
         <%
         } else {
 
-                Connection conexion = null;
-                PreparedStatement statement = null;
-                ResultSet resultSet = null;
-                
-                try {
+            Connection conexion = null;
+            PreparedStatement statement = null;
+            ResultSet resultSet = null;
+
+            try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
 
@@ -70,76 +70,79 @@
                     psw = resultSet.getString("Contrasena");
                 }
 
+                if (contra.equals(psw)) {
 
-               if(contra.equals(psw)){
+                    String sql2 = "SELECT UserID FROM Usuario WHERE Correo=?";
+                    int userId = 0;
+                    try (PreparedStatement statement2 = conexion.prepareStatement(sql2)) {
+                        statement2.setString(1, email);
+                        try (ResultSet resultSet2 = statement2.executeQuery()) {
+                            if (resultSet2.next()) {
+                                userId = resultSet2.getInt("UserID");
+                            } else {
+                            }
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
 
-                        String sql2 = "SELECT UserID FROM Usuario WHERE Correo=?";
-                        int userId =0;
-                        try (PreparedStatement statement2 = conexion.prepareStatement(sql2)) {
-                            statement2.setString(1, email);
-                            try (ResultSet resultSet2 = statement2.executeQuery()) {
-                                if (resultSet2.next()) {
-                                     userId = resultSet2.getInt("UserID");
-                                } else{
-                                }
+                    String selectQuery1 = "SELECT RolID FROM UsuarioRol WHERE UserID = ?";
+                    statement = conexion.prepareStatement(selectQuery1);
+                    statement.setInt(1, userId);
+                    resultSet = statement.executeQuery();
+
+                    // Crear o recuperar la sesión
+                    HttpSession sesion = request.getSession();
+                    session.setAttribute("userId", String.valueOf(userId));
+
+                    int rol = 0;
+                    if (resultSet.next()) {
+                        rol = resultSet.getInt("RolID");
+                    }
+
+                    //pon la ruta a las rutas en estos if
+                    if (rol == 1) {
+        %>
+        <script>
+            window.location.href = "../Pages/Soporte/soporte.jsp";
+        </script>
+        <%
+        } else if (rol == 2) {
+        %>
+        <script>
+            window.location.href = "../Pages/Usuario/SeleccionPerfil.jsp";
+        </script>
+        <%
+            }
+        } else {
+        %>
+        <script>
+            alert("¡contraseña o correo incorrecto!");
+        </script>
+        <%
+                        }
+                    } catch (ClassNotFoundException | SQLException e) {
+                        e.printStackTrace();
+                    } finally {
+
+                        try {
+                            if (resultSet != null) {
+                                resultSet.close();
+                            }
+                            if (statement != null) {
+                                statement.close();
+                            }
+                            if (conexion != null) {
+                                conexion.close();
                             }
                         } catch (SQLException e) {
-                            e.printStackTrace(); 
-                        }
-
-
-                        String selectQuery1 = "SELECT RolID FROM UsuarioRol WHERE UserID = ?";
-                        statement = conexion.prepareStatement(selectQuery1);
-                        statement.setInt(1, userId);
-                        resultSet = statement.executeQuery();
-
-                        int rol = 0;
-                        if (resultSet.next()) {
-                            rol = resultSet.getInt("RolID");
-                        }
-
-                        //pon la ruta a las rutas en estos if
-                        if(rol == 1){
-                            %>
-                            <script>
-                                window.location.href = "../Pages/Soporte/soporte.jsp";
-                            </script>
-                            <%
-                        }else if(rol == 2){
-                            %>
-                            <script>
-                                window.location.href = "../Pages/Usuario/SeleccionPerfil.jsp";
-                            </script>
-                            <%
-                        }
-                }else {
-                        %>
-                        <script>
-                            alert("¡contraseña o correo incorrecto!");
-                        </script>
-                        <%
-                }
-                } catch (ClassNotFoundException | SQLException e) {
                             e.printStackTrace();
-                        } finally {
-
-                            
-                            try {
-                                if (resultSet != null) {
-                                    resultSet.close();
-                                }
-                                if (statement != null) {
-                                    statement.close();
-                                }
-                                if (conexion != null) {
-                                    conexion.close();
-                                }
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
                         }
+                    }
                 }
             }
+
+
         %>
 
         <!-- **************** MAIN CONTENT START **************** -->
