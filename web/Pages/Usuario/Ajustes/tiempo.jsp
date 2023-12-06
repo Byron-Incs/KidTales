@@ -133,11 +133,15 @@
                                             <!-- Form START -->
                                             <form class="mt-4 text-start">
                                                 <div class="mb-3">
-                                                    <input type="radio" class="form-check-input" id="rememberCheck1" name="tiempoSeleccionado" value="1" <% if (tiempoPantalla.equals("1")) {out.print("checked");} %>>
+                                                    <input type="radio" class="form-check-input" id="rememberCheck1" name="tiempoSeleccionado" value="1" <% if (tiempoPantalla.equals("1")) {
+                                                            out.print("checked");
+                                                        } %>>
                                                     <label class="form-check-label" for="rememberCheck1">1 Hora</label>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <input type="radio" class="form-check-input" id="rememberCheck2" name="tiempoSeleccionado" value="2" <% if (tiempoPantalla.equals("2")) {out.print("checked");}%>>
+                                                    <input type="radio" class="form-check-input" id="rememberCheck2" name="tiempoSeleccionado" value="2" <% if (tiempoPantalla.equals("2")) {
+                                                            out.print("checked");
+                                                        }%>>
                                                     <label class="form-check-label" for="rememberCheck2">2 Horas</label>
                                                 </div>
                                                 <div>
