@@ -134,13 +134,15 @@
                                         }
                                     %>
 
-                                    <div class="col-md-4 d-md-flex align-items-center order-2 order-lg-1">
+                                    <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
                                         <div class="p-3 p-lg-5">
-                                            <a href="">
-                                                <img src="../../../assets/images/perfiles/agregar.svg"  class="logo-chico" alt="">
+                                            <a href="../Ajustes/agregarsub.jsp">
+                                                <img src="../../../assets/images/perfiles/subusuario2.svg" alt="">
+                                                </p>
                                             </a>
                                         </div>
                                         <!-- Divider -->
+                                        <div class="vr opacity-1 d-none d-lg-block"></div>
                                     </div>
                                 </div>
                                 <div class="mb-6 d-flex justify-content-center">
