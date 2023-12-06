@@ -45,7 +45,6 @@ function send() {
         var message = document.getElementById("message_input").value;
         var username = document.getElementById("username_input").value;
 
-        // Cifra el mensaje antes de enviarlo
         var encryptedMessage = encryptMessage(message);
 
         var json = {
