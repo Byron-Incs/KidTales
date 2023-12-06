@@ -132,42 +132,39 @@
 
                                             <!-- Form START -->
                                             <form class="mt-4 text-start">
-                                                <!-- Email -->
                                                 <div class="mb-3">
-                                                    <input type="checkbox" class="form-check-input" id="rememberCheck">
-                                                    <label class="form-check-label" for="rememberCheck">1 Hora</label>
+                                                    <input type="radio" class="form-check-input" id="rememberCheck1" name="tiempoSeleccionado" value="1" <% if (tiempoPantalla.equals("1")) {out.print("checked");} %>>
+                                                    <label class="form-check-label" for="rememberCheck1">1 Hora</label>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <input type="checkbox" class="form-check-input" id="rememberCheck2">
-                                                    <label class="form-check-label" for="rememberCheck">2 Horas</label>
+                                                    <input type="radio" class="form-check-input" id="rememberCheck2" name="tiempoSeleccionado" value="2" <% if (tiempoPantalla.equals("2")) {out.print("checked");}%>>
+                                                    <label class="form-check-label" for="rememberCheck2">2 Horas</label>
                                                 </div>
                                                 <div>
-                                                    <br>
-                                                </div>
-
-                                                <!-- Campo oculto para almacenar el valor seleccionado -->
-                                                <input type="hidden" id="tiempoSeleccionado" name="tiempoSeleccionado" value="">
-
-                                                <!-- Button -->
-                                                <div class="d-flex justify-content-center text-center">
-                                                    <div class="mb-2 me-3">
-                                                        <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="accion" value="Guardar">Cambiar</button>
+                                                    <div>
+                                                        <br>
                                                     </div>
 
-                                                    <div class="mb-6">
-                                                        <button type="button" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
-                                                    </div>
-                                                </div>                                             </div>
-                                        <!-- Copyright -->
-                                        <div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron Inc.</div>
-                                        </form>
-                                        <!-- Form END -->
-                                    </div>		
+                                                    <!-- Button -->
+                                                    <div class="d-flex justify-content-center text-center">
+                                                        <div class="mb-2 me-3">
+                                                            <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="accion" value="Guardar">Cambiar</button>
+                                                        </div>
+
+                                                        <div class="mb-6">
+                                                            <button type="button" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
+                                                        </div>
+                                                    </div>                                             </div>
+                                                <!-- Copyright -->
+                                                <div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron Inc.</div>
+                                            </form>
+                                            <!-- Form END -->
+                                        </div>		
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </section>
             <!-- =======================
@@ -177,6 +174,7 @@
                 function redirigirAPagina() {
                     window.location.href = "../ajustes.jsp";
                 }
+
 
             </script>
 
