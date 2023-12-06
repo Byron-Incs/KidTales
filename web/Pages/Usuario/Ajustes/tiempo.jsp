@@ -208,10 +208,9 @@
                                                         <button type="button" class="btn btn-primary w-100 mb-1" name="accion" id="accion" value="Guardar" onclick="guardarEnBaseDeDatos()">Establecer</button>
                                                     </div>
 
-                                                    <div class="mb-6">
+                                                    <div class="mb-6 d-flex justify-content-center">
                                                         <button type="submit" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
-                                                    </div>
-                                                </div>
+                                                    </div>                                                </div>
                                                 <!-- Copyright -->
                                                 <div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron Inc.</div>
                                             </form>
@@ -231,6 +230,7 @@
                 function redirigirAPagina() {
                     window.location.href = "../ajustes.jsp";
                 }
+
             </script>
 
         </main>

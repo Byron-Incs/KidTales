@@ -31,7 +31,7 @@
 
 
     <body>
-      
+
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
 
@@ -61,7 +61,7 @@
                                             </a>
                                             <!-- Title -->
                                             <h1 class="mb-2 h3">Cambiar contraseña</h1>
-                                            
+
                                             <!-- Form START -->
                                             <form class="mt-4 text-start">
                                                 <!-- Email -->
@@ -101,7 +101,7 @@
             </section>
             <!-- =======================
             Main Content END -->
-            
+
             <script>
                 function redirigirAPagina() {
                     window.location.href = "../ajustes.jsp";
