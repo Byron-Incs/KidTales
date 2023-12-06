@@ -87,7 +87,7 @@
                                                     </div>
 
                                                     <div class="mb-6">
-                                                        <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="regresar" value="Regresar" href="../Ajustes/ajustes.jsp">Regresar</button>
+                                                        <button type="submit" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
                                                     </div>
                                                 </div>
                                                 <!-- Copyright -->

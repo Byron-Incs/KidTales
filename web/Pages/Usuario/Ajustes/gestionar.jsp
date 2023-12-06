@@ -105,7 +105,7 @@
             Main Content START -->
 
             <section class="vh-xxl-100">
-                 <div class="col-sm-12 text-center mx-auto">
+                <div class="col-sm-12 text-center mx-auto">
                     <!-- Title -->
                     <img  class= "logo-grande" src="../../../assets/images/perfiles/gestion.svg" alt="logo">
                 </div>
@@ -115,7 +115,7 @@
                             <div class="bg-mode shadow rounded-3 overflow-hidden">
                                 <div class="row g-0">
                                     <!-- Vector Image -->
-                                    
+
                                     <%
                                         for (int i = 0; i < nicknames.size(); i++) {
                                             String nickname = nicknames.get(i);
@@ -133,7 +133,7 @@
                                     <%
                                         }
                                     %>
-                                    
+
                                     <div class="col-lg-4 order-2 order-lg-1 d-flex align-items-center">
                                         <div class="p-3 p-lg-5">
                                             <a href="">
@@ -143,8 +143,8 @@
                                         <!-- Divider -->
                                     </div>
                                 </div>
-                                 <div class="mb-6 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" href="../Ajustes/ajustes.jsp">Regresar</button>
+                                <div class="mb-6 d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
                                 </div>
                             </div>
                         </div>
@@ -153,6 +153,12 @@
             </section>
             <!-- =======================
             Main Content END -->
+
+            <script>
+                function redirigirAPagina() {
+                    window.location.href = "../Ajustes/ajustes.jsp";
+                }
+            </script>
 
         </main>
         <!-- **************** MAIN CONTENT END **************** -->
