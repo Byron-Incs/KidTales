@@ -3,7 +3,13 @@
     Created on : 26 nov. 2023, 12:15:02
     Author     : hoid
 --%>
-
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,6 +37,71 @@
 
 
     <body>
+                <%
+            // Recuperar userId de la sesión
+            HttpSession sesion = request.getSession();
+            String userId = (String) session.getAttribute("userId");
+
+            Connection conexion = null;
+            PreparedStatement statement = null;
+            ResultSet resultSet = null;
+
+            String tiempoPantalla = null;
+
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
+
+                String selectUsernameQuery = "SELECT TiempoPantalla FROM ConfiguracionPadre WHERE UserID = ?";
+                statement = conexion.prepareStatement(selectUsernameQuery);
+                statement.setString(1, userId);
+                resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    tiempoPantalla = resultSet.getString("TiempoPantalla");
+                }
+
+                String accion = request.getParameter("accion");
+                if (accion != null && accion.equals("Guardar")) {
+                    String tiempoSeleccionado = request.getParameter("tiempoSeleccionado");
+
+                    // Verificar que solo una casilla está seleccionada
+                    if (tiempoSeleccionado != null && (tiempoSeleccionado.equals("español") || tiempoSeleccionado.equals("ingles"))) {
+                        // Actualizar el valor en la base de datos
+                        String updateQuery = "UPDATE ConfiguracionPadre SET Idioma = ? WHERE UserID = ?";
+                        statement = conexion.prepareStatement(updateQuery);
+                        statement.setString(1, tiempoSeleccionado);
+                        statement.setString(2, userId);
+                        statement.executeUpdate();
+        %>
+        <!-- Agregar script para recargar la página después de la actualización -->
+        <script>
+            window.location.reload();
+        </script>
+        <%
+                    } else {
+                        out.println("Error: Selecciona exactamente una casilla.");
+                    }
+                }
+
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (resultSet != null) {
+                        resultSet.close();
+                    }
+                    if (statement != null) {
+                        statement.close();
+                    }
+                    if (conexion != null) {
+                        conexion.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        %>
       
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
@@ -82,13 +153,18 @@
 
                                                 <!-- Button -->
                                                <div class="d-flex justify-content-center text-center">
-                                                    <div class="mb-2 me-3 ">
-                                                        <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="accion" value="Guardar">Establecer</button>
-                                                    </div>
-
-                                                    <div class="mb-6">
-                                                        <button type="button" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
-                                                    </div>
+                                                    <div class="mb-3">
+                                                    <input type="radio" class="form-check-input" id="rememberCheck1" name="tiempoSeleccionado" value="español" <% if (tiempoPantalla.equals("1")) {
+                                                            out.print("checked");
+                                                        } %>>
+                                                    <label class="form-check-label" for="rememberCheck1">español</label>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <input type="radio" class="form-check-input" id="rememberCheck2" name="tiempoSeleccionado" value="ingles" <% if (tiempoPantalla.equals("2")) {
+                                                            out.print("checked");
+                                                        }%>>
+                                                    <label class="form-check-label" for="rememberCheck2">2 ingles</label>
+                                                </div>
                                                 </div>
                                                 <!-- Copyright -->
                                                 <div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron Inc.</div>

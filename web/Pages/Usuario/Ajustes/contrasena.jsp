@@ -5,6 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.Random"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="javax.sql.*" %>
+<%@ page import="javax.servlet.http.HttpSession" %>
+<%@page import="org.KidTales.dao.Usuario"%>
+<%@page import="org.KidTales.dao.bdConection"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,6 +39,59 @@
 
 
     <body>
+        
+        
+            <%
+            Usuario sesionU = (Usuario) session.getAttribute("user");
+            String accion = request.getParameter("accion");
+
+            if (accion != null && accion.equals("Guardar")) {
+                String newPsw = request.getParameter("paswordN");
+                String psw = request.getParameter("pasword");
+
+                // Validar que la contraseña anterior sea correcta antes de cambiarla
+                if (psw.equals(sesionU.getPasword())) {
+                    // Contraseña anterior es correcta, proceder a cambiarla
+                    Connection conexion = null;
+                    PreparedStatement statement = null;
+
+                    try {
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
+
+                        // Actualizar la contraseña en la base de datos
+                        String sql = "UPDATE Usuario SET Contrasena = ? WHERE UserID = ?";
+                        statement = conexion.prepareStatement(sql);
+                        statement.setString(1, newPsw);
+                        statement.setInt(2, sesionU.getId_up());
+                        statement.executeUpdate();
+
+                        // Actualizar la contraseña en el objeto Usuario almacenado en la sesión
+                        sesionU.setPasword(newPsw);
+                        session.setAttribute("user", sesionU);
+
+                        out.println("<p class='text-success'>Contraseña cambiada exitosamente.</p>");
+                    } catch (Exception e) {
+                        out.println("<p class='text-danger'>Error al cambiar la contraseña: " + e.getMessage() + "</p>");
+                    } finally {
+                        // Cerrar recursos (statement y conexión)
+                        try {
+                            if (statement != null) {
+                                statement.close();
+                            }
+                            if (conexion != null) {
+                                conexion.close();
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                } else {
+                    out.println("<p class='text-danger'>La contraseña anterior es incorrecta.</p>");
+                }
+            }
+            %>
+
 
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
@@ -67,7 +128,7 @@
                                                 <!-- Password -->
                                                 <div class="mb-3 position-relative">
                                                     <label class="form-label">Nueva contraseña</label>
-                                                    <input class="form-control fakepassword" type="password" name="pasword" id="pasword">
+                                                    <input class="form-control fakepassword" type="password" name="paswordN" id="paswordN">
                                                     <span class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
                                                         <i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
                                                     </span>
@@ -87,7 +148,7 @@
                                                     </div>
 
                                                     <div class="mb-6">
-                                                        <button type="button" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
+                                                        <button type="Button" class="btn btn-primary w-10 mb-1" name="regresar" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
                                                     </div>
                                                 </div>
                                                 <!-- Copyright -->
