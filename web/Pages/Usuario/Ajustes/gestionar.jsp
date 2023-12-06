@@ -122,7 +122,7 @@
                                     %>
                                     <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
                                         <div class="p-3 p-lg-5">
-                                            <a href="">
+                                            <a href="../Ajustes/agregarsub.jsp">
                                                 <img src="../../../assets/images/perfiles/subusuario2.svg" alt="">
                                                 <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= nickname%></strong><i class="bi bi-trash3-fill"></i></p>
                                             </a>
@@ -156,7 +156,7 @@
 
             <script>
                 function redirigirAPagina() {
-                    window.location.href = "../ajustes.jsp";
+                    window.location.href = "../Ajustes/gestionar.jsp";
                 }
             </script>
 
