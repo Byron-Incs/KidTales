@@ -22,14 +22,6 @@
         <script src="../../assets/js/websocket.js"></script>
         <button  type="submit" name="accion" id="accion" value="enviar" onclick="send()" >Send message</button> 
         <a href="../Soporte/chatsoporteprueba.jsp">ChatSoporte</a>
-        
-        <%
-          String accion = request.getParameter("accion");
-          if(accion.equals(accion))
-          {
-            MessageModelService mesagemodelS = new MessageModelService();
-            mesagemodelS.agregaMensaje(Padreid, SoporteTecnicoID, contenido);
-          }
-        %>
+
     </body>
 </html>
