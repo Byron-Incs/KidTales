@@ -72,17 +72,38 @@
                 conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
 
                 String selectNicknamesQuery = "SELECT Nickname FROM Nino WHERE UserID = ?";
-                try ( PreparedStatement nicknamesStatement = conexion.prepareStatement(selectNicknamesQuery)) {
+                try (PreparedStatement nicknamesStatement = conexion.prepareStatement(selectNicknamesQuery)) {
                     nicknamesStatement.setString(1, userId);
-                    try ( ResultSet nicknamesResultSet = nicknamesStatement.executeQuery()) {
+                    try (ResultSet nicknamesResultSet = nicknamesStatement.executeQuery()) {
                         while (nicknamesResultSet.next()) {
                             nicknames.add(nicknamesResultSet.getString("Nickname"));
                         }
                     }
                 }
-            } catch (ClassNotFoundException | SQLException e) {
+
+                String accion = request.getParameter("accion");
+                if (accion != null && accion.equals("eliminar")) {
+                    String nicknameEliminar = request.getParameter("nickname");
+
+                    // Eliminar al niño de la base de datos
+                    Connection conexionEliminar = null;
+                    PreparedStatement statementEliminar = null;
+
+                    try {
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        conexionEliminar = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
+
+                        String deleteQuery = "DELETE FROM Nino WHERE UserID = ? AND Nickname = ?";
+                        statementEliminar = conexionEliminar.prepareStatement(deleteQuery);
+                        statementEliminar.setString(1, userId);
+                        statementEliminar.setString(2, nicknameEliminar);
+                        statementEliminar.executeUpdate();
+                        
+                        // Redirige a la misma página después de eliminar
+                        response.sendRedirect(request.getRequestURI());
+                }catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
-            } finally {
+            }finally {
                 try {
                     if (resultSet != null) {
                         resultSet.close();
@@ -122,12 +143,16 @@
                                         %>
                                         <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
                                             <div class="p-3 p-lg-5 ms-auto d-flex justify-content-center">
-                                                    <img src="../../../assets/images/perfiles/subusuario2.svg" class="align-content-center" alt="">
-                                                    <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= nickname%></strong><i class="bi bi-trash3-fill"></i></p>
+                                                <img src="../../../assets/images/perfiles/subusuario2.svg" class="align-content-center" alt="">
+                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= nickname%></strong>
+                                                    <a href="?accion=eliminar&nickname=<%= nickname%>" onclick="return confirm('¿Estás seguro de eliminar a <%= nickname%>?')">
+                                                        <i class="bi bi-trash3-fill"></i>
+                                                    </a>
+                                                </p>
                                             </div>
                                             <!-- Divider -->
                                             <div class="vr opacity-1 d-none d-lg-block"></div>
-                                            </div>
+                                        </div>
                                         <%
                                             }
                                         %>
@@ -141,9 +166,9 @@
                                         <!-- Divider -->
                                     </div>
                                 </div>
-                                    <div class="mb-6 d-flex justify-content-center">
-                                        <button type="button" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
-                                    </div>
+                                <div class="mb-6 d-flex justify-content-center">
+                                    <button type="button" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -156,7 +181,7 @@
                 function redirigirAPagina() {
                     window.location.href = "../ajustes.jsp";
                 }
-                
+
             </script>
 
         </main>
