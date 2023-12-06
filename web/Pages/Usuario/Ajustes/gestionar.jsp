@@ -147,7 +147,7 @@
                                     </div>
                                 </div>
                                     <div class="mb-6 d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
+                                        <button type="button" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
                                     </div>
                             </div>
                         </div>

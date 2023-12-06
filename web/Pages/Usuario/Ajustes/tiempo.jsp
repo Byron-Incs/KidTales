@@ -204,23 +204,24 @@
 
                                                 <!-- Button -->
                                                 <div class="d-flex justify-content-center text-center">
-                                                    <div class="mb-2 me-3 ">
-                                                        <button type="button" class="btn btn-primary w-100 mb-1" name="accion" id="accion" value="Guardar" onclick="guardarEnBaseDeDatos()">Establecer</button>
+                                                    <div class="mb-2 me-3">
+                                                        <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="accion" value="Guardar">Cambiar</button>
                                                     </div>
 
-                                                    <div class="mb-6 d-flex justify-content-center">
-                                                        <button type="submit" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
-                                                    </div>                                                </div>
-                                                <!-- Copyright -->
-                                                <div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron Inc.</div>
-                                            </form>
-                                            <!-- Form END -->
-                                        </div>		
-                                    </div>
+                                                    <div class="mb-6">
+                                                        <button type="button" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
+                                                    </div>
+                                                </div>                                             </div>
+                                        <!-- Copyright -->
+                                        <div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron Inc.</div>
+                                        </form>
+                                        <!-- Form END -->
+                                    </div>		
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </section>
             <!-- =======================

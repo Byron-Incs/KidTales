@@ -79,12 +79,12 @@
                                                 </div>
                                                 <div><br></div>
                                                 <div class="d-flex justify-content-center text-center">
-                                                    <div class="mb-2 me-3 ">
+                                                    <div class="mb-2 me-3">
                                                         <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="accion" value="Guardar">Cambiar</button>
                                                     </div>
 
                                                     <div class="mb-6">
-                                                        <button type="submit" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
+                                                        <button type="button" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
                                                     </div>
                                                 </div>
                                                 <!-- Copyright -->
