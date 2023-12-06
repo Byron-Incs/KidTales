@@ -156,7 +156,7 @@
 
             <script>
                 function redirigirAPagina() {
-                    window.location.href = "../Ajustes/ajustes.jsp";
+                    window.location.href = "../ajustes.jsp";
                 }
             </script>
 

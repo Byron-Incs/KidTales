@@ -101,6 +101,12 @@
             </section>
             <!-- =======================
             Main Content END -->
+            
+            <script>
+                function redirigirAPagina() {
+                    window.location.href = "../ajustes.jsp";
+                }
+            </script>
 
         </main>
         <!-- **************** MAIN CONTENT END **************** -->
