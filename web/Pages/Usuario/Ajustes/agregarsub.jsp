@@ -4,6 +4,13 @@
     Author     : hoid
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +38,62 @@
 
 
     <body>
-      
+        <%
+            // Recuperar userId de la sesión
+            HttpSession sesion = request.getSession();
+            String userId = (String) session.getAttribute("userId");
+
+            Connection conexion = null;
+            PreparedStatement statement = null;
+            ResultSet resultSet = null;
+
+            String username = null;
+            List<String> nicknames = new ArrayList<>();
+
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
+
+                String accion = request.getParameter("accion");
+
+                if (accion != null && accion.equals("Guardar")) {
+                    String nombre = request.getParameter("nombre");
+                    if (nombre.isEmpty()) {
+        %>
+        <script>
+            alert("¡Ponle un nombre!");
+        </script>
+        <%          } else {
+                        // Insertar el nuevo niño en la base de datos
+                        String insertQuery = "INSERT INTO Nino (UserID, Nickname) VALUES (?, ?)";
+                        statement = conexion.prepareStatement(insertQuery);
+                        statement.setString(1, userId);
+                        statement.setString(2, nombre);
+                        statement.executeUpdate();
+
+                        // Redirigir a la página de gestión después de agregar el niño
+                        response.sendRedirect("../Ajustes/gestionar.jsp");
+                    }
+                }
+
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (resultSet != null) {
+                        resultSet.close();
+                    }
+                    if (statement != null) {
+                        statement.close();
+                    }
+                    if (conexion != null) {
+                        conexion.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        %>
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
 
@@ -61,7 +123,7 @@
                                             </a>
                                             <!-- Title -->
                                             <h1 class="mb-2 h3">Agregar Niño</h1>
-                                            
+
                                             <!-- Form START -->
                                             <form class="mt-4 text-start">
                                                 <!-- Email -->
@@ -94,7 +156,7 @@
             </section>
             <!-- =======================
             Main Content END -->
-            
+
             <script>
                 function redirigirAPagina() {
                     window.location.href = "../Ajustes/gestionar.jsp";
