@@ -113,11 +113,11 @@
                     sesionU.setCorreo(email);
                     sesionU.setId_up(userId);
                     sesionU.setUsername(nombre);
+                    sesionU.setPasword(psw);
 
 
                     HttpSession sesion = request.getSession();
                     session.setAttribute("user", sesionU);
-                    session.setAttribute("userId", String.valueOf(userId));
 
                     
 
