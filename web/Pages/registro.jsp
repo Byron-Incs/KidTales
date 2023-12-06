@@ -98,18 +98,18 @@
 
             //busca el id generado automaticamente del usuario
             String sql2 = "SELECT UserID FROM Usuario WHERE Correo=?";
-            int userId =0;
+            int userId = 0;
             try (PreparedStatement statement2 = conexion.prepareStatement(sql2)) {
                 statement2.setString(1, email);
                 try (ResultSet resultSet2 = statement2.executeQuery()) {
                     if (resultSet2.next()) {
-                         userId = resultSet2.getInt("UserID");
-                    } else{
-                        
+                        userId = resultSet2.getInt("UserID");
+                    } else {
+
                     }
                 }
             } catch (SQLException e) {
-                e.printStackTrace(); 
+                e.printStackTrace();
             }
             String insertSQL2 = "INSERT INTO UsuarioRol (UserID, RolID) VALUES (?, ?)";
             statement = conexion.prepareStatement(insertSQL2);
@@ -130,12 +130,11 @@
             statement.setString(3, "español");
             statement.executeUpdate();
 
-            
             //elige un wey de soporte al azar
             String sql = "SELECT * FROM SoporteTecnico";
             statement = conexion.prepareStatement(sql);
             resultSet = statement.executeQuery();
-            ArrayList<Integer> soport =new ArrayList<>(); 
+            ArrayList<Integer> soport = new ArrayList<>();
             Random random = new Random();
             while (resultSet.next()) {
                 int num = resultSet.getInt("UserID");
@@ -144,35 +143,32 @@
             int numRandom = random.nextInt(soport.size());
             int idSop = soport.get(numRandom);
 
-
             //crea el registro en la tabla chat despues de haber obtenido un wey de soporte al azar
-
             String insertSQL1 = "INSERT INTO Chat (PadreID, SoporteTecnicoID) VALUES (?, ?)";
             statement = conexion.prepareStatement(insertSQL1);
             statement.setInt(1, userId);
             statement.setInt(2, idSop);
             statement.executeUpdate();
-           
+
             //crea la sesion
             Usuario sesionU = new Usuario();
 
             sesionU.setCorreo(email);
             sesionU.setId_up(userId);
-            
 
             HttpSession sesion = request.getSession();
             session.setAttribute("user", sesionU);
+            session.setAttribute("userId", String.valueOf(userId));
 
             HttpSession sesionSoporte = request.getSession();
-            session.setAttribute("IdSoporte", idSop); 
+            session.setAttribute("IdSoporte", idSop);
+
         %>
         <script>
-          window.location.href = "../Pages/Usuario/SeleccionPerfil.jsp";
+            window.location.href = "../Pages/Usuario/SeleccionPerfil.jsp";
         </script>
-        <%
-                                
-                            }
-                            
+        <%                            }
+
                         } catch (ClassNotFoundException | SQLException e) {
                             e.printStackTrace();
                         } finally {

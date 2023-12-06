@@ -46,7 +46,9 @@
 
     <body>
         <%
-            String userId = request.getParameter("userId");
+            // Recuperar userId de la sesión
+            HttpSession sesion = request.getSession();
+            String userId = (String) session.getAttribute("userId");
 
             Connection conexion = null;
             PreparedStatement statement = null;
@@ -117,7 +119,7 @@
                                         <div class="p-3 p-lg-5">
                                             <a href="ajustes.jsp">
                                                 <img src="../../assets/images/perfiles/usuario.svg" alt="">
-                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= request.getAttribute("username")%></strong></p>
+                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= username%></strong></p>
                                             </a>
                                         </div>
                                         <!-- Divider -->
@@ -131,7 +133,7 @@
                                         <div class="p-3 p-lg-5">
                                             <a href="Favoritos.jsp">
                                                 <img src="../../assets/images/perfiles/subusuario1.svg" alt="">
-                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= nickname %></strong></p>
+                                                <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= nickname%></strong></p>
                                             </a>
                                         </div>
                                         <!-- Divider -->
@@ -140,11 +142,11 @@
                                     <%
                                         }
                                     %>
-                                <!-- Information -->
+                                    <!-- Information -->
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </section>
             <!-- =======================
