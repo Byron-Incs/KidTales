@@ -63,14 +63,21 @@
                     tiempoPantalla = resultSet.getString("TiempoPantalla");
                 }
 
-                String tiempoSeleccionado = request.getParameter("tiempoSeleccionado");
-                if (tiempoSeleccionado != null && !tiempoSeleccionado.isEmpty()) {
-                    // Actualizar el valor en la base de datos
-                    String updateQuery = "UPDATE ConfiguracionPadre SET TiempoPantalla = ? WHERE UserID = ?";
-                    statement = conexion.prepareStatement(updateQuery);
-                    statement.setString(1, tiempoSeleccionado);
-                    statement.setString(2, userId);
-                    statement.executeUpdate();
+                String accion = request.getParameter("accion");
+                if (accion != null && accion.equals("Guardar")) {
+                    String tiempoSeleccionado = request.getParameter("tiempoSeleccionado");
+
+                    // Verificar que solo una casilla está seleccionada
+                    if (tiempoSeleccionado != null && (tiempoSeleccionado.equals("1") || tiempoSeleccionado.equals("2"))) {
+                        // Actualizar el valor en la base de datos
+                        String updateQuery = "UPDATE ConfiguracionPadre SET TiempoPantalla = ? WHERE UserID = ?";
+                        statement = conexion.prepareStatement(updateQuery);
+                        statement.setString(1, tiempoSeleccionado);
+                        statement.setString(2, userId);
+                        statement.executeUpdate();
+                    } else {
+                        out.println("Error: Selecciona exactamente una casilla.");
+                    }
                 }
 
             } catch (ClassNotFoundException | SQLException e) {
@@ -91,67 +98,6 @@
                 }
             }
         %>
-
-        <script>
-            // Lógica para activar las casillas según el valor recuperado de la base de datos
-            function activarCasillas(tiempoPantalla) {
-                // Desactivar todas las casillas
-                document.getElementById("rememberCheck").disabled = true;
-                document.getElementById("rememberCheck2").disabled = true;
-
-                // Activar casillas según el valor de tiempoPantalla
-                if (tiempoPantalla == 1) {
-                    document.getElementById("rememberCheck").disabled = false;
-                } else if (tiempoPantalla == 2) {
-                    document.getElementById("rememberCheck2").disabled = false;
-                }
-            }
-
-            // Llamada a la función con el valor recuperado de la base de datos
-            activarCasillas(<%= tiempoPantalla%>);
-
-            // Función para guardar en la base de datos
-            function guardarEnBaseDeDatos() {
-                var casilla1 = document.getElementById("rememberCheck").checked;
-                var casilla2 = document.getElementById("rememberCheck2").checked;
-
-                // Si ambas casillas están seleccionadas, mostrar alerta
-                if (casilla1 && casilla2) {
-                    alert("No puedes seleccionar ambas casillas. Elige una opción.");
-                    return; // Detener la ejecución
-                }
-
-                // Si solo se selecciona una casilla, establecer el valor en el campo oculto
-                var tiempoSeleccionado = "";
-                if (casilla1) {
-                    tiempoSeleccionado = "1";
-                } else if (casilla2) {
-                    tiempoSeleccionado = "2";
-                } else {
-                    alert("Selecciona al menos una casilla.");
-                    return; // Detener la ejecución si no se selecciona ninguna casilla
-                }
-
-                // Realizar la actualización en la base de datos mediante AJAX
-                actualizarEnBaseDeDatos(tiempoSeleccionado);
-            }
-
-            // Función para realizar la actualización en la base de datos mediante AJAX
-            function actualizarEnBaseDeDatos(tiempoSeleccionado) {
-                // Realizar la solicitud AJAX
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        // Manejar la respuesta si es necesario
-                        alert("Datos guardados en la base de datos");
-                    }
-                };
-
-                // Configurar y enviar la solicitud AJAX
-                xhttp.open("GET", "guardarTiempo.jsp?tiempoSeleccionado=" + tiempoSeleccionado, true);
-                xhttp.send();
-            }
-        </script>
 
         <!-- **************** MAIN CONTENT START **************** -->
         <main>

@@ -123,7 +123,7 @@
 
                                         <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
                                             <div class="p-3 p-lg-5 ms-auto d-flex justify-content-center">
-                                                <a href="agregarsub.jsp"></a>">
+                                                <a href="../Ajustes/agregarsub.jsp"></a>">
                                                     <img src="../../../assets/images/perfiles/subusuario2.svg" class="align-content-center" alt="">
                                                     <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= nickname%></strong><i class="bi bi-trash3-fill"></i></p>
                                                 </a>
