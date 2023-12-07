@@ -1,5 +1,5 @@
 
-var serverIP = "40.86.11.134"; 
+var serverIP = "40.86.11.134";
 var wsURI = "ws://" + serverIP + ":8080/KidTales/chat";
 
 var websocket = new WebSocket(wsURI);
