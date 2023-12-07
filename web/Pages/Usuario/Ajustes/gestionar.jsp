@@ -155,7 +155,7 @@
                     <!-- Title -->
                     <img  class= "logo-grande" src="../../../assets/images/perfiles/gestion.svg" alt="logo">
                 </div>
-                <div class="container h-100 d-flex px-0 px-sm-4">
+                <div class="container h-100 d-flex px-0 px-sm-3">
                     <div class="row justify-content-center align-items-center m-auto">
                         <div class="col-12">
                             <div class="bg-mode shadow rounded-3 overflow-hidden">

@@ -26,6 +26,13 @@
         <link rel="stylesheet" type="text/css" href="../../../assets/vendor/bootstrap-icons/bootstrap-icons.css">
 
         <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+        
+        <style>
+            .des {
+                float: left;
+                width: 50%; /* Puedes ajustar el ancho según tus necesidades */
+            }
+        </style>
 
     </head>
 
@@ -61,6 +68,10 @@
                                             </a>
                                             <!-- Title -->
                                             <h1 class="mb-2 h3">Método de pago</h1>
+                                            <div>
+                                                <p class="mb-0 des"><strong>Forma de pago actual :</strong></p>
+                                                <p class="mb-0 des"><strong>"Metodo"</strong></p>
+                                            </div>
                                             <p class="mb-0">Seleccione un método de pago</p>
 
                                             <!-- Form START -->

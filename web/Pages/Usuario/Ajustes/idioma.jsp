@@ -132,36 +132,29 @@
                                             
                                             <!-- Form START -->
                                             <form class="mt-4 text-start">
-                                                <!-- Email -->
                                                 <div class="mb-3">
-                                                    <input type="checkbox" class="form-check-input" id="rememberCheck">
-                                                    <label class="form-check-label" for="rememberCheck">Español</label>
+                                                    <input type="radio" class="form-check-input" id="rememberCheck1" name="tiempoSeleccionado" value="1">
+                                                    <label class="form-check-label" for="rememberCheck1">Español</label>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <input type="checkbox" class="form-check-input" id="rememberCheck2">
-                                                    <label class="form-check-label" for="rememberCheck">Ingles</label>
+                                                    <input type="radio" class="form-check-input" id="rememberCheck2" name="tiempoSeleccionado" value="2">
+                                                    <label class="form-check-label" for="rememberCheck2">Inglés</label>
                                                 </div>
                                                 <div>
-                                                    <br>
-                                                </div>
-                                               
-                                                <!-- Remember me -->
+                                                    <div>
+                                                        <br>
+                                                    </div>
 
-                                                <!-- Button -->
-                                               <div class="d-flex justify-content-center text-center">
-                                                    <div class="mb-3">
-                                                    <input type="radio" class="form-check-input" id="rememberCheck1" name="tiempoSeleccionado" value="español" <% if (tiempoPantalla.equals("1")) {
-                                                            out.print("checked");
-                                                        } %>>
-                                                    <label class="form-check-label" for="rememberCheck1">español</label>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <input type="radio" class="form-check-input" id="rememberCheck2" name="tiempoSeleccionado" value="ingles" <% if (tiempoPantalla.equals("2")) {
-                                                            out.print("checked");
-                                                        }%>>
-                                                    <label class="form-check-label" for="rememberCheck2">2 ingles</label>
-                                                </div>
-                                                </div>
+                                                    <!-- Button -->
+                                                    <div class="d-flex justify-content-center text-center">
+                                                        <div class="mb-2 me-3">
+                                                            <button type="submit" class="btn btn-primary w-100 mb-1" name="accion" id="accion" value="Guardar">Cambiar</button>
+                                                        </div>
+
+                                                        <div class="mb-6">
+                                                            <button type="button" class="btn btn-primary w-10 mb-1" name="accion" id="regresar" value="Regresar" onclick="redirigirAPagina()">Regresar</button>
+                                                        </div>
+                                                    </div>                                             </div>
                                                 <!-- Copyright -->
                                                 <div class="text-primary-hover mt-3 text-center"> Copyrights © 2023 Byron Inc.</div>
                                             </form>
