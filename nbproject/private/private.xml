@@ -3,19 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/delar/Desktop/KidTales/web/Pages/Usuario/chatUsuario.jsp</file>
-            <file>file:/C:/Users/delar/Desktop/KidTales/web/Pages/Usuario/Favoritos.jsp</file>
-            <file>file:/C:/Users/delar/Desktop/KidTales/web/Pages/Usuario/Ajustes/pago.jsp</file>
-            <file>file:/C:/Users/delar/Desktop/KidTales/web/Pages/Usuario/SeleccionPerfil.jsp</file>
-            <file>file:/C:/Users/delar/Desktop/KidTales/web/Pages/registro.jsp</file>
-            <file>file:/C:/Users/delar/Desktop/KidTales/web/Pages/Usuario/ajustes.jsp</file>
-            <file>file:/C:/Users/delar/Desktop/KidTales/web/Pages/Usuario/Ajustes/tiempo.jsp</file>
-            <file>file:/C:/Users/delar/Desktop/KidTales/web/Pages/Usuario/Ajustes/contrasena.jsp</file>
-            <file>file:/C:/Users/delar/Desktop/KidTales/web/Pages/Usuario/Ajustes/gestionar.jsp</file>
-            <file>file:/C:/Users/delar/Desktop/KidTales/web/Pages/Soporte/chatsoporte.jsp</file>
-            <file>file:/C:/Users/delar/Desktop/KidTales/web/Pages/Usuario/Ajustes/atencion.jsp</file>
-            <file>file:/C:/Users/delar/Desktop/KidTales/web/Pages/inicio.jsp</file>
-            <file>file:/C:/Users/delar/Desktop/KidTales/web/Pages/Usuario/Ajustes/idioma.jsp</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/ws/MessageModelEncoder.java</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/soporte.html</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/assets/js/websocket.js</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/Usuario/chatUsuario.jsp</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/ws/MessageModelService.java</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/dao/bdConection.java</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/dao/MesaggeModel.java</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/registro.jsp</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/Usuario/Favoritos.jsp</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/Usuario/SeleccionPerfil.jsp</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/ws/WeebChatHome.java</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/Usuario/Ajustes/atencion.jsp</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/Usuario/soporteusuario.jsp</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/dao/Usuario.java</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/Soporte/chatsoporteprueba.jsp</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/inicio.jsp</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/ws/MessageModelDecoder.java</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/two-factor-auth.jsp</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/ws/Conexion.java</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/Soporte/chatsoporte.jsp</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/dao/Soporte.java</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/Cuentos/espacio.jsp</file>
         </group>
     </open-files>
 </project-private>
