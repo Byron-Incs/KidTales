@@ -166,9 +166,11 @@
                                             for (int i = 0; i < nicknames.size(); i++) {
                                                 String nickname = nicknames.get(i);
                                         %>
-                                        <div class="col-lg-4 d-md-flex align-items-center order-2 order-lg-1">
-                                            <div class="p-3 p-lg-5 ms-auto d-flex justify-content-center">
+                                        <div class="col-lg-3 d-md-flex align-items-center order-2 order-lg-1">
+                                            <div class="p-3 p-lg-3 ms-auto d-flex justify-content-center">
                                                 <img src="../../../assets/images/perfiles/subusuario2.svg" class="align-content-center" alt="">
+                                            </div>
+                                            <div class="col-lg-3 d-md-flex align-items-center order-2 order-lg-1">
                                                 <p align="center" style="color: black ; font-size: 21px" class="active"><strong><%= nickname%></strong>
                                                     <a href="?accion=eliminar&nickname=<%= nickname%>" onclick="return confirm('¿Estás seguro de eliminar a <%= nickname%>?')">
                                                         <i class="bi bi-trash3-fill"></i>
