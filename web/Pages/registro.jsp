@@ -159,7 +159,7 @@
             HttpSession sesion = request.getSession();
             session.setAttribute("user", sesionU);
             session.setAttribute("userId", String.valueOf(userId));
-
+            session.setAttribute("userIdentifier", "uniqueIdentifierHere");
             HttpSession sesionSoporte = request.getSession();
             session.setAttribute("IdSoporte", idSop);
 

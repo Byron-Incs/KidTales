@@ -253,6 +253,6 @@
 
         <!-- ThemeFunctions -->
         <script src="../assets/js/functions.js"></script>
-
+        <!--hola este es iniciar secion-->
     </body>
 </html>

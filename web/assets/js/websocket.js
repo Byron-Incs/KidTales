@@ -1,6 +1,8 @@
-
-var serverIP = "40.86.11.134";
+//var serverIP = document.location.host;
+var serverIP = "byroninc.com.gerdoc";
+//var serverIP = "192.168.100.20";
 var wsURI = "ws://" + serverIP + ":3306/KidTales/chat";
+//var wsURI = "ws://" + serverIP + ":8080/KidTales/chat";
 
 var websocket = new WebSocket(wsURI);
 console.log("WebSocket readyState: " + websocket.readyState);
@@ -13,7 +15,7 @@ websocket.onopen = function () {
     onOpen();
 };
 function onOpen() {
-    
+
     console.log("Opened connection: " + wsURI);
 }
 
@@ -28,7 +30,10 @@ websocket.onerror = function (event) {
 
 function onMessage(event) {
     console.log(event);
-    display(event.data);
+    var data = JSON.parse(event.data);
+    if (data.receiverId === "uniqueIdentifierOfCurrentUser") {
+        display(data.conten);
+    }
 }
 
 function display(dataString) {
@@ -37,16 +42,17 @@ function display(dataString) {
     document.getElementById("output").innerHTML += contentMessage + "</br>";
 }
 
-
 function send() {
-  
- 
+
+
     if (websocket.readyState === WebSocket.OPEN) {
         var message = document.getElementById("message_input").value;
         var encryptedMessage = encryptMessage(message);
 
         var json = {
             "conten": encryptedMessage,
+            "senderId": "uniqueIdentifierOfSender",
+            "receiverId": "uniqueIdentifierOfReceiver"
         };
         console.log("Sending " + encryptedMessage);
         websocket.send(JSON.stringify(json));
