@@ -4,6 +4,13 @@
     Author     : hoid
 --%>
 
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -157,13 +164,13 @@
 
                     <div class="panel-escritura">
 
-                               
-                            <div id="output"></div>
-                            <input id="message_input"  placeholder="Escribir mensaje" type="text">
-                            <script src="../../assets/js/websocket.js"></script> 
-                            <button type="button"onclick="send()">
-                                <i class="fas fa-paper-plane logocolor"></i>
-                            </button>
+
+                        <div id="output"></div>
+                        <input id="message_input"  placeholder="Escribir mensaje" type="text">
+                        <script src="../../assets/js/websocket.js"></script> 
+                        <button type="button"onclick="send()">
+                            <i class="fas fa-paper-plane logocolor"></i>
+                        </button>
                     </div>                 
                 </div>
             </section>
@@ -181,38 +188,83 @@
         <script src="../../assets/js/functions.js"></script>
 
     </body>
+    <%
+        Connection conexion = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        List<String> nombresDeUsuario = new ArrayList<>();
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
+
+            String sql = "SELECT Nombre FROM Usuario";
+
+            statement = conexion.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String nombreUsuario = resultSet.getString("Nombre");
+                nombresDeUsuario.add(nombreUsuario);
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Cerrar conexiones en el bloque finally para asegurarse de que se cierren incluso si ocurre una excepción
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (conexion != null) {
+                try {
+                    conexion.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    %>
 
     <script>
-                                document.addEventListener('DOMContentLoaded', function () {
-                                    var usuarios = document.querySelectorAll('.usuario');
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var usuarios = document.querySelectorAll('.usuario');
 
-                                    usuarios.forEach(function (usuario) {
-                                        usuario.addEventListener('click', function () {
-                                            // ObtÃ©n el nombre del usuario desde el atributo data-usuario
-                                            var nombreUsuario = usuario.getAttribute('data-usuario');
+                        usuarios.forEach(function (usuario) {
+                            usuario.addEventListener('click', function () {
+                                var nombreUsuario = usuario.getAttribute('data-usuario');
+                                mostrarChat(nombreUsuario);
+                            });
+                        });
 
-                                            // Muestra el chat correspondiente al usuario
-                                            mostrarChat(nombreUsuario);
-                                        });
-                                    });
+                        function mostrarChat(nombreUsuario) {
+                            var chats = document.querySelectorAll('.panel-chat .mensaje');
+                            chats.forEach(function (chat) {
+                                chat.style.display = 'none';
+                            });
 
-                                    function mostrarChat(nombreUsuario) {
-                                        // Oculta todos los chats
-                                        var chats = document.querySelectorAll('.panel-chat .mensaje');
-                                        chats.forEach(function (chat) {
-                                            chat.style.display = 'none';
-                                        });
+                            var chatUsuario = document.querySelector('.panel-chat .mensaje[data-usuario="' + nombreUsuario + '"]');
+                            if (chatUsuario) {
+                                chatUsuario.style.display = 'block';
+                            }
 
-                                        // Muestra el chat del usuario seleccionado
-                                        var chatUsuario = document.querySelector('.panel-chat .mensaje[data-usuario="' + nombreUsuario + '"]');
-                                        if (chatUsuario) {
-                                            chatUsuario.style.display = 'block';
-                                        }
+                            var usuarioSeleccionado = document.querySelector('.usuario-seleccionado span');
+                            usuarioSeleccionado.textContent = nombreUsuario;
+                        }
+                    });
 
-                                        // Actualiza el usuario seleccionado en el panel de informaciÃ³n del chat
-                                        var usuarioSeleccionado = document.querySelector('.usuario-seleccionado span');
-                                        usuarioSeleccionado.textContent = nombreUsuario;
-                                    }
-                                });
     </script>
 </html>

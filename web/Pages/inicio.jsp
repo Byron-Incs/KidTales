@@ -92,7 +92,6 @@
                     statement = conexion.prepareStatement(selectQuery4);
                     statement.setString(1, email);
                     resultSet = statement.executeQuery();
-
                     String nombre = null;
                     if (resultSet.next()) {
                         nombre = resultSet.getString("Nombre");

@@ -111,6 +111,10 @@
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
+          
+
+
             String insertSQL2 = "INSERT INTO UsuarioRol (UserID, RolID) VALUES (?, ?)";
             statement = conexion.prepareStatement(insertSQL2);
             statement.setInt(1, userId);
@@ -192,6 +196,7 @@
                 }
             }
         %>
+       
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
 
@@ -249,7 +254,7 @@
                                                     <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
                                                 </div>
                                                 <!-- Remember me -->
-                                                
+
                                                 <!-- Button -->
                                                 <div><button type="submit" class="btn btn-primary w-100 mb-0" name = "accion" id="accion" value ="Guardar">Registrar</button></div>
 
