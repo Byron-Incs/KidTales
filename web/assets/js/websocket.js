@@ -1,6 +1,6 @@
 //var serverIP = document.location.host;
 //var serverIP = "byroninc.com.gerdoc";
-var serverIP = "192.168.100.20";
+var serverIP = "192.168.1.12";
 //var wsURI = "ws://" + serverIP + ":3306/KidTales/chat";
 var wsURI = "ws://" + serverIP + ":8080/KidTales/chat";
 

@@ -41,6 +41,70 @@
 
 
     <body>
+
+        <%
+ 
+            HttpSession sesion = request.getSession();
+            String userId = (String) session.getAttribute("userId");
+
+            Connection conexion = null;
+            PreparedStatement statement = null;
+            ResultSet resultSet = null;
+
+            String username = null;
+            String usernameSoporte = null;
+            String idSoporte =null;
+            List<String> nicknames = new ArrayList<>();
+
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
+
+                String selectUsernameQuery = "SELECT Nombre FROM Usuario WHERE UserID = ?";
+                statement = conexion.prepareStatement(selectUsernameQuery);
+                statement.setString(1, userId);
+                resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    username = resultSet.getString("Nombre");
+                }
+
+                String selectSoporte = "SELECT PadreID   from  Chat where SoporteTecnicoID = ?";
+                statement = conexion.prepareStatement(selectSoporte);
+                statement.setString(1, userId);
+                resultSet = statement.executeQuery();
+                if (resultSet.next()) {
+                    idSoporte = resultSet.getString("SoporteTecnicoID");
+                }
+                
+                
+                String selectSoporteNombre = "SELECT Nombre FROM Usuario WHERE UserID = ?";
+                statement = conexion.prepareStatement(selectUsernameQuery);
+                statement.setString(1, idSoporte);
+                resultSet = statement.executeQuery();
+                if (resultSet.next()) {
+                    usernameSoporte = resultSet.getString("Nombre");
+                }
+                
+                
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (resultSet != null) {
+                        resultSet.close();
+                    }
+                    if (statement != null) {
+                        statement.close();
+                    }
+                    if (conexion != null) {
+                        conexion.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        %>
         <!-- Header START -->
         <header class="navbar-light header-sticky backheader">
             <!-- Logo Nav START -->
@@ -212,7 +276,6 @@
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
-            // Cerrar conexiones en el bloque finally para asegurarse de que se cierren incluso si ocurre una excepción
             if (resultSet != null) {
                 try {
                     resultSet.close();
@@ -240,31 +303,31 @@
     %>
 
     <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        var usuarios = document.querySelectorAll('.usuario');
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var usuarios = document.querySelectorAll('.usuario');
 
-                        usuarios.forEach(function (usuario) {
-                            usuario.addEventListener('click', function () {
-                                var nombreUsuario = usuario.getAttribute('data-usuario');
-                                mostrarChat(nombreUsuario);
+                                usuarios.forEach(function (usuario) {
+                                    usuario.addEventListener('click', function () {
+                                        var nombreUsuario = usuario.getAttribute('data-usuario');
+                                        mostrarChat(nombreUsuario);
+                                    });
+                                });
+
+                                function mostrarChat(nombreUsuario) {
+                                    var chats = document.querySelectorAll('.panel-chat .mensaje');
+                                    chats.forEach(function (chat) {
+                                        chat.style.display = 'none';
+                                    });
+
+                                    var chatUsuario = document.querySelector('.panel-chat .mensaje[data-usuario="' + nombreUsuario + '"]');
+                                    if (chatUsuario) {
+                                        chatUsuario.style.display = 'block';
+                                    }
+
+                                    var usuarioSeleccionado = document.querySelector('.usuario-seleccionado span');
+                                    usuarioSeleccionado.textContent = nombreUsuario;
+                                }
                             });
-                        });
-
-                        function mostrarChat(nombreUsuario) {
-                            var chats = document.querySelectorAll('.panel-chat .mensaje');
-                            chats.forEach(function (chat) {
-                                chat.style.display = 'none';
-                            });
-
-                            var chatUsuario = document.querySelector('.panel-chat .mensaje[data-usuario="' + nombreUsuario + '"]');
-                            if (chatUsuario) {
-                                chatUsuario.style.display = 'block';
-                            }
-
-                            var usuarioSeleccionado = document.querySelector('.usuario-seleccionado span');
-                            usuarioSeleccionado.textContent = nombreUsuario;
-                        }
-                    });
 
     </script>
 </html>
