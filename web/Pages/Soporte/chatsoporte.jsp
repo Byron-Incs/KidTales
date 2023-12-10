@@ -149,7 +149,7 @@
                                 String idPadre = padres.get(i); // Obtén el ID del padre correspondiente
 
                         %>
-                        <div class="usuario" data-usuario="<%= idPadre%>">
+                        <div class="usuario" data-usuario="<%= nombrePadre %>">
                             <div class="avatar">
                                 <img src="../../assets/images/perfiles/usuario.svg" alt="img">
                             </div>
