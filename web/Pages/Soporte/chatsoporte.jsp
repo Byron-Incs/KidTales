@@ -41,7 +41,6 @@
     <body>
 
         <%
-
             HttpSession sesion = request.getSession();
             String userId = (String) sesion.getAttribute("userId");
 
@@ -51,7 +50,7 @@
 
             List<String> padres = new ArrayList<>();
             List<String> nombresPadres = new ArrayList<>();
-            
+
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
@@ -65,17 +64,19 @@
                         }
                     }
                 }
-
                 for (int i = 0; i < padres.size(); i++) {
                     String padreId = padres.get(i);
 
                     String selectNombrePadreQuery = "SELECT Nombre FROM Usuario WHERE UserID = ?";
-                    statement = conexion.prepareStatement(selectNombrePadreQuery);
-                    statement.setString(1, padreId);
-                    ResultSet padreResultSet = statement.executeQuery();
-                    nombresPadres.add(padreResultSet.getString("PadreID"));
+                    try (PreparedStatement nombrePadreStatement = conexion.prepareStatement(selectNombrePadreQuery)) {
+                        nombrePadreStatement.setString(1, padreId);
+                        try (ResultSet padreResultSet = nombrePadreStatement.executeQuery()) {
+                            if (padreResultSet.next()) {
+                                nombresPadres.add(padreResultSet.getString("Nombre"));
+                            }
+                        }
+                    }
                 }
-
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             } finally {
@@ -93,7 +94,6 @@
                     e.printStackTrace();
                 }
             }
-
         %>
         <!-- Header START -->
         <header class="navbar-light header-sticky backheader">
@@ -144,19 +144,20 @@
                 <div class="seccion-usuarios">
                     <div class="seccion-lista-usuarios">
 
-                        <%  for (int i = 0; i < nombresPadres.size(); i++) {
+                        <% for (int i = 0; i < nombresPadres.size(); i++) {
                                 String nombrePadre = nombresPadres.get(i);
+                                String idPadre = padres.get(i); // Obtén el ID del padre correspondiente
 
                         %>
-                        <div class="usuario" data-usuario="hoid">
+                        <div class="usuario" data-usuario="<%= idPadre%>">
                             <div class="avatar">
                                 <img src="../../assets/images/perfiles/usuario.svg" alt="img">
                             </div>
                             <div class="cuerpo">
-                                <span> <%= nombrePadre %> </span>
+                                <span><%= nombrePadre%></span>
                             </div>
                         </div>
-                        <%  
+                        <%
                             }
                         %>
 
