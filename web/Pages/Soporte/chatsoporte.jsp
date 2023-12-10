@@ -72,11 +72,8 @@
                     String selectNombrePadreQuery = "SELECT Nombre FROM Usuario WHERE UserID = ?";
                     statement = conexion.prepareStatement(selectNombrePadreQuery);
                     statement.setString(1, padreId);
-                    resultSet = statement.executeQuery();
-
-                    if (resultSet.next()) {
-                        nombresPadres.add(resultSet.getString("PadreID"));
-                    }
+                    ResultSet padreResultSet = statement.executeQuery();
+                    nombresPadres.add(padreResultSet.getString("PadreID"));
                 }
 
             } catch (ClassNotFoundException | SQLException e) {
