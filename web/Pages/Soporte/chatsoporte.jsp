@@ -38,8 +38,6 @@
 
 
     </head>
-
-
     <body>
 
         <%
@@ -53,8 +51,9 @@
 
             String username = null;
             String usernameSoporte = null;
-            String idSoporte =null;
-            List<String> nicknames = new ArrayList<>();
+            String idPadre =null;
+            
+            List<String> padres = new ArrayList<>();
 
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -69,21 +68,32 @@
                     username = resultSet.getString("Nombre");
                 }
 
-                String selectSoporte = "SELECT PadreID   from  Chat where SoporteTecnicoID = ?";
+                /* String selectSoporte = "SELECT PadreID from Chat where SoporteTecnicoID = ?";
                 statement = conexion.prepareStatement(selectSoporte);
                 statement.setString(1, userId);
                 resultSet = statement.executeQuery();
                 if (resultSet.next()) {
-                    idSoporte = resultSet.getString("SoporteTecnicoID");
-                }
+                    idPadre = resultSet.getString("PadreID");
+                }*/
                 
                 
                 String selectSoporteNombre = "SELECT Nombre FROM Usuario WHERE UserID = ?";
                 statement = conexion.prepareStatement(selectUsernameQuery);
-                statement.setString(1, idSoporte);
+                statement.setString(1, idPadre);
                 resultSet = statement.executeQuery();
                 if (resultSet.next()) {
                     usernameSoporte = resultSet.getString("Nombre");
+                }
+                
+                
+                 String selectPadresIdQuery =  "SELECT PadreID from Chat where SoporteTecnicoID = ?";
+                try (PreparedStatement padresStatement = conexion.prepareStatement(selectPadresIdQuery)) {
+                    padresStatement.setString(1, userId);
+                    try (ResultSet padresResultSet = padresStatement.executeQuery()) {
+                        while (padresResultSet.next()) {
+                            padres.add(padresResultSet.getString("PadreID"));
+                        }
+                    }
                 }
                 
                 
@@ -104,6 +114,7 @@
                     e.printStackTrace();
                 }
             }
+            
         %>
         <!-- Header START -->
         <header class="navbar-light header-sticky backheader">
@@ -252,55 +263,7 @@
         <script src="../../assets/js/functions.js"></script>
 
     </body>
-    <%
-        Connection conexion = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-
-        List<String> nombresDeUsuario = new ArrayList<>();
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
-
-            String sql = "SELECT Nombre FROM Usuario";
-
-            statement = conexion.prepareStatement(sql);
-            resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                String nombreUsuario = resultSet.getString("Nombre");
-                nombresDeUsuario.add(nombreUsuario);
-            }
-
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (conexion != null) {
-                try {
-                    conexion.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    %>
+    
 
     <script>
                             document.addEventListener('DOMContentLoaded', function () {

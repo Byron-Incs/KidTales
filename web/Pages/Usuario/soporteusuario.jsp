@@ -39,6 +39,7 @@
         <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
 
     </head>
+    
     <body>
          <%
             // Recuperar userId de la sesión
@@ -74,7 +75,7 @@
                 if (resultSet.next()) {
                     idSoporte = resultSet.getString("SoporteTecnicoID");
                 }
-                
+
                 
                 String selectSoporteNombre = "SELECT Nombre FROM Usuario WHERE UserID = ?";
                 statement = conexion.prepareStatement(selectUsernameQuery);

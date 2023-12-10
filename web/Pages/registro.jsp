@@ -148,6 +148,8 @@
             int idSop = soport.get(numRandom);
 
             //crea el registro en la tabla chat despues de haber obtenido un wey de soporte al azar
+
+
             String insertSQL1 = "INSERT INTO Chat (PadreID, SoporteTecnicoID) VALUES (?, ?)";
             statement = conexion.prepareStatement(insertSQL1);
             statement.setInt(1, userId);
