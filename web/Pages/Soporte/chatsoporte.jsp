@@ -41,52 +41,22 @@
     <body>
 
         <%
- 
+
             HttpSession sesion = request.getSession();
-            String userId = (String) session.getAttribute("userId");
+            String userId = (String) sesion.getAttribute("userId");
 
             Connection conexion = null;
             PreparedStatement statement = null;
             ResultSet resultSet = null;
 
-            String username = null;
-            String usernameSoporte = null;
-            String idPadre =null;
-            
             List<String> padres = new ArrayList<>();
-
+            List<String> nombresPadres = new ArrayList<>();
+            
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
 
-                String selectUsernameQuery = "SELECT Nombre FROM Usuario WHERE UserID = ?";
-                statement = conexion.prepareStatement(selectUsernameQuery);
-                statement.setString(1, userId);
-                resultSet = statement.executeQuery();
-
-                if (resultSet.next()) {
-                    username = resultSet.getString("Nombre");
-                }
-
-                /* String selectSoporte = "SELECT PadreID from Chat where SoporteTecnicoID = ?";
-                statement = conexion.prepareStatement(selectSoporte);
-                statement.setString(1, userId);
-                resultSet = statement.executeQuery();
-                if (resultSet.next()) {
-                    idPadre = resultSet.getString("PadreID");
-                }*/
-                
-                
-                String selectSoporteNombre = "SELECT Nombre FROM Usuario WHERE UserID = ?";
-                statement = conexion.prepareStatement(selectUsernameQuery);
-                statement.setString(1, idPadre);
-                resultSet = statement.executeQuery();
-                if (resultSet.next()) {
-                    usernameSoporte = resultSet.getString("Nombre");
-                }
-                
-                
-                 String selectPadresIdQuery =  "SELECT PadreID from Chat where SoporteTecnicoID = ?";
+                String selectPadresIdQuery = "SELECT PadreID from Chat where SoporteTecnicoID = ?";
                 try (PreparedStatement padresStatement = conexion.prepareStatement(selectPadresIdQuery)) {
                     padresStatement.setString(1, userId);
                     try (ResultSet padresResultSet = padresStatement.executeQuery()) {
@@ -95,8 +65,20 @@
                         }
                     }
                 }
-                
-                
+
+                for (int i = 0; i < padres.size(); i++) {
+                    String padreId = padres.get(i);
+
+                    String selectNombrePadreQuery = "SELECT Nombre FROM Usuario WHERE UserID = ?";
+                    statement = conexion.prepareStatement(selectNombrePadreQuery);
+                    statement.setString(1, padreId);
+                    resultSet = statement.executeQuery();
+
+                    if (resultSet.next()) {
+                        nombresPadres.add(resultSet.getString("PadreID"));
+                    }
+                }
+
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             } finally {
@@ -114,7 +96,7 @@
                     e.printStackTrace();
                 }
             }
-            
+
         %>
         <!-- Header START -->
         <header class="navbar-light header-sticky backheader">
@@ -163,43 +145,24 @@
                     </h3>
                 </div>
                 <div class="seccion-usuarios">
-                    <div class="seccion-buscar">
-                        <div class="input-buscar">
-                            <input type="search" placeholder="Buscar usuario">
-                            <i class="fas fa-search"></i>
-                        </div>
-                    </div>
                     <div class="seccion-lista-usuarios">
+
+                        <%  for (int i = 0; i < nombresPadres.size(); i++) {
+                                String nombrePadre = nombresPadres.get(i);
+
+                        %>
                         <div class="usuario" data-usuario="hoid">
                             <div class="avatar">
                                 <img src="../../assets/images/perfiles/usuario.svg" alt="img">
-                                <span class="estado-usuario enlinea"></span>
                             </div>
                             <div class="cuerpo">
-                                <span> Hoid</span>
-                                <span>"detalles de mensaje"</span>
+                                <span> <%= nombrePadre %> </span>
                             </div>
                         </div>
-                        <div class="usuario" data-usuario="armonia">
-                            <div class="avatar">
-                                <img src="../../assets/images/perfiles/usuario.svg" alt="img">
-                                <span class="estado-usuario enlinea"></span>
-                            </div>
-                            <div class="cuerpo">
-                                <span> Armonia</span>
-                                <span>"detalles de mensaje"</span>
-                            </div>
-                        </div>
-                        <div class="usuario" data-usuario="henry">
-                            <div class="avatar">
-                                <img src="../../assets/images/perfiles/usuario.svg" alt="img">
-                                <span class="estado-usuario enlinea"></span>
-                            </div>
-                            <div class="cuerpo">
-                                <span> Henry</span>
-                                <span>"detalles de mensaje"</span>
-                            </div>
-                        </div>
+                        <%  
+                            }
+                        %>
+
                     </div>
                 </div>
                 <div class="seccion-chat">
@@ -263,7 +226,7 @@
         <script src="../../assets/js/functions.js"></script>
 
     </body>
-    
+
 
     <script>
                             document.addEventListener('DOMContentLoaded', function () {
