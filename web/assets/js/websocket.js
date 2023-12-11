@@ -1,8 +1,8 @@
 //var serverIP = document.location.host;
-var serverIP = "byroninc.com.gerdoc";
-//var serverIP = "192.168.100.20";
-var wsURI = "ws://" + serverIP + ":3306/KidTales/chat";
-//var wsURI = "ws://" + serverIP + ":8080/KidTales/chat";
+//var serverIP = "byroninc.com.gerdoc";
+var serverIP = "192.168.100.20";
+//var wsURI = "ws://" + serverIP + ":3306/KidTales/chat";
+var wsURI = "ws://" + serverIP + ":8080/KidTales/chat";
 
 var websocket = new WebSocket(wsURI);
 console.log("WebSocket readyState: " + websocket.readyState);
@@ -37,7 +37,9 @@ function onMessage(event)
 
 function display(dataString) 
 {
+    
     var data = JSON.parse(dataString);
+    console.log("Data:", data);
      if (data.userName === document.getElementById("username_input").value) {
           var contentMessage = data.conten +"</p>";
             document.getElementById("output").innerHTML += contentMessage + "</br>";
@@ -46,7 +48,10 @@ function display(dataString)
           var contentMessage = data.conten +"</p>";
             document.getElementById("output").innerHTML += contentMessage + "</br>";
      }
-  
+  console.log("Data:", data);
+  console.log("idSoporte_input:", document.getElementById("idSoporte_input").value);
+   console.log("username_input:", document.getElementById("username_input").value);
+
 }
 
 function send() {
@@ -59,6 +64,7 @@ function send() {
             "conten": encryptedMessage,
             "userName": userName,
             "IdSoporte": IdSoporte,
+            //comentario
             "destinatarioId": '<%= userId %>'
         };
         console.log("Sending " + encryptedMessage);
