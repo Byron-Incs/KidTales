@@ -1,8 +1,8 @@
 //var serverIP = document.location.host;
-//var serverIP = "byroninc.com.gerdoc";
-var serverIP = "192.168.100.20";
-//var wsURI = "ws://" + serverIP + ":3306/KidTales/chat";
-var wsURI = "ws://" + serverIP + ":8080/KidTales/chat";
+var serverIP = "byroninc.com.gerdoc";
+//var serverIP = "192.168.100.20";
+var wsURI = "ws://" + serverIP + ":3306/KidTales/chat";
+//var wsURI = "ws://" + serverIP + ":8080/KidTales/chat";
 
 var websocket = new WebSocket(wsURI);
 console.log("WebSocket readyState: " + websocket.readyState);
@@ -54,13 +54,9 @@ function send() {
         var message = document.getElementById("message_input").value;
         var userName = document.getElementById("username_input").value;
         var IdSoporte = document.getElementById("idSoporte_input").value;
-        //var MensajeID = document.getElementById("message_input").value;
-        //var UserID = document.getElementById("message_input").value;
-       // var ChatID = document.getElementById("message_input").value;
         var encryptedMessage = encryptMessage(message);
         var json = {
             "conten": encryptedMessage,
-            //"recipientId": recipientId
             "userName": userName,
             "IdSoporte": IdSoporte,
             "destinatarioId": '<%= userId %>'

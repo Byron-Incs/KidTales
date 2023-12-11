@@ -5,8 +5,6 @@
         <group>
             <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/ws/MessageModelEncoder.java</file>
             <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/soporte.html</file>
-            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/assets/js/websocket.js</file>
-            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/Usuario/chatUsuario.jsp</file>
             <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/ws/MessageModelService.java</file>
             <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/dao/bdConection.java</file>
             <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/dao/MesaggeModel.java</file>
@@ -19,6 +17,7 @@
             <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/dao/Usuario.java</file>
             <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/inicio.jsp</file>
             <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/ws/MessageModelDecoder.java</file>
+            <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/Usuario/ajustes.jsp</file>
             <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/two-factor-auth.jsp</file>
             <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/src/java/org/KidTales/ws/Conexion.java</file>
             <file>file:/C:/Users/Evelyn/Documents/BATIZ/5IM9/Byronic/KidTales/web/Pages/Soporte/chatsoporte.jsp</file>
