@@ -46,7 +46,6 @@
             HttpSession sesion = request.getSession();
             String userId = (String) sesion.getAttribute("userId");
             String usernamesession = (String) sesion.getAttribute("usernamessesion");
-            String IdSoporte = (String) sesion.getAttribute("IdSoporte");
 
             Connection conexion = null;
             PreparedStatement statement = null;
@@ -100,9 +99,6 @@
             }
         %>
 
-    <sript>
-        actualizarPagina();
-    </sript>
         <!-- Header START -->
         <header class="navbar-light header-sticky backheader">
             <!-- Logo Nav START -->
