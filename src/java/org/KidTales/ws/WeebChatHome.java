@@ -4,8 +4,11 @@
  */
 package org.KidTales.ws;
 
+
+
 import java.io.IOException;
 import java.io.Serializable;
+import java.io.StringReader;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,6 +22,8 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import javax.json.Json;
+import javax.json.JsonObject;
 import org.KidTales.dao.MesaggeModel;
 
 /**
@@ -38,7 +43,8 @@ public class WeebChatHome implements Serializable {
     }
 
     @OnMessage
-    public String onMessage(Session session, MesaggeModel message) {
+    public void onMessage(Session session, MesaggeModel message) {
+         
 
         System.out.println("Manejo de Masajes: " + message);
         String decryptedMessage = decryptMessage(message.getConten());
@@ -52,7 +58,7 @@ public class WeebChatHome implements Serializable {
                 Logger.getLogger(WeebChatHome.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return null;
+    
     }
 
     //Abrir Conexion
@@ -71,6 +77,8 @@ public class WeebChatHome implements Serializable {
         sessions.remove(session);
     }
 
+    
+    
     private String decryptMessage(String encryptedMessage) {
         StringBuilder decryptedMessage = new StringBuilder();
 

@@ -69,14 +69,19 @@
 
     -->
 
-        <path id="classpath">
-         <fileset dir="${basedir}/lib"/>
-        </path>
+      <path id="classpath">
+    <fileset dir="${basedir}/lib">
+        <include name="gson-2.10.1.jar" />
+        <include name="javax.json-api-1.1.4.jar" /> <!-- Agrega esta línea -->
+    </fileset>
+</path>
+
 
     <target name="-pre-compile">
         <copy todir="${build.classes.dir}">
             <fileset dir="lib">
                 <include name="gson-2.10.1.jar" /> 
+                 <include name="javax.json-api-1.1.4.jar" />
             </fileset>
         </copy>
     </target>

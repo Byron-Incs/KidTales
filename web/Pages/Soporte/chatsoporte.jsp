@@ -39,7 +39,7 @@
 
     </head>
     <body>
-
+       
         <%
             HttpSession sesion = request.getSession();
             String userId = (String) sesion.getAttribute("userId");
@@ -95,6 +95,8 @@
                 }
             }
         %>
+        
+       
         <!-- Header START -->
         <header class="navbar-light header-sticky backheader">
             <!-- Logo Nav START -->

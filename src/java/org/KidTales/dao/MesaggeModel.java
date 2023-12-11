@@ -13,6 +13,7 @@ public class MesaggeModel {
      private int MensajeID;
      private int UserID;
      private int ChatID;
+     private String destinatarioId;
 
     public String getConten() {
         return conten;
@@ -52,6 +53,16 @@ public class MesaggeModel {
 
     public void setChatID(int ChatID) {
         this.ChatID = ChatID;
+    }
+    
+      public String getRecipientId() {
+        // Lógica para obtener el ID del destinatario
+        return destinatarioId;
+    }
+
+    // Setter para la propiedad destinatarioId
+    public void setDestinatarioId(String destinatarioId) {
+        this.destinatarioId = destinatarioId;
     }
 
    

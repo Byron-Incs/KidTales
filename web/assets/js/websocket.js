@@ -1,6 +1,6 @@
 //var serverIP = document.location.host;
 //var serverIP = "byroninc.com.gerdoc";
-var serverIP = "192.168.1.12";
+var serverIP = "192.168.100.20";
 //var wsURI = "ws://" + serverIP + ":3306/KidTales/chat";
 var wsURI = "ws://" + serverIP + ":8080/KidTales/chat";
 
@@ -40,14 +40,14 @@ function display(dataString) {
 }
 
 function send() {
-  
- 
+ var recipientId = '<%= idSoporte %>';
     if (websocket.readyState === WebSocket.OPEN) {
         var message = document.getElementById("message_input").value;
         var encryptedMessage = encryptMessage(message);
 
         var json = {
-            "conten": encryptedMessage
+            "conten": encryptedMessage,
+            "recipientId": recipientId
         };
         console.log("Sending " + encryptedMessage);
         websocket.send(JSON.stringify(json));

@@ -104,6 +104,10 @@
                 }
             }
         %>
+           <script>
+  
+        var recipientId = '<%=idSoporte %>';
+    </script>
 
         <!-- Header START -->
         <!-- Header START -->
