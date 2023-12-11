@@ -44,10 +44,11 @@ function display(dataString)
           var contentMessage = data.conten +"</p>";
             document.getElementById("output").innerHTML += contentMessage + "</br>";
      }
+     /*
      if (data.userName === document.getElementById("idSoporte_input").value) {
           var contentMessage = data.conten +"</p>";
             document.getElementById("output").innerHTML += contentMessage + "</br>";
-     }
+     }*/
   console.log("Data:", data);
   console.log("idSoporte_input:", document.getElementById("idSoporte_input").value);
    console.log("username_input:", document.getElementById("username_input").value);

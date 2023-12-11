@@ -38,8 +38,6 @@
 
 
     </head>
-
-
     <body>
                  <%
             // Recuperar userId de la sesión
@@ -212,7 +210,6 @@
         <script src="../../../assets/js/functions.js"></script>
         
     </body>
-    
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         var usuarios = document.querySelectorAll('.usuario');

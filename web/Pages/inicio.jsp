@@ -107,12 +107,13 @@
                     sesionU.setId_up(userId);
                     sesionU.setUsername(nombre);
                     sesionU.setPasword(psw);
-
+               
                     HttpSession sesion = request.getSession();
+                 
+
                     session.setAttribute("user", sesionU);
                     session.setAttribute("userId", String.valueOf(userId));
                     session.setAttribute("usernamessesion", String.valueOf(sesionU.getUsername()));
-               
 
                     int rol = 0;
                     if (resultSet.next()) {
