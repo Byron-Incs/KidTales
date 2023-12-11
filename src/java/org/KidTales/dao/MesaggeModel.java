@@ -11,9 +11,27 @@ public class MesaggeModel {
      private String conten;
      private String userName;
      private int MensajeID;
-     private int UserID;
+     private String UserID;
      private int ChatID;
+     private String IdSoporte;
+
+    public String getIdSoporte() {
+        return IdSoporte;
+    }
+
+    public void setIdSoporte(String IdSoporte) {
+        this.IdSoporte = IdSoporte;
+    }
      private String destinatarioId;
+
+    public String getUserID() {
+        return UserID;
+    }
+
+    public void setUserID(String UserID) {
+        this.UserID = UserID;
+    }
+     
 
     public String getConten() {
         return conten;
@@ -39,14 +57,7 @@ public class MesaggeModel {
         this.MensajeID = MensajeID;
     }
 
-    public int getUserID() {
-        return UserID;
-    }
-
-    public void setUserID(int UserID) {
-        this.UserID = UserID;
-    }
-
+ 
     public int getChatID() {
         return ChatID;
     }

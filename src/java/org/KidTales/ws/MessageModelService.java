@@ -19,7 +19,7 @@ import java.util.Set;
 import org.KidTales.dao.MesaggeModel;
 
 public class MessageModelService extends Conexion<MesaggeModel> {
-
+/*
     public List<MesaggeModel> getMensahModelsList() {
         List<MesaggeModel> mesaggeList = null;
         Connection connection = null;
@@ -125,4 +125,5 @@ public class MessageModelService extends Conexion<MesaggeModel> {
         }
         return chatId;
     }
+*/
 }

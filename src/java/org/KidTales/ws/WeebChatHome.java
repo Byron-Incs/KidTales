@@ -45,7 +45,6 @@ public class WeebChatHome implements Serializable {
     @OnMessage
     public void onMessage(Session session, MesaggeModel message) {
          
-
         System.out.println("Manejo de Masajes: " + message);
         String decryptedMessage = decryptMessage(message.getConten());
         message.setConten(decryptedMessage);

@@ -104,10 +104,6 @@
                 }
             }
         %>
-           <script>
-  
-        var recipientId = '<%=idSoporte %>';
-    </script>
 
         <!-- Header START -->
         <!-- Header START -->
@@ -146,6 +142,8 @@
 
         <!-- **************** MAIN CONTENT START **************** -->
         <main>
+            
+            
             <!-- Chat Section -->
             <div class="p-2 m-auto col-md-10">
                 <div class="card">

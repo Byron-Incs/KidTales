@@ -86,8 +86,6 @@
                         e.printStackTrace();
                     }
 
-
-
                     String selectQuery4 = "SELECT Nombre FROM Usuario WHERE Correo = ?";
                     statement = conexion.prepareStatement(selectQuery4);
                     statement.setString(1, email);
@@ -97,16 +95,12 @@
                         nombre = resultSet.getString("Nombre");
                     }
 
-
-
-
-
                     String selectQuery1 = "SELECT RolID FROM UsuarioRol WHERE UserID = ?";
                     statement = conexion.prepareStatement(selectQuery1);
                     statement.setInt(1, userId);
                     resultSet = statement.executeQuery();
 
-                               //crea la sesion
+                    //crea la sesion
                     Usuario sesionU = new Usuario();
 
                     sesionU.setCorreo(email);
@@ -114,12 +108,11 @@
                     sesionU.setUsername(nombre);
                     sesionU.setPasword(psw);
 
-
                     HttpSession sesion = request.getSession();
                     session.setAttribute("user", sesionU);
                     session.setAttribute("userId", String.valueOf(userId));
-
-                    
+                    session.setAttribute("usernamessesion", String.valueOf(sesionU.getUsername()));
+               
 
                     int rol = 0;
                     if (resultSet.next()) {

@@ -4,6 +4,13 @@
     Author     : hoid
 --%>
 
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.util.List"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +41,71 @@
 
 
     <body>
+                 <%
+            // Recuperar userId de la sesión
+            HttpSession sesion = request.getSession();
+            String userId = (String) session.getAttribute("userId");
+            String usernamesession =(String) session.getAttribute("usernamessesion"); 
+            String IdSoporte = (String) session.getAttribute("IdSoporte"); 
+            
+            Connection conexion = null;
+            PreparedStatement statement = null;
+            ResultSet resultSet = null;
+
+            String username = null;
+            String usernameSoporte = null;
+            String idSoporte =null;
+            List<String> nicknames = new ArrayList<>();
+
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
+
+                String selectUsernameQuery = "SELECT Nombre FROM Usuario WHERE UserID = ?";
+                statement = conexion.prepareStatement(selectUsernameQuery);
+                statement.setString(1, userId);
+                resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    username = resultSet.getString("Nombre");
+                }
+
+                String selectSoporte = "SELECT SoporteTecnicoID  from  Chat where PadreID = ?";
+                statement = conexion.prepareStatement(selectSoporte);
+                statement.setString(1, userId);
+                resultSet = statement.executeQuery();
+                if (resultSet.next()) {
+                    idSoporte = resultSet.getString("SoporteTecnicoID");
+                }
+
+                
+                String selectSoporteNombre = "SELECT Nombre FROM Usuario WHERE UserID = ?";
+                statement = conexion.prepareStatement(selectUsernameQuery);
+                statement.setString(1, idSoporte);
+                resultSet = statement.executeQuery();
+                if (resultSet.next()) {
+                    usernameSoporte = resultSet.getString("Nombre");
+                }
+                
+                
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (resultSet != null) {
+                        resultSet.close();
+                    }
+                    if (statement != null) {
+                        statement.close();
+                    }
+                    if (conexion != null) {
+                        conexion.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        %>
         <!-- Header START -->
         <header class="navbar-light header-sticky backheader">
             <!-- Logo Nav START -->
@@ -118,6 +190,8 @@
                     <div class="panel-escritura">
                         <div id="output"></div>
                             <input id="message_input"  placeholder="Escribir mensaje" type="text">
+                            <input id="username_input"  type="text" value="<%=usernamesession%>" hidden>
+                            <input id="idSoporte_input"  type="text" value="<%=IdSoporte%>" hidden>
                             <button type="button"onclick="send()">
                                 <i class="fas fa-paper-plane logocolor"></i>
                             </button>

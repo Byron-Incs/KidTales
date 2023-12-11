@@ -28,26 +28,42 @@ websocket.onerror = function (event) {
     console.error("WebSocket error:", event.message);
 };
 
-function onMessage(event) {
+function onMessage(event) 
+{
     console.log(event);
     display(event.data);
+     
 }
 
-function display(dataString) {
+function display(dataString) 
+{
     var data = JSON.parse(dataString);
-    var contentMessage = data.conten + "</p>";
-    document.getElementById("output").innerHTML += contentMessage + "</br>";
+     if (data.userName === document.getElementById("username_input").value) {
+          var contentMessage = data.conten +"</p>";
+            document.getElementById("output").innerHTML += contentMessage + "</br>";
+     }
+     if (data.userName === document.getElementById("idSoporte_input").value) {
+          var contentMessage = data.conten +"</p>";
+            document.getElementById("output").innerHTML += contentMessage + "</br>";
+     }
+  
 }
 
 function send() {
- var recipientId = '<%= idSoporte %>';
     if (websocket.readyState === WebSocket.OPEN) {
         var message = document.getElementById("message_input").value;
+        var userName = document.getElementById("username_input").value;
+        var IdSoporte = document.getElementById("idSoporte_input").value;
+        //var MensajeID = document.getElementById("message_input").value;
+        //var UserID = document.getElementById("message_input").value;
+       // var ChatID = document.getElementById("message_input").value;
         var encryptedMessage = encryptMessage(message);
-
         var json = {
             "conten": encryptedMessage,
-            "recipientId": recipientId
+            //"recipientId": recipientId
+            "userName": userName,
+            "IdSoporte": IdSoporte,
+            "destinatarioId": '<%= userId %>'
         };
         console.log("Sending " + encryptedMessage);
         websocket.send(JSON.stringify(json));
