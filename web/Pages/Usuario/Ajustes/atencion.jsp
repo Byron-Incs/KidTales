@@ -40,11 +40,13 @@
     </head>
     <body>
                  <%
+                     
+                    
             // Recuperar userId de la sesión
             HttpSession sesion = request.getSession();
-            String userId = (String) session.getAttribute("userId");
-            String usernamesession =(String) session.getAttribute("usernamessesion"); 
-            String IdSoporte = (String) session.getAttribute("IdSoporte"); 
+            String userId = (String) sesion.getAttribute("userId");
+            String usernamesession =(String) sesion.getAttribute("usernamessesion"); 
+            String IdSoporte = (String) sesion.getAttribute("IdSoporte"); 
             
             Connection conexion = null;
             PreparedStatement statement = null;
@@ -189,7 +191,7 @@
                         <div id="output"></div>
                             <input id="message_input"  placeholder="Escribir mensaje" type="text">
                             <input id="username_input"  type="text" value="<%=usernamesession%>" hidden>
-                            <input id="idSoporte_input"  type="text" value="<%=IdSoporte%>" hidden>
+                            
                             <button type="button"onclick="send()">
                                 <i class="fas fa-paper-plane logocolor"></i>
                             </button>

@@ -1,6 +1,7 @@
 //var serverIP = document.location.host;
 //var serverIP = "byroninc.com.gerdoc";
-var serverIP = "192.168.100.20";
+//var wsURI = "ws://" + document.location.host + document.location.pathname + "chat";
+var serverIP = "192.168.20.63";
 //var wsURI = "ws://" + serverIP + ":3306/KidTales/chat";
 var wsURI = "ws://" + serverIP + ":8080/KidTales/chat";
 
@@ -49,9 +50,6 @@ function display(dataString)
           var contentMessage = data.conten +"</p>";
             document.getElementById("output").innerHTML += contentMessage + "</br>";
      }*/
-  console.log("Data:", data);
-  console.log("idSoporte_input:", document.getElementById("idSoporte_input").value);
-   console.log("username_input:", document.getElementById("username_input").value);
 
 }
 
@@ -59,12 +57,12 @@ function send() {
     if (websocket.readyState === WebSocket.OPEN) {
         var message = document.getElementById("message_input").value;
         var userName = document.getElementById("username_input").value;
-        var IdSoporte = document.getElementById("idSoporte_input").value;
+        //var IdSoporte = document.getElementById("idSoporte_input").value;
         var encryptedMessage = encryptMessage(message);
         var json = {
             "conten": encryptedMessage,
             "userName": userName,
-            "IdSoporte": IdSoporte,
+            //"IdSoporte": IdSoporte,
             //comentario
             "destinatarioId": '<%= userId %>'
         };
