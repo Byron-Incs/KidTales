@@ -5,7 +5,8 @@
 //var wsURI = "ws:// + serverIP + :3306/KidTales/chat";
 //var wsURI = "ws://byroninc.gerdoc.com:8080/KidTales/chat";
 //var wsURI = "ws://" + serverIP + ":8080/KidTales/chat";
-var wsURI = "ws://" + document.location.host + ":8080" + document.location.pathname + "chat";
+//var wsURI = "ws://" + document.location.host + ":8080" + document.location.pathname + "chat";
+var wsURI = "ws://byroninc.gerdoc.com:8080/KidTales/chat";
 
 var websocket = new WebSocket(wsURI);
 console.log("WebSocket readyState: " + websocket.readyState);
