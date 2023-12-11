@@ -1,10 +1,11 @@
 //var serverIP = document.location.host;
-var serverIP = "byroninc.com.gerdoc";
+//var serverIP = "byroninc.com.gerdoc";
 //var wsURI = "ws://" + document.location.host + document.location.pathname + "chat";
 //var serverIP = "192.168.20.85";
-/7var wsURI = "http:// + serverIP + :3306/KidTales/chat";
-var wsURI = "http://byroninc.gerdoc.com/KidTales/chat";
+//var wsURI = "ws:// + serverIP + :3306/KidTales/chat";
+//var wsURI = "ws://byroninc.gerdoc.com:8080/KidTales/chat";
 //var wsURI = "ws://" + serverIP + ":8080/KidTales/chat";
+var wsURI = "ws://" + document.location.host + ":8080" + document.location.pathname + "chat";
 
 var websocket = new WebSocket(wsURI);
 console.log("WebSocket readyState: " + websocket.readyState);
