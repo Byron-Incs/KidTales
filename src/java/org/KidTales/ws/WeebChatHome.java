@@ -30,7 +30,7 @@ import org.KidTales.dao.MesaggeModel;
  *
  * @author Evelyn
  */
-@ServerEndpoint(value = "Pages/chat", decoders = MessageModelDecoder.class, encoders = MessageModelEncoder.class)
+@ServerEndpoint(value = "/chat", decoders = MessageModelDecoder.class, encoders = MessageModelEncoder.class)
 
 public class WeebChatHome implements Serializable {
 
