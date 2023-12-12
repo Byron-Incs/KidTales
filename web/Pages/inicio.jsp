@@ -124,7 +124,7 @@
                     if (rol == 1) {
         %>
         <script>
-            window.location.href = "../Pages/Soporte/chatsoporte.jsp";
+            window.location.href = "../Pages/Usuario/Ajustes/atencion.jsp";
         </script>
         <%
         } else if (rol == 2) {

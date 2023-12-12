@@ -39,22 +39,41 @@ function onMessage(event)
      
 }
 
-function display(dataString) 
-{
-    
+function display(dataString) {
     var data = JSON.parse(dataString);
-    console.log("Data:", data);
-     if (data.userName === document.getElementById("username_input").value) {
-          var contentMessage = data.conten +"</p>";
-            document.getElementById("output").innerHTML += contentMessage + "</br>";
-     }
-     /*
-     if (data.userName === document.getElementById("idSoporte_input").value) {
-          var contentMessage = data.conten +"</p>";
-            document.getElementById("output").innerHTML += contentMessage + "</br>";
-     }*/
+    var outputElement = document.getElementById("output");
 
+    var messageContainer = document.createElement("div");
+    messageContainer.classList.add("mensaje-container");
+
+    var messageContent = document.createElement("p");
+
+    if (data.userName === document.getElementById("username_input").value) {
+        // Mensaje enviado
+        messageContent.textContent = "Tú: " + data.conten;
+        messageContainer.style.backgroundColor = "#fae1ae";
+    } else {
+        // Mensaje recibido
+        messageContent.textContent = data.userName + ": " + data.conten;
+        messageContainer.style.backgroundColor = "#f2f2f2";
+    }
+
+    // Agregar estilos al contenedor del mensaje
+    messageContainer.style.border = "1px solid #ccc";
+    messageContainer.style.padding = "8px";
+    messageContainer.style.marginBottom = "10px";
+    messageContainer.style.borderRadius = "5px";
+
+    // Agregar el contenido del mensaje al contenedor
+    messageContainer.appendChild(messageContent);
+
+    // Agregar el contenedor del mensaje al contenedor principal
+    outputElement.appendChild(messageContainer);
+
+    // Desplazarse hacia abajo para mostrar el último mensaje
+    outputElement.scrollTop = outputElement.scrollHeight;
 }
+
 
 function send() {
     if (websocket.readyState === WebSocket.OPEN) {
@@ -71,10 +90,17 @@ function send() {
         };
         console.log("Sending " + encryptedMessage);
         websocket.send(JSON.stringify(json));
+        
+
+        
+        document.getElementById("message_input").value = "";
+    
     } else {
         console.error("WebSocket connection is not open.");
     }
 }
+
+
 
 var mapaDeSustitucionCifrado = {
     'a': 'O2',

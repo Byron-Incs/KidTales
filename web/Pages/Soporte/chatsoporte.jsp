@@ -36,13 +36,34 @@
 
         <link rel="stylesheet" type="text/css" href="chat.css">
 
+        <style>
+            #message_input,
+            #username_input {
+                border: 1px solid #ccc; 
+                border-radius: 5px; 
+                padding: 8px; 
+                margin-bottom: 10px; 
+            }
+
+            #message_input::placeholder {
+                color: #aaa; 
+            }
+            
+            .mensaje-enviado {
+    background-color: yellow;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    /* Agrega otros estilos según sea necesario */
+}
+        </style>
+
 
     </head>
     <body>
-        
+
         <%
-             
-             
+
             HttpSession sesion = request.getSession();
             String userId = (String) sesion.getAttribute("userId");
             String usernamesession = (String) sesion.getAttribute("usernamessesion");
@@ -59,9 +80,9 @@
                 conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/KidTalesDB", "root", "1234");
 
                 String selectPadresIdQuery = "SELECT PadreID from Chat where SoporteTecnicoID = ?";
-                try (PreparedStatement padresStatement = conexion.prepareStatement(selectPadresIdQuery)) {
+                try ( PreparedStatement padresStatement = conexion.prepareStatement(selectPadresIdQuery)) {
                     padresStatement.setString(1, userId);
-                    try (ResultSet padresResultSet = padresStatement.executeQuery()) {
+                    try ( ResultSet padresResultSet = padresStatement.executeQuery()) {
                         while (padresResultSet.next()) {
                             padres.add(padresResultSet.getString("PadreID"));
                         }
@@ -71,9 +92,9 @@
                     String padreId = padres.get(i);
 
                     String selectNombrePadreQuery = "SELECT Nombre FROM Usuario WHERE UserID = ?";
-                    try (PreparedStatement nombrePadreStatement = conexion.prepareStatement(selectNombrePadreQuery)) {
+                    try ( PreparedStatement nombrePadreStatement = conexion.prepareStatement(selectNombrePadreQuery)) {
                         nombrePadreStatement.setString(1, padreId);
-                        try (ResultSet padreResultSet = nombrePadreStatement.executeQuery()) {
+                        try ( ResultSet padreResultSet = nombrePadreStatement.executeQuery()) {
                             if (padreResultSet.next()) {
                                 nombresPadres.add(padreResultSet.getString("Nombre"));
                             }
@@ -173,45 +194,23 @@
                             <img src="../../assets/images/perfiles/usuario.svg" alt="img">
                         </div>
                         <div class="cuerpo">
-                            <span>Hoid</span>
+                            <span><%=usernamesession%></span>
                         </div>
 
                     </div>
-                    <div class="panel-chat">
-                        <div class="mensaje">
-                            <div class="avatar">
-                                <img src="../../assets/images/perfiles/usuario.svg" alt="img">
-                            </div>
-                            <div class="cuerpo">
-                                <div class="texto">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Dolor eligendi voluptatum dolore voluptas iure.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- derecha -->
-                        <div class="mensaje left">
-                            <div class="cuerpo">
-                                <!-- <img src="http://localhost/multimedia/png/user-foto-3.png" alt=""> -->
-                                <div class="texto">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Dolor eligendi voluptatum dolore voluptas iure.
-                                </div>
-                            </div>
-                            <div class="avatar">
-                                <img src="../../assets/images/perfiles/soporte.svg" alt="img">
-                            </div>
-                        </div>
-                    </div>
+
 
                     <div class="panel-escritura">
                         <div id="output"></div>
                         <input id="message_input"  placeholder="Escribir mensaje" type="text">
                         <input id="username_input"  type="text" value="<%=usernamesession%>" hidden>
-                         
+
                         <script src="../../assets/js/websocket.js"></script> 
-                        <button type="button"onclick="send()">
+                        <button type="button" onclick="send()">
                             <i class="fas fa-paper-plane logocolor"></i>
                         </button>
                     </div>                 
+
                 </div>
             </section>
 

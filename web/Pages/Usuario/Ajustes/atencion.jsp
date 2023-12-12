@@ -15,13 +15,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Chat Soporte</title>
+        <title>Chat Usuario</title>
 
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="Byron" content="Webestica.com">
-        <meta name="description" content="Chat Soporte">
+        <meta name="description" content="Chat Usuario">
 
         <link rel="shortcut icon" href="../../../assets/images/index/logoc.jpg">
 
@@ -35,6 +35,20 @@
         <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
 
         <link rel="stylesheet" type="text/css" href="chat.css">
+        
+        <style>
+            #message_input,
+            #username_input {
+                border: 1px solid #ccc; 
+                border-radius: 5px; 
+                padding: 8px; 
+                margin-bottom: 10px; 
+            }
+
+            #message_input::placeholder {
+                color: #aaa; 
+            }
+        </style>
 
 
     </head>
@@ -155,43 +169,22 @@
                 <div class="seccion-chat">
                     <div class="usuario-seleccionado">
                         <div class="avatar">
-                            <img src="../../../assets/images/perfiles/soporte.svg" alt="img">
+                            <img src="../../../assets/images/perfiles/usuario.svg" alt="img">
                         </div>
                         <div class="cuerpo">
-                            <span>Soporte</span>
+                            <span><%=usernamesession%></span>
                         </div>
 
                     </div>
                     <div class="panel-chat">
-                        <div class="mensaje">
-                            <div class="avatar">
-                                <img src="../../../assets/images/perfiles/soporte.svg" alt="img">
-                            </div>
-                            <div class="cuerpo">
-                                <div class="texto">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Dolor eligendi voluptatum dolore voluptas iure.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- derecha -->
-                        <div class="mensaje left">
-                            <div class="cuerpo">
-                                <!-- <img src="http://localhost/multimedia/png/user-foto-3.png" alt=""> -->
-                                <div class="texto">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Dolor eligendi voluptatum dolore voluptas iure.
-                                </div>
-                            </div>
-                            <div class="avatar">
-                                <img src="../../../assets/images/perfiles/usuario.svg" alt="img">
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="panel-escritura">
                         <div id="output"></div>
                             <input id="message_input"  placeholder="Escribir mensaje" type="text">
                             <input id="username_input"  type="text" value="<%=usernamesession%>" hidden>
                             
-                            <button type="button"onclick="send()">
+                            <button type="button" onclick="send()">
                                 <i class="fas fa-paper-plane logocolor"></i>
                             </button>
                              <script src="../../../assets/js/websocket.js"></script> 
